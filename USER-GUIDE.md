@@ -1,7 +1,7 @@
-OasisMassMailer − Guide du développeur
+MunchMailer − Guide du développeur
 =======================================
 
-OasisMassMailer est une **API REST** permettant la gestion et l'expédition de
+MunchMailer est une **API REST** permettant la gestion et l'expédition de
 campagnes d'email vers **un grand nombre de destinataires**.
 
 TODO
@@ -12,44 +12,19 @@ TODO
 - Rôle des *owners*
 - Remplacer les localhost
 
-FAQ
----
-
-### Pourquoi un outil dédié ?
-
-Il est théoriquement possible d'envoyer un email à de nombreux destinataires,
-cependant :
-
-- on finit vite classé en tant que spam ou rejettés (les serveurs de destination
-  sont plus stricts sur les mails « massifs ») ;
-- on a aucune idée de qui reçoit ou ne reçoit pas les mails ;
-- quand les mails ne sont pas reçus, on reçoit tout un tas de mails d'erreur
-  dans sa boite mail.
-
-### Comment personaliser le lien « Se désinscrire » ?
-
-Un lien est inséré par défaut à la fin de votre document HTML pour permettre à
-vos destinataires de se désabonner.
-
-Si vous voulez que ce lien aie l'apparence de votre choix, il vous suffit de
-mettre la chaîne `UNSUBSCRIBE_URL` là où vous voulez que l'adresse effective de
-désinscription apparaisse, par exemple :
-
-    Message ennuyeux ? Vous pouvez <a href="UNSUBSCRIBE_URL">vous désinscrire</a>
-
 Portée
 ------
 
-OasisMassMailer est :
+MunchMailer est :
 
 - une API HTTP/REST
 - une infrastructure dédiée à la remise de mails en nombre
 
-OasisMassMailer n'est pas :
+MunchMailer n'est pas :
 
 - une application utilisateur : c'est à vous de construire une interface
-  exploitant OasisMassMailer
-- une relais de spam non solicité : nous imposons et vérifions que nos clients
+  exploitant MunchMailer
+- une relais de spam non sollicité : nous imposons et vérifions que nos clients
   respectent
   [les règles en vigueur](http://www.arobase.org/spam/comprendre-regulation.htm)
   sur l'envoi de courriels marketting.
@@ -69,7 +44,7 @@ nombre de destinataire, il s'agit d'un outil de communication de masse.
 Les emails massifs incluent :
 - les newsletters
 - les communications à destination des adhérents d'une association
-- les mails marketting
+- les mails marketing
 - ...
 
 ### Bounce
@@ -78,14 +53,14 @@ On parle de *Bounce* (littéralement *Rebond*) lorsqu'un mail envoyé ne peut pa
 être remis au destinataire. Les raisons sont multiples : adresse inexistante,
 boite pleine, serveur mal configuré…
 
-OMM se charge de désinscrire automatiquement les adresses produisant des
+MunchMailer se charge de désinscrire automatiquement les adresses produisant des
 *bounces* trop fréquents, en vous notifiant.
 
 Prérequis
 ---------
 
 Pour un *taux de remise* optimal de vos messages, nous respectons un certain
-nombre de bonne pratiques. *OMM* gère l'essentiel de ces pratiques pour
+nombre de bonne pratiques. *MunchMailer* gère l'essentiel de ces pratiques pour
 vous. Cependant, certaines opérations sur le nom de domaine **restent à votre
 charge** :
 
@@ -98,7 +73,7 @@ Si vous souhaitez envoyer vos emails depuis *jdoe@mailling.example.com*, vous
 devez ajouter un enregistrement `TXT` sur le domaine *mailling.example.com*.
 
 A-minima, si vous ne disposez pas encore d'un enregistrement SPF sur votre
-domaine, vous pouvez ajouter quelque-chose comme :
+domaine, vous pouvez ajouter quelque chose comme :
 
     mailling.example.com. 720 IN TXT "v=spf1 include:_spf.mailling.oasismail.fr ?all"
 
@@ -122,18 +97,18 @@ devez ajouter l'enregistrement `TXT` suivant :
 Fonctionnement
 --------------
 
-*OMM* définit plusieurs notions :
+*MunchMailer* définit plusieurs notions :
 
 
 ### Campagne
 
 C'est simplement l'envoi d'un mail identique à un certain nombre de
-personne. Cette notion est au-dessus des autres. Une campaigne peut-être
+personne. Cette notion est au-dessus des autres. Une campagne peut-être
 programmée pour être envoyée à une certaine date.
 
 ### Message
 
-Le corps du texte de votre communication. OMM requiert que vous fournissiez une
+Le corps du texte de votre communication. MunchMailer requiert que vous fournissiez une
 version HTML et se chargera de proposer aux destinataires à la fois
 
 - cette version HTML « nettoyée » pour respecter un certain nombre de bonnes
@@ -145,7 +120,7 @@ version HTML et se chargera de proposer aux destinataires à la fois
 
 ### Contacts techniques
 
-Une liste d'emails qu'oasiswork utilisera  pour signaler :
+Une liste d'emails qu'Oasiswork utilisera  pour signaler :
 
 - les résiliations (quelles que soient leur origine)
 - les rapports d'abus
@@ -155,7 +130,7 @@ Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés.
 ### Désinscription (Opt-out)
 
 Vous **devez** (c'est la loi), offrir une possibilité à vos destinataires de se
-désinscrire de vos envois. OMM gère celà pour vous :
+désinscrire de vos envois. MunchMailer gère cela pour vous :
 
 - un lien est inclus en bas des emails pour offrir cette possibilité ;
 - une adresse de désinscription est encodée dans le mail. Certains clients de
@@ -169,10 +144,10 @@ Vous ne pouvez pas passer outre ces *résiliations*. Cependant, dans certains ca
 spécifiques, nous pouvons rediriger vos destinataires vers un moyen de vous
 contacter plutôt que de leur proposer une désinscription en ligne.
 
-*Exemple : Communication d'une association à ses membres, où le refus de ecevoir
+*Exemple : Communication d'une association à ses membres, où le refus de recevoir
  les informations équivaut à quitter l'association.*
 
-Cette fonctionalité n'est activée qu'après vérification de la légitimité , au
+Cette fonctionnalité n'est activée qu'après vérification de la légitimité , au
 cas par cas, merci de nous contacter.
 
 L'API
@@ -194,7 +169,7 @@ Les étapes de la vie d'une campagne sont :
 4. Validation de la campagne (envoi)
 5. Suivi des envois
 
-Les étapes 2 et 3 peuvent-être interverties ; de même, tant que la campagne
+Les étapes 2 et 3 peuvent être interverties ; de même, tant que la campagne
 n'est pas validée, elle peut-être modifiée (1.).
 
 ### 1. Création/édition de la campagne avec ses attributs
@@ -324,6 +299,31 @@ TODO
 ### 5. Suivi des envois
 
 
+FAQ
+---
+
+### Pourquoi un outil dédié ?
+
+Il est théoriquement possible d'envoyer un email à de nombreux destinataires,
+cependant :
+
+- on finit vite classé en tant que spam ou rejetés (les serveurs de destination
+  sont plus stricts sur les mails « massifs ») ;
+- on a aucune idée de qui reçoit ou ne reçoit pas les mails ;
+- quand les mails ne sont pas reçus, on reçoit tout un tas de mails d'erreur
+  dans sa boite mail.
+
+### Comment personnaliser le lien « Se désinscrire » ?
+
+Un lien est inséré par défaut à la fin de votre document HTML pour permettre à
+vos destinataires de se désabonner.
+
+Si vous voulez que ce lien aie l'apparence de votre choix, il vous suffit de
+mettre la chaîne `UNSUBSCRIBE_URL` là où vous voulez que l'adresse effective de
+désinscription apparaisse, par exemple :
+
+    Message ennuyeux ? Vous pouvez <a href="UNSUBSCRIBE_URL">vous désinscrire</a>
+
 
 Annexes
 =======
@@ -337,3 +337,6 @@ Détails des modifications appliqués aux emails :
 - les éventuelles erreurs HTML sont corrigées
 - les règles CSS sont appliquées directement aux attributs (on parle
   d'*inlining*), la plupart des clients mail ne supportant pas les styles externes.
+
+<!--  LocalWords:  A-minima
+ -->

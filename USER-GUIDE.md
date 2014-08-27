@@ -147,8 +147,7 @@ contacter plutôt que de leur proposer une désinscription en ligne.
 *Exemple : Communication d'une association à ses membres, où le refus de recevoir
  les informations équivaut à quitter l'association.*
 
-Cette fonctionnalité n'est activée qu'après vérification de la légitimité , au
-cas par cas, merci de nous contacter.
+Cette fonctionnalité n'est activée qu'au cas par cas, merci de nous contacter.
 
 L'API
 -----
@@ -157,7 +156,7 @@ L'API est accessible à l'adresse *https://api.mailling.oasismail.fr*. Elle
 requiert une authentification pour fonctionner.
 
 Elle suit les principes
-[REST](http://fr.wikipedia.org/wiki/Representational_State_Transfer), et utilise
+[HTTP/REST](http://fr.wikipedia.org/wiki/Representational_State_Transfer), et utilise
 le format [JSON](http://fr.wikipedia.org/wiki/JavaScript_Object_Notation), ce
 qui la rend exploitable depuis un grand nombre de langages de programmation.
 
@@ -246,7 +245,7 @@ Il suffit de faire autant de requêtes POST que de destinataires à ajouter.
 	    "to" : "mon-destinataire@domaine.tld"
     }
 
-#### Ajout des destinataires en masse
+#### Ajout des destinataires par lot
 
     POST /api/v1/campaigns/6/mails/
     [
@@ -255,9 +254,8 @@ Il suffit de faire autant de requêtes POST que de destinataires à ajouter.
 	    {"to" : "gromit@autredomaine.tld"},
     ]
 
-Que vous ajoutiez les destinataires individuellement ou en lot :
-
-Vous recevrez les statuts suivants :
+Que vous ajoutiez les destinataires individuellement ou en lot, vous recevrez
+les statuts HTTP suivants :
 
 - **201 (created)** si tout se passe bien
 - **400 (bad request)** si l'email est invalide (adresse mal formée ou domaine

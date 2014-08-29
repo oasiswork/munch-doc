@@ -187,16 +187,16 @@ n'est pas validée, elle peut-être modifiée (1.).
         "owners"       :"communication@example.com"
     }
 
-* *name* : Le nom interne donné à la campagne, il ne sera pas visible de vos
+* **name** : Le nom interne donné à la campagne, il ne sera pas visible de vos
    destinataires.
-* *sender_email* : le mail d'expéditeur de la campagne, vous devez être
+* **sender_email** : le mail d'expéditeur de la campagne, vous devez être
    propriétaire du domaine concerné (ici *example.com*), et en y avoir
    [correctement configuré SPF et DKIM]().
-* *sender_name* : le nom de l'expéditeur, qui apparaîtra dans le client mail de
+* **sender_name** : le nom de l'expéditeur, qui apparaîtra dans le client mail de
    vos destinataires.
-* *tech_contacts* : liste d'emails, séparées par des virgules, ils recevront
+* **tech_contacts** : liste d'emails, séparées par des virgules, ils recevront
    notamment les notifications de résiliation
-* *owners* : liste d'emails, séparées par des virgules, FIXME
+* **owners** : liste d'emails, séparées par des virgules, FIXME
 
 Si tout se passe bien, l'API devrait vous retourner :
 

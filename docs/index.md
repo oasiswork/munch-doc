@@ -326,7 +326,7 @@ Le message fourni dans le paramètre **html** fera l'objet de plusieurs traiteme
 
 * Un « nettoyage » pour apparaître au mieux sur tous les clients mail (voir
   [liste des traitements appliqués]())
-* la génération d'une version « texte brut » à partir de ce dernier, fourni en
+* La génération d'une version « texte brut » à partir de ce dernier, fourni en
   tant qu'alternative (il est nécessaire de fournir une version texte brut
   dans les emails).
 * Un test anti-spam, pour vérifier qu'il ne risque pas d'être considéré comme

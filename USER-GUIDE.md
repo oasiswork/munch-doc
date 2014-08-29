@@ -371,7 +371,7 @@ Tout est prêt, la campagne n'est pas considérée comme spam, le département d
 communication est aux anges, il est temps de démarrer l'envoi de la campagne.
 
 Une dernière vue de validation est offerte (mentionnée dans l'objet *campagne*,
-attribut **preview**) (cf [étape 1.]())).
+attribut **preview**) (cf [étape 1.]()).
 
 Par exemple…
 

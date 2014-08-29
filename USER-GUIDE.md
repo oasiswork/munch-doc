@@ -461,14 +461,14 @@ l'attribut `mails` de la campagne. Par exemple :
 
 Les différents statuts possibles sont :
 
-* **unknown** : inconnu : le message n'est pas encore entré dans
+* **unknown** : le message n'est pas encore entré dans
     l'infrastructure mail
 * **sent** : le message a été accepté par les serveurs d'oasiswork est en cours
     d'acheminement
-* **delivered** Le message a été remis au serveur du destinataire
-* **softbounced** Le message a été rejeté à chaque tentative  pour
+* **delivered** : le message a été remis au serveur du destinataire
+* **softbounced** : le message a été rejeté à chaque tentative  pour
     *soft-bounce*, il n'a pu être remis.
-* **hardbounced** Le message a été rejeté net par le serveur distant
+* **hardbounced** : le message a été rejeté net par le serveur distant
     (hard-bounce).
 
 #### Suivi des résiliations

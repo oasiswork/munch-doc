@@ -105,7 +105,7 @@ programmée pour être envoyée à une certaine date.
 Le corps du texte de votre communication. MunchMailer requiert que vous fournissiez une
 version HTML et se chargera de proposer aux destinataires à la fois
 
-- cette version HTML « nettoyée » pour respecter un certain nombre de bonnes
+- cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
   pratiques et s'afficher correctement chez tous vos destinataires (voir [détail
   des modifications]())
 - une version texte pour les clients ne supportant que ce format ou les

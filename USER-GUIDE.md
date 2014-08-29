@@ -478,7 +478,7 @@ Les contacts techniques sont notifiés par email à chaque résiliation.
 Par ailleurs, il est possible de consulter les résiliations via l'API ; si votre
 identifiant de client est le 42 :
 
-    GET /api/v1/customers/1024/opt-outs/
+    GET /api/v1/customers/42/opt-outs/
 
 	[
 	{

@@ -396,8 +396,7 @@ prévisualisation.
 * **recipients** et **excluded_recipients** se partagent les destinataires que
     vous avez définis à l'[étape 2.](), dans excluded_recipients sont listés les
     destinataires auxquels la campagne ne sera pas envoyée pour des raisons de
-    désinscription de leur part ou des raisons techniques (cf [bounces]() et
-    [résiliation]()).
+    désinscription ([résiliation]()) de leur part ou des raisons techniques ([bounces]()).
 
 Pour avoir le détail des résiliation, se référer à l'étape suivante.
 

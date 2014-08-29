@@ -187,7 +187,7 @@ n'est pas validée, elle peut-être modifiée (1.).
     POST /api/v1/campaigns/
 	{
 	    "name"         :"Newsletter de Juillet",
-		"sender_email" :"newslettert@example.com",
+		"sender_email" :"newsletter@example.com",
         "sender_name"  :"Communication ACME chaussures",
         "tech_contacts":"admins@example.com, communication@example.com",
         "owners"       :"communication@example.com"
@@ -216,7 +216,7 @@ Si tout se passe bien, l'API devrait vous retourner :
         "url": "http://localhost:8000/api/v1/campaigns/6/",
         "name": "Newsletter de Juillet",
         "status": "new",
-        "sender_email": "newslettert@example.com",
+        "sender_email": "newsletter@example.com",
         "sender_name": "Newsletter ACME chaussures",
         "creation_date": "2014-08-27T14:55:58.470Z",
         "send_date": null,

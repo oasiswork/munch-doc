@@ -516,7 +516,7 @@ cependant :
 
 - on finit vite classé en tant que spam ou rejetés (les serveurs de destination
   sont plus stricts sur les mails « massifs ») ;
-- on a aucune idée de qui reçoit ou ne reçoit pas les mails ;
+- on n'a aucune idée de qui reçoit ou ne reçoit pas les mails ;
 - quand les mails ne sont pas reçus, on reçoit tout un tas de mails d'erreur
   dans sa boite mail.
 

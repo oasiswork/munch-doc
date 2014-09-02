@@ -105,7 +105,7 @@ programmée pour être envoyée à une certaine date.
 Le corps du texte de votre communication. MunchMailer requiert que vous fournissiez une
 version HTML et se chargera de proposer aux destinataires à la fois
 
-- cette version HTML « nettoyée » pour respecter un certain nombre de bonnes
+- cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
   pratiques et s'afficher correctement chez tous vos destinataires (voir [détail
   des modifications]())
 - une version texte pour les clients ne supportant que ce format ou les
@@ -181,22 +181,22 @@ n'est pas validée, elle peut-être modifiée (1.).
     POST /api/v1/campaigns/
 	{
 	    "name"         :"Newsletter de Juillet",
-		"sender_email" :"newslettert@example.com",
+		"sender_email" :"newsletter@example.com",
         "sender_name"  :"Communication ACME chaussures",
         "tech_contacts":"admins@example.com, communication@example.com",
         "owners"       :"communication@example.com"
     }
 
-* *name* : Le nom interne donné à la campagne, il ne sera pas visible de vos
+* **name** : Le nom interne donné à la campagne, il ne sera pas visible de vos
    destinataires.
-* *sender_email* : le mail d'expéditeur de la campagne, vous devez être
+* **sender_email** : le mail d'expéditeur de la campagne, vous devez être
    propriétaire du domaine concerné (ici *example.com*), et en y avoir
    [correctement configuré SPF et DKIM]().
-* *sender_name* : le nom de l'expéditeur, qui apparaîtra dans le client mail de
+* **sender_name** : le nom de l'expéditeur, qui apparaîtra dans le client mail de
    vos destinataires.
-* *tech_contacts* : liste d'emails, séparées par des virgules, ils recevront
+* **tech_contacts** : liste d'emails, séparées par des virgules, ils recevront
    notamment les notifications de résiliation
-* *owners* : liste d'emails, séparées par des virgules, FIXME
+* **owners** : liste d'emails, séparées par des virgules, FIXME
 
 Si tout se passe bien, l'API devrait vous retourner :
 
@@ -210,7 +210,7 @@ Si tout se passe bien, l'API devrait vous retourner :
         "url": "http://localhost:8000/api/v1/campaigns/6/",
         "name": "Newsletter de Juillet",
         "status": "new",
-        "sender_email": "newslettert@example.com",
+        "sender_email": "newsletter@example.com",
         "sender_name": "Newsletter ACME chaussures",
         "creation_date": "2014-08-27T14:55:58.470Z",
         "send_date": null,
@@ -326,7 +326,7 @@ Le message fourni dans le paramètre **html** fera l'objet de plusieurs traiteme
 
 * Un « nettoyage » pour apparaître au mieux sur tous les clients mail (voir
   [liste des traitements appliqués]())
-* la génération d'une version « texte brut » à partir de ce dernier, fourni en
+* La génération d'une version « texte brut » à partir de ce dernier, fourni en
   tant qu'alternative (il est nécessaire de fournir une version texte brut
   dans les emails).
 * Un test anti-spam, pour vérifier qu'il ne risque pas d'être considéré comme
@@ -365,7 +365,7 @@ Tout est prêt, la campagne n'est pas considérée comme spam, le département d
 communication est aux anges, il est temps de démarrer l'envoi de la campagne.
 
 Une dernière vue de validation est offerte (mentionnée dans l'objet *campagne*,
-attribut **preview**) (cf [étape 1.]())).
+attribut **preview**) (cf [étape 1.]()).
 
 Par exemple…
 
@@ -396,8 +396,7 @@ prévisualisation.
 * **recipients** et **excluded_recipients** se partagent les destinataires que
     vous avez définis à l'[étape 2.](), dans excluded_recipients sont listés les
     destinataires auxquels la campagne ne sera pas envoyée pour des raisons de
-    désinscription de leur part ou des raisons techniques (cf [bounces]() et
-    [résiliation]()).
+    désinscription ([résiliation]()) de leur part ou des raisons techniques ([bounces]()).
 
 Pour avoir le détail des résiliation, se référer à l'étape suivante.
 
@@ -456,14 +455,14 @@ l'attribut `mails` de la campagne. Par exemple :
 
 Les différents statuts possibles sont :
 
-* **unknown** : inconnu : le message n'est pas encore entré dans
+* **unknown** : le message n'est pas encore entré dans
     l'infrastructure mail
 * **sent** : le message a été accepté par les serveurs d'oasiswork est en cours
     d'acheminement
-* **delivered** Le message a été remis au serveur du destinataire
-* **softbounced** Le message a été rejeté à chaque tentative  pour
+* **delivered** : le message a été remis au serveur du destinataire
+* **softbounced** : le message a été rejeté à chaque tentative  pour
     *soft-bounce*, il n'a pu être remis.
-* **hardbounced** Le message a été rejeté net par le serveur distant
+* **hardbounced** : le message a été rejeté net par le serveur distant
     (hard-bounce).
 
 #### Suivi des résiliations
@@ -473,7 +472,7 @@ Les contacts techniques sont notifiés par email à chaque résiliation.
 Par ailleurs, il est possible de consulter les résiliations via l'API ; si votre
 identifiant de client est le 42 :
 
-    GET /api/v1/customers/1024/opt-outs/
+    GET /api/v1/customers/42/opt-outs/
 
 	[
 	{
@@ -517,7 +516,7 @@ cependant :
 
 - on finit vite classé en tant que spam ou rejetés (les serveurs de destination
   sont plus stricts sur les mails « massifs ») ;
-- on a aucune idée de qui reçoit ou ne reçoit pas les mails ;
+- on n'a aucune idée de qui reçoit ou ne reçoit pas les mails ;
 - quand les mails ne sont pas reçus, on reçoit tout un tas de mails d'erreur
   dans sa boite mail.
 

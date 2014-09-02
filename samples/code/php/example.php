@@ -1,4 +1,3 @@
-<pre>
 <?php
 class HTTPException extends Exception {}
 
@@ -62,12 +61,13 @@ class HTTPSClient{
  ************************/
 
 // Paramètres
-$ca_file = '/home/jocelyn/dev/munch/etc/ssl/ssl-example-ca-clients.pem';
-$cert_file = '/home/jocelyn/dev/munch/etc/ssl/client-1024-test1-cert.pem';
-$client_url = 'https://localhost:4243/api/v1/customers/1024/';
+$ca_file = 'docs/files/ssl/demo-ca.pem';
+$cert_file = 'docs/files/ssl/demo-client-cert.pem';
+$cert_pass = 'OHc9HS7qOynty8LiH5tNV0qKX';
+$client_url = 'https://api.demo.munchmail.net/api/v1/customers/42/';
 
 // Initialisation du client HTTP
-$client = new HTTPSClient($cert_file, $ca_file, '');
+$client = new HTTPSClient($cert_file, $ca_file, $cert_pass);
 
 // Récupération des informations client
 $customer = $client->get($client_url);
@@ -80,7 +80,7 @@ $campaign = $client->post($campaigns_url, array(
   'sender_name'  => 'Communication ACME chaussures',
   'tech_contacts'=> 'admins@example.com, communication@example.com',
   'owners'       => 'communication@example.com',
-  'customer'     => 1024));
+  'customer'     => 42));
 
 
 echo "**** Détails de la campagne\n";
@@ -129,4 +129,3 @@ echo "**** Consultation des opt-outs\n";
 print_r($client->get($customer->opt_outs));
 
 ?>
-</pre>

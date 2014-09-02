@@ -1,6 +1,7 @@
-## L'API
+L'API
+=====
 
-L'API est accessible à l'adresse *https://api.mailling.oasismail.fr*. Elle
+L'API est accessible à l'adresse *https://api.demo.munchmailer.fr*. Elle
 requiert une authentification pour fonctionner.
 
 Elle suit les principes
@@ -19,17 +20,58 @@ Les étapes de la vie d'une campagne sont :
 Les étapes 2 et 3 peuvent être interverties ; de même, tant que la campagne
 n'est pas validée, elle peut-être modifiée (1.).
 
-### Points notables
+Points notables
+----------------
 
 * Les urls des objets (rappelés dans des attributs JSON **url**) sont
-  l'identifiant unique d'un objet dans le système. Ils peuvent-être
+  l'identifiant unique d'un objet dans le système. Elles peuvent-être
   utilisées à la fois pour consulter l'objet (requête `GET`) ou le modifier
   (requête `PUT`).
-* L'API est *explorable* : en vous rendant sur http://api.mailling.oasismail.fr,
+* L'API est *explorable* : en vous rendant sur https://api.demo.munchmailer.fr,
   vous avez une version graphique de l'API que vous pouvez utiliser
   directement depuis le navigateur pour découvrir ou débuguer par exemple.
 * Si accédée depuis un client `HTTP` ne présentant pas de `Content-type` (ex:
   *php5-curl*), l'API dialogue par défaut en JSON.
+
+Authentification
+----------------
+
+L'authentification de cette API s'appuie sur SSL, ce qui offre une manière
+standard les fonctionalités suivantes :
+
+* Nous **authentifions votre application** (*certificat client*)
+* Votre application **authentifie notre serveur** (*certificat serveur*)
+* Le traffic entre votre application et notre serveur est **chiffré**
+
+Référez-vous à la documentation de votre langage de programmation pour savoir
+comment utiliser un certificat client (tous les langages courants le proposent,
+sans installation de bibliothèque supplémentaire).
+
+L'authentification est abordée notamment dans nos
+[exemples pour PHP](/exemples/php/).
+
+
+Instance de démonstration
+-------------------------
+
+Durant la phase de tests et de développement de votre application, nous vous
+encourageons à utiliser l'instance publique de démonstration :
+
+**[https://api.demo.munchmail.net](https://api.demo.munchmail.net)**
+
+Il est identique au serveur de production, mais :
+
+- Il n'envoie pas réellement les mails
+- Il est effacé périodiquement
+
+Pour l'authentification de l'instance de démonstration :
+
+* Fichier de CA : [demo-ca.pem](/files/ssl/demo-ca.pem)
+* Certificat client : [demo-client-cert.pem](/files/ssl/demo-client-cert.pem)
+* Mot de passe : `OHc9HS7qOynty8LiH5tNV0qKX`
+
+Une campagne de A à Z
+---------------------
 
 ### 1. Création/édition de la campagne avec ses attributs
 
@@ -58,10 +100,10 @@ Si tout se passe bien, l'API devrait vous retourner :
     HTTP 201 CREATED
     {
         "customer": 1024,
-        "message": "https://api.mailling.oasismail.fr/api/v1/campaigns/6/message/",
+        "message": "https://api.demo.munchmailer.fr/api/v1/campaigns/6/message/",
         "mails": "http://localhost:8000/api/v1/campaigns/6/mails/",
         "completion_date": null,
-        "preview": "https://api.mailling.oasismail.fr/api/v1/campaigns/6/preview/",
+        "preview": "https://api.demo.munchmailer.fr/api/v1/campaigns/6/preview/",
         "url": "http://localhost:8000/api/v1/campaigns/6/",
         "name": "Newsletter de Juillet",
         "status": "new",
@@ -167,7 +209,7 @@ Pour des conseils sur la rédaction de mails en HTML, vous pouvez vous référer
 Niveau API, on défini le message de notre campagne d'exemple de la manière
 suivante :
 
-    PUT https://api.mailling.oasismail.fr/api/v1/campaigns/1/message/
+    PUT /api/v1/campaigns/1/message/
 	{
        "subject": "Tu peux faire tout ce que tu veux",
        "html": "<h1>Mais ne marche pas sur mes chaussures en suédine bleue</h1>"
@@ -194,14 +236,14 @@ La réponse à notre requête PUT ressemblerait à :
 
     HTTP 201 CREATED
     {
-        "url": "https://api.mailling.oasismail.fr/api/v1/campaigns/1/message/",
+        "url": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/",
         "subject": "Tu peux faire tout ce que tu veux",
         "html": "<h1>Mais ne marche pas sur mes chaussures en su\u00e9dine bleue</h1>",
         "is_spam": false,
         "spam_score": 0.0,
-        "spam_details": "https://api.mailling.oasismail.fr/api/v1/campaigns/1/message/spam_details/",
+        "spam_details": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/spam_details/",
         "preview": "http://localhost:8000/api/v1/campaigns/1/message/preview/",
-        "html_preview": "https://api.mailling.oasismail.fr/api/v1/campaigns/1/message/preview/.html",
+        "html_preview": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/preview/.html",
         "plaintext_preview": "http://localhost:8000/api/v1/campaigns/1/message/preview/.txt"
     }
 
@@ -276,7 +318,7 @@ Les mails commencent à-partir de ce moment à être envoyés aux destinataires.
 Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 l'attribut `mails` de la campagne. Par exemple :
 
-    GET https://api.mailling.oasismail.fr/api/v1/campaigns/6/mails/"
+    GET https://api.demo.munchmailer.fr/api/v1/campaigns/6/mails/"
 	[
     {
         "to": "jane@domain.tld",

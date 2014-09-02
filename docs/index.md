@@ -3,12 +3,13 @@
 MunchMailer est une **API REST** permettant la gestion et l'expédition de
 campagnes d'email vers **un grand nombre de destinataires**.
 
+Cette documentation vise à vous aider dans la réalisation d'une application
+exploitant l'API MunchMailer.
+
 ## TODO pour cette doc
 
 - Mettre la bonne clef DKIM
-- Authentification
 - Rôle des *owners*
-- Exemples PHP
 
 ## Portée
 

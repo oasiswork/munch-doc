@@ -1,18 +1,16 @@
-MunchMailer − Guide du développeur
-===================================
+# MunchMailer − Guide du développeur
 
 MunchMailer est une **API REST** permettant la gestion et l'expédition de
 campagnes d'email vers **un grand nombre de destinataires**.
 
-TODO pour cette doc
------------------
+## TODO pour cette doc
+
 - Mettre la bonne clef DKIM
 - Authentification
 - Rôle des *owners*
 - Exemples PHP
 
-Portée
-------
+## Portée
 
 MunchMailer est :
 
@@ -29,8 +27,7 @@ MunchMailer n'est pas :
   sur l'envoi de courriels marketting.
 
 
-Vocabulaire
------------
+## Vocabulaire
 
 ### email transactionnel vs email massif
 
@@ -55,8 +52,7 @@ boite pleine, serveur mal configuré…
 MunchMailer se charge de désinscrire automatiquement les adresses produisant des
 *bounces* trop fréquents, en vous notifiant.
 
-Prérequis
----------
+## Prérequis
 
 Pour un *taux de remise* optimal de vos messages, nous respectons un certain
 nombre de bonne pratiques. *MunchMailer* gère l'essentiel de ces pratiques pour
@@ -93,8 +89,7 @@ devez ajouter l'enregistrement `TXT` suivant :
 
 	KEY-FINGER-PRINT._domainkey.mailling.example.com.	341222 IN TXT "v=DKIM1\; k=rsa\; p=KEY-CONTENT"
 
-Fonctionnement
---------------
+## Fonctionnement
 
 *MunchMailer* définit plusieurs notions :
 
@@ -148,8 +143,7 @@ contacter plutôt que de leur proposer une désinscription en ligne.
 
 Cette fonctionnalité n'est activée qu'au cas par cas, merci de nous contacter.
 
-L'API
------
+## L'API
 
 L'API est accessible à l'adresse *https://api.mailling.oasismail.fr*. Elle
 requiert une authentification pour fonctionner.
@@ -514,8 +508,7 @@ poser des question sur la légitimité de votre liste de
 contacts. **N'utilisez-pas de liste de mails achetées**… et respectez la
 législation en vigueur.
 
-FAQ
----
+## FAQ
 
 ### Pourquoi un outil dédié ?
 
@@ -540,8 +533,7 @@ désinscription apparaisse, par exemple :
     Message ennuyeux ? Vous pouvez <a href="UNSUBSCRIBE_URL">vous désinscrire</a>
 
 
-Annexes
-=======
+## Annexes
 
 Détails des modifications appliquées aux emails :
 

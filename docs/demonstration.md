@@ -4,7 +4,7 @@ Instance de test/démonstration
 Durant la phase de tests et de développement de votre application, nous vous
 encourageons à utiliser l'instance publique de démonstration :
 
-**[https://api.demo.munchmail.net](https://api.demo.munchmail.net)**
+**[https://demo.munchmail.net](https://demo.munchmail.net)**
 
 Il est identique au serveur de production, mais :
 

@@ -6,10 +6,14 @@ campagnes d'email vers **un grand nombre de destinataires**.
 Cette documentation vise à vous aider dans la réalisation d'une application
 exploitant l'API MunchMailer.
 
+<!--
+
 ## TODO pour cette doc
 
 - Mettre la bonne clef DKIM
 - Rôle des *owners*
+
+-->
 
 ## Portée
 

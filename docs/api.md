@@ -1,13 +1,13 @@
 L'API
 =====
 
-L'API est accessible à l'adresse *https://api.munchmailer.fr*. Elle
+L'API est accessible à l'adresse *https://api.munchmail.fr*. Elle
 requiert une authentification pour fonctionner.
 
 -----
 
 **⚠ Ne faites pas vos tests sur
-  [api.munchmailer.net](https://api.munchmailer.net), utilisez
+  [api.munchmail.net](https://api.munchmail.net), utilisez
   l'[instance de démonstration](/demonstration/)**.
 
 ----
@@ -86,10 +86,10 @@ Si tout se passe bien, l'API devrait vous retourner :
     HTTP 201 CREATED
     {
         "customer": 1024,
-        "message": "https://api.demo.munchmailer.fr/api/v1/campaigns/6/message/",
+        "message": "https://demo.munchmail.fr/api/v1/campaigns/6/message/",
         "mails": "http://localhost:8000/api/v1/campaigns/6/mails/",
         "completion_date": null,
-        "preview": "https://api.demo.munchmailer.fr/api/v1/campaigns/6/preview/",
+        "preview": "https://demo.munchmail.fr/api/v1/campaigns/6/preview/",
         "url": "http://localhost:8000/api/v1/campaigns/6/",
         "name": "Newsletter de Juillet",
         "status": "new",
@@ -222,14 +222,14 @@ La réponse à notre requête PUT ressemblerait à :
 
     HTTP 201 CREATED
     {
-        "url": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/",
+        "url": "https://demo.munchmail.fr/api/v1/campaigns/1/message/",
         "subject": "Tu peux faire tout ce que tu veux",
         "html": "<h1>Mais ne marche pas sur mes chaussures en su\u00e9dine bleue</h1>",
         "is_spam": false,
         "spam_score": 0.0,
-        "spam_details": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/spam_details/",
+        "spam_details": "https://demo.munchmail.fr/api/v1/campaigns/1/message/spam_details/",
         "preview": "http://localhost:8000/api/v1/campaigns/1/message/preview/",
-        "html_preview": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/preview/.html",
+        "html_preview": "https://demo.munchmail.fr/api/v1/campaigns/1/message/preview/.html",
         "plaintext_preview": "http://localhost:8000/api/v1/campaigns/1/message/preview/.txt"
     }
 
@@ -240,7 +240,7 @@ La réponse à notre requête PUT ressemblerait à :
 * **spam_details** permet d'accéder au barème détaillé du *spam_score*, afin de
     pouvoir apporter les modifications nécessaires au contenu de **html**.
 * **preview**, **html_preview** et **plaintext_preview** permettent d'avoir une
-    idée du code et du rendu du mail une fois « nettoyé » par MunchMailer.
+    idée du code et du rendu du mail une fois « nettoyé » par MunchMail.
 
 ### 4. Validation de la campagne (envoi)
 
@@ -304,7 +304,7 @@ Les mails commencent à-partir de ce moment à être envoyés aux destinataires.
 Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 l'attribut `mails` de la campagne. Par exemple :
 
-    GET https://api.demo.munchmailer.fr/api/v1/campaigns/6/mails/"
+    GET https://demo.munchmail.fr/api/v1/campaigns/6/mails/"
 	[
     {
         "to": "jane@domain.tld",

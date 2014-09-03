@@ -1,10 +1,10 @@
-# MunchMailer − Guide du développeur
+# MunchMail − Guide du développeur
 
-MunchMailer est une **API REST** permettant la gestion et l'expédition de
+MunchMail est une **API REST** permettant la gestion et l'expédition de
 campagnes d'email vers **un grand nombre de destinataires**.
 
 Cette documentation vise à vous aider dans la réalisation d'une application
-exploitant l'API MunchMailer.
+exploitant l'API MunchMail.
 
 <!--
 
@@ -17,15 +17,15 @@ exploitant l'API MunchMailer.
 
 ## Portée
 
-MunchMailer est :
+MunchMail est :
 
 - une API HTTP/REST
 - une infrastructure dédiée à la remise de mails en nombre
 
-MunchMailer n'est pas :
+MunchMail n'est pas :
 
 - une application utilisateur : c'est à vous de construire une interface
-  exploitant MunchMailer
+  exploitant MunchMail
 - une relais de spam : c'est votre devoir et votre
   responsabilité de respecter
   [les règles en vigueur](http://www.arobase.org/spam/comprendre-regulation.htm)
@@ -54,13 +54,13 @@ On parle de *Bounce* (littéralement *Rebond*) lorsqu'un mail envoyé ne peut pa
 être remis au destinataire. Les raisons sont multiples : adresse inexistante,
 boite pleine, serveur mal configuré…
 
-MunchMailer se charge de désinscrire automatiquement les adresses produisant des
+MunchMail se charge de désinscrire automatiquement les adresses produisant des
 *bounces* trop fréquents, en vous notifiant.
 
 ## Prérequis
 
 Pour un *taux de remise* optimal de vos messages, nous respectons un certain
-nombre de bonne pratiques. *MunchMailer* gère l'essentiel de ces pratiques pour
+nombre de bonne pratiques. *MunchMail* gère l'essentiel de ces pratiques pour
 vous. Cependant, certaines opérations sur le nom de domaine **restent à votre
 charge** :
 
@@ -96,7 +96,7 @@ devez ajouter l'enregistrement `TXT` suivant :
 
 ## Fonctionnement
 
-*MunchMailer* définit plusieurs notions :
+*MunchMail* définit plusieurs notions :
 
 
 ### Campagne
@@ -107,7 +107,7 @@ programmée pour être envoyée à une certaine date.
 
 ### Message
 
-Le corps du texte de votre communication. MunchMailer requiert que vous fournissiez une
+Le corps du texte de votre communication. MunchMail requiert que vous fournissiez une
 version HTML et se chargera de proposer aux destinataires à la fois
 
 - cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
@@ -129,7 +129,7 @@ Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés.
 ### Désinscription (Opt-out)
 
 Vous **devez** (c'est la loi), offrir une possibilité à vos destinataires de se
-désinscrire de vos envois. MunchMailer gère cela pour vous :
+désinscrire de vos envois. MunchMail gère cela pour vous :
 
 - un lien est inclus en bas des emails pour offrir cette possibilité ;
 - une adresse de désinscription est encodée dans le mail. Certains clients de

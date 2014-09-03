@@ -1,6 +1,8 @@
-Pour tester :
+# MunchMail Documentation
 
-mkvirtualenv mkdocs
-pip install mkdocs
-make examples
-mkdocs serve
+Howto :
+
+* mkvirtualenv mkdocs
+* pip install mkdocs
+* make examples
+* mkdocs serve

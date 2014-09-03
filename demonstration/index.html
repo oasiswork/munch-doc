@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-        <title>Annexes - MunchMail</title>
+        <title>Instance de démonstration - MunchMail</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -75,8 +75,8 @@
             
             
             
-                <li >
-                    <a href="../demonstration/">Instance de démonstration</a>
+                <li class="active">
+                    <a href="./">Instance de démonstration</a>
                 </li>
             
             
@@ -87,8 +87,8 @@
             
             
             
-                <li class="active">
-                    <a href="./">Annexes</a>
+                <li >
+                    <a href="../annexes/">Annexes</a>
                 </li>
             
             
@@ -98,12 +98,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../faq/">
+                    <a rel="next" href="../exemples/php/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li class="disabled">
-                    <a rel="prev" >
+                <li >
+                    <a rel="prev" href="../faq/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -117,27 +117,50 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#annexes">Annexes</a></li>
+        <li class="main active"><a href="#instance-de-testdemonstration">Instance de test/démonstration</a></li>
         
-    
-        <li class="main "><a href="#modifications-appliquees-aux-emails">Modifications appliquées aux emails</a></li>
+            <li><a href="#authentification">Authentification</a></li>
+        
+            <li><a href="#exploration-de-lapi">Exploration de l'API</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h2 id="annexes">Annexes</h2>
-<h2 id="modifications-appliquees-aux-emails">Modifications appliquées aux emails</h2>
+<h1 id="instance-de-testdemonstration">Instance de test/démonstration</h1>
+<p>Durant la phase de tests et de développement de votre application, nous vous
+encourageons à utiliser l'instance publique de démonstration :</p>
+<p><strong><a href="https://api.demo.munchmail.net">https://api.demo.munchmail.net</a></strong></p>
+<p>Il est identique au serveur de production, mais :</p>
 <ul>
-<li>les images sont détachées et hébergées sur nos serveurs (pour éviter de
-  surcharger les votres)</li>
-<li>le javascript et le flash sont retirés (ils ne sont que
-  <a href="https://www.campaignmonitor.com/resources/will-it-work/">rarement supportés</a>)</li>
-<li>les éventuelles erreurs HTML sont corrigées</li>
-<li>les règles CSS sont appliquées directement aux attributs (on parle
-  d'<em>inlining</em>), la plupart des clients mail ne supportant pas les styles externes.</li>
+<li>Il n'envoie pas réellement les mails</li>
+<li>Il est effacé périodiquement</li>
 </ul>
+<h2 id="authentification">Authentification</h2>
+<p>L'authentification est similaire à celle de l'API réelle, mais au lieu de votre
+certificat, vous utilisez un <em>certificat de démonstration</em>. Le <em>fichier de CA</em>
+permet à votre navigateur d'authentifier notre serveur de démonstration.</p>
+<ul>
+<li>Certificat client (format pkcs12):
+  <a href="/files/ssl/demo-client-cert.p12">demo-client-cert.p12</a> ou
+  <a href="/files/ssl/demo-client-cert.pem">demo-client-cert.pem</a></li>
+<li>Fichier de CA : <a href="/files/ssl/demo-ca.pem">demo-ca.pem</a></li>
+</ul>
+<h2 id="exploration-de-lapi">Exploration de l'API</h2>
+<p>L'API est <em>explorable</em> : en ouvrant votre navigateur sur
+https://demo.munchmail.net, vous avez une version graphique de l'API que vous
+pouvez utiliser tester depuis le navigateur pour découvrir ou débuguer par
+exemple.</p>
+<p>Si vous voulez tester l'API, vous devez installer <a href="/files/ssl/demo-client-cert.p12">le certificat client de
+démonstration</a> dans votre navigateur.</p>
+<h3 id="chrome">Chrome</h3>
+<p><em>Paramètres → Afficher les paramètres avancés → Gérer les certificats  →
+ Importer</em></p>
+<p>(laisser le champ vide quand un mot de passe vous est demandé)</p>
+<h3 id="firefox">Firefox</h3>
+<p><em>Édition → Préférences → Avancé → Afficher les certificats → Importer</em></p>
+<p>(laisser le champ vide quand un mot de passe vous est demandé)</p>
 </div>
         </div>
 

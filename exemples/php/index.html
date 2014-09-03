@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-        <title>Php - MunchMail, guide du développeur</title>
+        <title>PHP - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">MunchMail, guide du développeur</a>
+            <a class="navbar-brand" href="../..">MunchMail</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -51,32 +51,44 @@
             
             
                 <li >
-                    <a href="../../annexes/">Annexes</a>
+                    <a href="../..">Guide du développeur</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../../api/">Api</a>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="../../faq/">Faq</a>
+                    <a href="../../api/">L'API</a>
                 </li>
             
             
             
                 <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples de code <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li class="active">
-                            <a href="./">Php</a>
+                            <a href="./">PHP</a>
                         </li>
                     
                     </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../demonstration/">Instance de démonstration</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../faq/">FAQ</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../annexes/">Annexes</a>
                 </li>
             
             
@@ -86,12 +98,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../../faq/">
+                    <a rel="next" href="../../api/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li class="disabled">
-                    <a rel="prev" >
+                <li >
+                    <a rel="prev" href="../../demonstration/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -179,7 +191,7 @@ class HTTPSClient{
 $ca_file = 'docs/files/ssl/demo-ca.pem';
 $cert_file = 'docs/files/ssl/demo-client-cert.pem';
 $cert_pass = 'OHc9HS7qOynty8LiH5tNV0qKX';
-$client_url = 'https://api.demo.munchmail.net/api/v1/customers/42/';
+$client_url = 'https://demo.munchmail.net/api/v1/customers/42/';
 
 // Initialisation du client HTTP
 $client = new HTTPSClient($cert_file, $ca_file, $cert_pass);

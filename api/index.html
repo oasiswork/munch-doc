@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-        <title>Api - MunchMail, guide du développeur</title>
+        <title>L'API - MunchMail</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">MunchMail, guide du développeur</a>
+            <a class="navbar-brand" href="..">MunchMail</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -51,32 +51,44 @@
             
             
                 <li >
-                    <a href="../annexes/">Annexes</a>
+                    <a href="..">Guide du développeur</a>
                 </li>
             
             
             
                 <li class="active">
-                    <a href="./">Api</a>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="../faq/">Faq</a>
+                    <a href="./">L'API</a>
                 </li>
             
             
             
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples de code <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../exemples/php/">Php</a>
+                            <a href="../exemples/php/">PHP</a>
                         </li>
                     
                     </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../demonstration/">Instance de démonstration</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../faq/">FAQ</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../annexes/">Annexes</a>
                 </li>
             
             
@@ -86,12 +98,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../annexes/">
+                    <a rel="next" href="..">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../faq/">
+                    <a rel="prev" href="../exemples/php/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -111,8 +123,6 @@
         
             <li><a href="#authentification">Authentification</a></li>
         
-            <li><a href="#instance-de-demonstration">Instance de démonstration</a></li>
-        
             <li><a href="#une-campagne-de-a-a-z">Une campagne de A à Z</a></li>
         
     
@@ -121,8 +131,13 @@
             <div class="col-md-9" role="main">
 
 <h1 id="lapi">L'API</h1>
-<p>L'API est accessible à l'adresse <em>https://api.demo.munchmailer.fr</em>. Elle
+<p>L'API est accessible à l'adresse <em>https://api.munchmailer.fr</em>. Elle
 requiert une authentification pour fonctionner.</p>
+<hr />
+<p><strong>⚠ Ne faites pas vos tests sur
+  <a href="https://api.munchmailer.net">api.munchmailer.net</a>, utilisez
+  l'<a href="/demonstration/">instance de démonstration</a></strong>.</p>
+<hr />
 <p>Elle suit les principes
 <a href="http://fr.wikipedia.org/wiki/Representational_State_Transfer">HTTP/REST</a>, et utilise
 le format <a href="http://fr.wikipedia.org/wiki/JavaScript_Object_Notation">JSON</a>, ce
@@ -143,9 +158,6 @@ n'est pas validée, elle peut-être modifiée (1.).</p>
   l'identifiant unique d'un objet dans le système. Elles peuvent-être
   utilisées à la fois pour consulter l'objet (requête <code>GET</code>) ou le modifier
   (requête <code>PUT</code>).</li>
-<li>L'API est <em>explorable</em> : en vous rendant sur https://api.demo.munchmailer.fr,
-  vous avez une version graphique de l'API que vous pouvez utiliser
-  directement depuis le navigateur pour découvrir ou débuguer par exemple.</li>
 <li>Si accédée depuis un client <code>HTTP</code> ne présentant pas de <code>Content-type</code> (ex:
   <em>php5-curl</em>), l'API dialogue par défaut en JSON.</li>
 </ul>
@@ -162,21 +174,6 @@ comment utiliser un certificat client (tous les langages courants le proposent,
 sans installation de bibliothèque supplémentaire).</p>
 <p>L'authentification est abordée notamment dans nos
 <a href="/exemples/php/">exemples pour PHP</a>.</p>
-<h2 id="instance-de-demonstration">Instance de démonstration</h2>
-<p>Durant la phase de tests et de développement de votre application, nous vous
-encourageons à utiliser l'instance publique de démonstration :</p>
-<p><strong><a href="https://api.demo.munchmail.net">https://api.demo.munchmail.net</a></strong></p>
-<p>Il est identique au serveur de production, mais :</p>
-<ul>
-<li>Il n'envoie pas réellement les mails</li>
-<li>Il est effacé périodiquement</li>
-</ul>
-<p>Pour l'authentification de l'instance de démonstration :</p>
-<ul>
-<li>Fichier de CA : <a href="/files/ssl/demo-ca.pem">demo-ca.pem</a></li>
-<li>Certificat client : <a href="/files/ssl/demo-client-cert.pem">demo-client-cert.pem</a></li>
-<li>Mot de passe : <code>OHc9HS7qOynty8LiH5tNV0qKX</code></li>
-</ul>
 <h2 id="une-campagne-de-a-a-z">Une campagne de A à Z</h2>
 <h3 id="1-creationedition-de-la-campagne-avec-ses-attributs">1. Création/édition de la campagne avec ses attributs</h3>
 <pre class="prettyprint well"><code>POST /api/v1/campaigns/
@@ -193,7 +190,7 @@ encourageons à utiliser l'instance publique de démonstration :</p>
    destinataires.</li>
 <li><strong>sender_email</strong> : le mail d'expéditeur de la campagne, vous devez être
    propriétaire du domaine concerné (ici <em>example.com</em>), et en y avoir
-   <a href="">correctement configuré SPF et DKIM</a>.</li>
+   <a href="/#prerequis">correctement configuré SPF et DKIM</a>.</li>
 <li><strong>sender_name</strong> : le nom de l'expéditeur, qui apparaîtra dans le client mail de
    vos destinataires.</li>
 <li><strong>tech_contacts</strong> : liste d'emails, séparées par des virgules, ils recevront
@@ -225,14 +222,14 @@ encourageons à utiliser l'instance publique de démonstration :</p>
 <li><strong>url</strong> est à conserver, elle vous permet d'accéder à votre campagne pour la
    visualiser ou la modifier.</li>
 <li><strong>status</strong> nous donne l'état courant de la campagne</li>
-<li><strong>message</strong> est un lien vers le message de la campagne (voir <a href="">étape 3.</a>)</li>
+<li><strong>message</strong> est un lien vers le message de la campagne (voir <a href="/#3-ajoutmodification-et-previsualisation-du-message">étape 3.</a>)</li>
 <li><strong>mails</strong> est un lien vers la liste des destinataires et leur état courant (voir
-   <a href="">étape 2</a>)</li>
+   <a href="#2-ajoutmodification-dune-liste-de-destinataires">étape 2</a>)</li>
 <li><strong>preview</strong> Permet de voir un résumé de la campagne, utile notamment avant de
-   <a href="">valider la campagne</a></li>
+   <a href="#4-validation-de-la-campagne-envoi">valider la campagne</a></li>
 </ul>
 <p>En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
-notamment concerner les enregistrements <a href="">DKIM</a> ou <a href="">SPF</a></p>
+notamment concerner les enregistrements <a href="/#enregistrement-dkim">DKIM</a> ou <a href="/#enregistrement-spf">SPF</a></p>
 <pre class="prettyprint well"><code>HTTP 400 BAD REQUEST
 {
     "sender_email": [
@@ -308,7 +305,7 @@ suivante :</p>
 <p>Le message fourni dans le paramètre <strong>html</strong> fera l'objet de plusieurs traitements :</p>
 <ul>
 <li>Un « nettoyage » pour apparaître au mieux sur tous les clients mail (voir
-  <a href="">liste des traitements appliqués</a>)</li>
+  <a href="/annexes/#details-des-modifications-appliquees-aux-emails">liste des traitements appliqués</a>)</li>
 <li>La génération d'une version « texte brut » à partir de ce dernier, fourni en
   tant qu'alternative (il est nécessaire de fournir une version texte brut
   dans les emails).</li>
@@ -342,7 +339,7 @@ suivante :</p>
 <p>Tout est prêt, la campagne n'est pas considérée comme spam, le département de
 communication est aux anges, il est temps de démarrer l'envoi de la campagne.</p>
 <p>Une dernière vue de validation est offerte (mentionnée dans l'objet <em>campagne</em>,
-attribut <strong>preview</strong>) (cf <a href="">étape 1.</a>).</p>
+attribut <strong>preview</strong>) (cf <a href="#1-creationedition-de-la-campagne-avec-ses-attributs">étape 1.</a>).</p>
 <p>Par exemple…</p>
 <pre class="prettyprint well"><code>GET /api/v1/campaigns/1/preview/
 </code></pre>
@@ -367,9 +364,9 @@ attribut <strong>preview</strong>) (cf <a href="">étape 1.</a>).</p>
 prévisualisation.</p>
 <ul>
 <li><strong>recipients</strong> et <strong>excluded_recipients</strong> se partagent les destinataires que
-    vous avez définis à l'<a href="">étape 2.</a>, dans excluded_recipients sont listés les
+    vous avez définis à l'<a href="#2-ajoutmodification-dune-liste-de-destinataires">étape 2.</a>, dans excluded_recipients sont listés les
     destinataires auxquels la campagne ne sera pas envoyée pour des raisons de
-    désinscription (<a href="">résiliation</a>) de leur part ou des raisons techniques (<a href="">bounces</a>).</li>
+    désinscription (<a href="/#desinscription-opt-out">résiliation</a>) de leur part ou des raisons techniques (<a href="/#bounce">bounces</a>).</li>
 </ul>
 <p>Pour avoir le détail des résiliation, se référer à l'étape suivante.</p>
 <p>Une fois que tout semble bon, il n'y a qu'à changer l'attribut <strong>status</strong> de la

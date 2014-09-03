@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="./img/favicon.ico">
 
-        <title>MunchMail, guide du développeur</title>
+        <title>MunchMail</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">MunchMail, guide du développeur</a>
+            <a class="navbar-brand" href=".">MunchMail</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -50,33 +50,45 @@
             <ul class="nav navbar-nav">
             
             
-                <li >
-                    <a href="annexes/">Annexes</a>
+                <li class="active">
+                    <a href=".">Guide du développeur</a>
                 </li>
             
             
             
                 <li >
-                    <a href="api/">Api</a>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="faq/">Faq</a>
+                    <a href="api/">L'API</a>
                 </li>
             
             
             
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples de code <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="exemples/php/">Php</a>
+                            <a href="exemples/php/">PHP</a>
                         </li>
                     
                     </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="demonstration/">Instance de démonstration</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="faq/">FAQ</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="annexes/">Annexes</a>
                 </li>
             
             
@@ -91,7 +103,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="annexes/">
+                    <a rel="prev" href="api/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -144,7 +156,7 @@ exploitant l'API MunchMailer.</p>
 <ul>
 <li>une application utilisateur : c'est à vous de construire une interface
   exploitant MunchMailer</li>
-<li>une relais de spam non sollicité : c'est votre devoir et votre
+<li>une relais de spam : c'est votre devoir et votre
   responsabilité de respecter
   <a href="http://www.arobase.org/spam/comprendre-regulation.htm">les règles en vigueur</a>
   sur l'envoi de courriels marketting.</li>
@@ -203,7 +215,7 @@ programmée pour être envoyée à une certaine date.</p>
 version HTML et se chargera de proposer aux destinataires à la fois</p>
 <ul>
 <li>cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
-  pratiques et s'afficher correctement chez tous vos destinataires (voir <a href="">détail
+  pratiques et s'afficher correctement chez tous vos destinataires (voir <a href="/annexes/#details-des-modifications-appliquees-aux-emails">détail
   des modifications</a>)</li>
 <li>une version texte pour les clients ne supportant que ce format ou les
   destinataires ayant fait ce choix.</li>
@@ -225,7 +237,7 @@ désinscrire de vos envois. MunchMailer gère cela pour vous :</p>
   bouton « se désinscrire » directement depuis leur interface.</li>
 <li>si un de vos destinataires marque le courriel comme <em>spam</em>, et que son hébergeur
   nous le notifie, il sera désinscrit</li>
-<li>si une adresse <a href="">bounce</a> trop, elle sera désinscrite</li>
+<li>si une adresse <a href="#bounce">bounce</a> trop, elle sera désinscrite</li>
 </ul>
 <p>Vous ne pouvez pas passer outre ces <em>résiliations</em>. Cependant, dans certains cas très
 spécifiques, nous pouvons rediriger vos destinataires vers un moyen de vous

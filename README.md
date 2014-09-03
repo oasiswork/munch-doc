@@ -18,7 +18,4 @@ Site Builds :
 
 Build & push current version to gh-pages :
 
-* make examples
-* mkdocs build
-* cd site
-* git add --all && git commit -m "site build" && git push
+* make publish

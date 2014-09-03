@@ -10,19 +10,17 @@ class HTTPSClient{
 
 	    $cert_file     : chemin vers le fichier de certificat client
 	    $ca_file       : chemin vers le certificat du serveur oasiswork
-	    $cert_password : mot de passe du certificat client
 	 */
 
 	private $ch;
 	private $base_options;
 
-	public function __construct($cert_file, $ca_file, $cert_password) {
+	public function __construct($cert_file, $ca_file) {
 		$this->base_options = array(
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_CAINFO         => $ca_file,
 		  CURLOPT_SSLCERT        => $cert_file,
-		  CURLOPT_SSLCERTPASSWD  => $cert_password,
 		  CURLOPT_HTTPHEADER     => array('Content-Type: application/json')
 		);
 		$this->ch = curl_init();
@@ -65,11 +63,10 @@ class HTTPSClient{
 // Paramètres
 $ca_file = 'docs/files/ssl/demo-ca.pem';
 $cert_file = 'docs/files/ssl/demo-client-cert.pem';
-$cert_pass = 'OHc9HS7qOynty8LiH5tNV0qKX';
 $client_url = 'https://demo.munchmail.net/api/v1/customers/42/';
 
 // Initialisation du client HTTP
-$client = new HTTPSClient($cert_file, $ca_file, $cert_pass);
+$client = new HTTPSClient($cert_file, $ca_file);
 
 // Récupération des informations client
 $customer = $client->get($client_url);

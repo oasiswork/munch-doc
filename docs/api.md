@@ -1,8 +1,17 @@
 L'API
 =====
 
-L'API est accessible à l'adresse *https://api.demo.munchmailer.fr*. Elle
+L'API est accessible à l'adresse *https://api.munchmailer.fr*. Elle
 requiert une authentification pour fonctionner.
+
+-----
+
+**⚠ Ne faites pas vos tests sur
+  [api.munchmailer.net](https://api.munchmailer.net), utilisez
+  l'[instance de démonstration](/demonstration/)**.
+
+----
+
 
 Elle suit les principes
 [HTTP/REST](http://fr.wikipedia.org/wiki/Representational_State_Transfer), et utilise
@@ -27,9 +36,6 @@ Points notables
   l'identifiant unique d'un objet dans le système. Elles peuvent-être
   utilisées à la fois pour consulter l'objet (requête `GET`) ou le modifier
   (requête `PUT`).
-* L'API est *explorable* : en vous rendant sur https://api.demo.munchmailer.fr,
-  vous avez une version graphique de l'API que vous pouvez utiliser
-  directement depuis le navigateur pour découvrir ou débuguer par exemple.
 * Si accédée depuis un client `HTTP` ne présentant pas de `Content-type` (ex:
   *php5-curl*), l'API dialogue par défaut en JSON.
 
@@ -50,26 +56,6 @@ sans installation de bibliothèque supplémentaire).
 L'authentification est abordée notamment dans nos
 [exemples pour PHP](/exemples/php/).
 
-
-Instance de démonstration
--------------------------
-
-Durant la phase de tests et de développement de votre application, nous vous
-encourageons à utiliser l'instance publique de démonstration :
-
-**[https://api.demo.munchmail.net](https://api.demo.munchmail.net)**
-
-Il est identique au serveur de production, mais :
-
-- Il n'envoie pas réellement les mails
-- Il est effacé périodiquement
-
-Pour l'authentification de l'instance de démonstration :
-
-* Fichier de CA : [demo-ca.pem](/files/ssl/demo-ca.pem)
-* Certificat client : [demo-client-cert.pem](/files/ssl/demo-client-cert.pem)
-* Mot de passe : `OHc9HS7qOynty8LiH5tNV0qKX`
-
 Une campagne de A à Z
 ---------------------
 
@@ -88,7 +74,7 @@ Une campagne de A à Z
    destinataires.
 * **sender_email** : le mail d'expéditeur de la campagne, vous devez être
    propriétaire du domaine concerné (ici *example.com*), et en y avoir
-   [correctement configuré SPF et DKIM]().
+   [correctement configuré SPF et DKIM](/#prerequis).
 * **sender_name** : le nom de l'expéditeur, qui apparaîtra dans le client mail de
    vos destinataires.
 * **tech_contacts** : liste d'emails, séparées par des virgules, ils recevront
@@ -121,14 +107,14 @@ Notons quelques champs :
 * **url** est à conserver, elle vous permet d'accéder à votre campagne pour la
    visualiser ou la modifier.
 * **status** nous donne l'état courant de la campagne
-* **message** est un lien vers le message de la campagne (voir [étape 3.]())
+* **message** est un lien vers le message de la campagne (voir [étape 3.](/#3-ajoutmodification-et-previsualisation-du-message))
 * **mails** est un lien vers la liste des destinataires et leur état courant (voir
-   [étape 2]())
+   [étape 2](#2-ajoutmodification-dune-liste-de-destinataires))
 * **preview** Permet de voir un résumé de la campagne, utile notamment avant de
-   [valider la campagne]()
+   [valider la campagne](#4-validation-de-la-campagne-envoi)
 
 En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
-notamment concerner les enregistrements [DKIM]() ou [SPF]()
+notamment concerner les enregistrements [DKIM](/#enregistrement-dkim) ou [SPF](/#enregistrement-spf)
 
 
     HTTP 400 BAD REQUEST
@@ -222,7 +208,7 @@ suivante :
 Le message fourni dans le paramètre **html** fera l'objet de plusieurs traitements :
 
 * Un « nettoyage » pour apparaître au mieux sur tous les clients mail (voir
-  [liste des traitements appliqués]())
+  [liste des traitements appliqués](/annexes/#details-des-modifications-appliquees-aux-emails))
 * La génération d'une version « texte brut » à partir de ce dernier, fourni en
   tant qu'alternative (il est nécessaire de fournir une version texte brut
   dans les emails).
@@ -262,7 +248,7 @@ Tout est prêt, la campagne n'est pas considérée comme spam, le département d
 communication est aux anges, il est temps de démarrer l'envoi de la campagne.
 
 Une dernière vue de validation est offerte (mentionnée dans l'objet *campagne*,
-attribut **preview**) (cf [étape 1.]()).
+attribut **preview**) (cf [étape 1.](#1-creationedition-de-la-campagne-avec-ses-attributs)).
 
 Par exemple…
 
@@ -291,9 +277,9 @@ Les informations de spam sont les mêmes qu'à l'étape précédente, ainsi que 
 prévisualisation.
 
 * **recipients** et **excluded_recipients** se partagent les destinataires que
-    vous avez définis à l'[étape 2.](), dans excluded_recipients sont listés les
+    vous avez définis à l'[étape 2.](#2-ajoutmodification-dune-liste-de-destinataires), dans excluded_recipients sont listés les
     destinataires auxquels la campagne ne sera pas envoyée pour des raisons de
-    désinscription ([résiliation]()) de leur part ou des raisons techniques ([bounces]()).
+    désinscription ([résiliation](/#desinscription-opt-out)) de leur part ou des raisons techniques ([bounces](/#bounce)).
 
 Pour avoir le détail des résiliation, se référer à l'étape suivante.
 

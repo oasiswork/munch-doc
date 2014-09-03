@@ -26,7 +26,7 @@ MunchMailer n'est pas :
 
 - une application utilisateur : c'est à vous de construire une interface
   exploitant MunchMailer
-- une relais de spam non sollicité : c'est votre devoir et votre
+- une relais de spam : c'est votre devoir et votre
   responsabilité de respecter
   [les règles en vigueur](http://www.arobase.org/spam/comprendre-regulation.htm)
   sur l'envoi de courriels marketting.
@@ -112,7 +112,7 @@ version HTML et se chargera de proposer aux destinataires à la fois
 
 - cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
   pratiques et s'afficher correctement chez tous vos destinataires (voir [détail
-  des modifications]())
+  des modifications](/annexes/#details-des-modifications-appliquees-aux-emails))
 - une version texte pour les clients ne supportant que ce format ou les
   destinataires ayant fait ce choix.
 
@@ -137,7 +137,7 @@ désinscrire de vos envois. MunchMailer gère cela pour vous :
   bouton « se désinscrire » directement depuis leur interface.
 - si un de vos destinataires marque le courriel comme *spam*, et que son hébergeur
   nous le notifie, il sera désinscrit
-- si une adresse [bounce]() trop, elle sera désinscrite
+- si une adresse [bounce](#bounce) trop, elle sera désinscrite
 
 Vous ne pouvez pas passer outre ces *résiliations*. Cependant, dans certains cas très
 spécifiques, nous pouvons rediriger vos destinataires vers un moyen de vous

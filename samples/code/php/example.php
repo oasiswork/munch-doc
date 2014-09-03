@@ -64,7 +64,7 @@ class HTTPSClient{
 $ca_file = 'docs/files/ssl/demo-ca.pem';
 $cert_file = 'docs/files/ssl/demo-client-cert.pem';
 $cert_pass = 'OHc9HS7qOynty8LiH5tNV0qKX';
-$client_url = 'https://api.demo.munchmail.net/api/v1/customers/42/';
+$client_url = 'https://demo.munchmail.net/api/v1/customers/42/';
 
 // Initialisation du client HTTP
 $client = new HTTPSClient($cert_file, $ca_file, $cert_pass);

@@ -1,3 +1,10 @@
-site_name: MunchMail, guide du développeur
+site_name: MunchMail
 theme: yeti
 dev_addr: '127.0.0.1:8092'
+pages:
+  - [index.md, "Guide du développeur"]
+  - [api.md, "L'API"]
+  - [exemples/php.md, "Exemples de code", "PHP"]
+  - [demonstration.md, "Instance de démonstration"]
+  - [faq.md, FAQ]
+  - [annexes.md, Annexes]

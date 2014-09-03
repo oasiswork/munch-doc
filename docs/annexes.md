@@ -1,6 +1,7 @@
 ## Annexes
 
-Détails des modifications appliquées aux emails :
+Modifications appliquées aux emails
+-----------------------------------------------
 
 - les images sont détachées et hébergées sur nos serveurs (pour éviter de
   surcharger les votres)

@@ -131,11 +131,11 @@
             <div class="col-md-9" role="main">
 
 <h1 id="lapi">L'API</h1>
-<p>L'API est accessible à l'adresse <em>https://api.munchmail.fr</em>. Elle
+<p>L'API est accessible à l'adresse <em>https://api.munchmailer.fr</em>. Elle
 requiert une authentification pour fonctionner.</p>
 <hr />
 <p><strong>⚠ Ne faites pas vos tests sur
-  <a href="https://api.munchmail.net">api.munchmail.net</a>, utilisez
+  <a href="https://api.munchmailer.net">api.munchmailer.net</a>, utilisez
   l'<a href="/demonstration/">instance de démonstration</a></strong>.</p>
 <hr />
 <p>Elle suit les principes
@@ -201,10 +201,10 @@ sans installation de bibliothèque supplémentaire).</p>
 <pre class="prettyprint well"><code>HTTP 201 CREATED
 {
     "customer": 1024,
-    "message": "https://demo.munchmail.fr/api/v1/campaigns/6/message/",
+    "message": "https://api.demo.munchmailer.fr/api/v1/campaigns/6/message/",
     "mails": "http://localhost:8000/api/v1/campaigns/6/mails/",
     "completion_date": null,
-    "preview": "https://demo.munchmail.fr/api/v1/campaigns/6/preview/",
+    "preview": "https://api.demo.munchmailer.fr/api/v1/campaigns/6/preview/",
     "url": "http://localhost:8000/api/v1/campaigns/6/",
     "name": "Newsletter de Juillet",
     "status": "new",
@@ -315,14 +315,14 @@ suivante :</p>
 <p>La réponse à notre requête PUT ressemblerait à :</p>
 <pre class="prettyprint well"><code>HTTP 201 CREATED
 {
-    "url": "https://demo.munchmail.fr/api/v1/campaigns/1/message/",
+    "url": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/",
     "subject": "Tu peux faire tout ce que tu veux",
     "html": "&lt;h1&gt;Mais ne marche pas sur mes chaussures en su\u00e9dine bleue&lt;/h1&gt;",
     "is_spam": false,
     "spam_score": 0.0,
-    "spam_details": "https://demo.munchmail.fr/api/v1/campaigns/1/message/spam_details/",
+    "spam_details": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/spam_details/",
     "preview": "http://localhost:8000/api/v1/campaigns/1/message/preview/",
-    "html_preview": "https://demo.munchmail.fr/api/v1/campaigns/1/message/preview/.html",
+    "html_preview": "https://api.demo.munchmailer.fr/api/v1/campaigns/1/message/preview/.html",
     "plaintext_preview": "http://localhost:8000/api/v1/campaigns/1/message/preview/.txt"
 }
 </code></pre>
@@ -333,7 +333,7 @@ suivante :</p>
 <li><strong>spam_details</strong> permet d'accéder au barème détaillé du <em>spam_score</em>, afin de
     pouvoir apporter les modifications nécessaires au contenu de <strong>html</strong>.</li>
 <li><strong>preview</strong>, <strong>html_preview</strong> et <strong>plaintext_preview</strong> permettent d'avoir une
-    idée du code et du rendu du mail une fois « nettoyé » par MunchMail.</li>
+    idée du code et du rendu du mail une fois « nettoyé » par MunchMailer.</li>
 </ul>
 <h3 id="4-validation-de-la-campagne-envoi">4. Validation de la campagne (envoi)</h3>
 <p>Tout est prêt, la campagne n'est pas considérée comme spam, le département de
@@ -383,7 +383,7 @@ de la campagne) ou <code>PATCH</code> (en ne passant que l'attribut <em>status</
 <h4 id="suivi-des-emails">Suivi des emails</h4>
 <p>Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 l'attribut <code>mails</code> de la campagne. Par exemple :</p>
-<pre class="prettyprint well"><code>GET https://demo.munchmail.fr/api/v1/campaigns/6/mails/"
+<pre class="prettyprint well"><code>GET https://api.demo.munchmailer.fr/api/v1/campaigns/6/mails/"
 [
 {
     "to": "jane@domain.tld",

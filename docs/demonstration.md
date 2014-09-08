@@ -11,6 +11,13 @@ Il est identique au serveur de production, mais :
 - Il n'envoie pas réellement les mails
 - Il est effacé périodiquement
 
+----
+
+**⚠ L'instance de démonstration est publique, n'y entrez que des informations
+  (adresses, contenus…) de test ou non sensibles.**
+
+----
+
 Authentification
 ----------------
 
@@ -47,4 +54,13 @@ démonstration](/files/ssl/demo-client-cert.p12) dans votre navigateur.
 *Édition → Préférences → Avancé → Afficher les certificats → Importer*
 
 (laisser le champ vide quand un mot de passe vous est demandé)
+
+Consultation des mails envoyés
+------------------------------
+
+Tous les mails qui devraient-être envoyés (campagne, notifications, mails de
+test…) sont, dans l'instance de démonstration,  stockés dans des fichiers accessibles à
+[https://demo.munchmail.net/logs/mails/](https://demo.munchmail.net/logs/mails/).
+
+Cela vous permet de vérifier le comportement de Munch par rapport à vos attentes.
 

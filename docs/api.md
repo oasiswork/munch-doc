@@ -90,6 +90,7 @@ Si tout se passe bien, l'API devrait vous retourner :
         "mails": "http://localhost:8000/api/v1/campaigns/6/mails/",
         "completion_date": null,
         "preview": "https://demo.munchmail.fr/api/v1/campaigns/6/preview/",
+		"attachments": [],
         "url": "http://localhost:8000/api/v1/campaigns/6/",
         "name": "Newsletter de Juillet",
         "status": "new",

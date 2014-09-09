@@ -27,14 +27,14 @@ désinscription apparaisse, par exemple :
 
 
 Oui, il faut toutefois que votre compte soit autorisé à le faire, contactez-nous
-pour celà.
+pour cela.
 
 ---
 
 **⚠ Il est déconseillé d'utiliser des pièces-jointes dans des envois
 en masse**. Il est beaucoup plus efficace d'héberger images et pièces-jointes
-sur un serveur web et de fournir des liens. Celà allège l'envoi, l'accélère et
-évite d'encombre la boite mail de vos destinataires.
+sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère et
+évite d'encombrer la boite mail de vos destinataires.
 
 ---
 

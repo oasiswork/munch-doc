@@ -117,7 +117,7 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#munchmailer-guide-du-developpeur">MunchMailer − Guide du développeur</a></li>
+        <li class="main active"><a href="#munchmail-guide-du-developpeur">MunchMail − Guide du développeur</a></li>
         
             <li><a href="#portee">Portée</a></li>
         
@@ -132,11 +132,11 @@
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="munchmailer-guide-du-developpeur">MunchMailer − Guide du développeur</h1>
-<p>MunchMailer est une <strong>API REST</strong> permettant la gestion et l'expédition de
+<h1 id="munchmail-guide-du-developpeur">MunchMail − Guide du développeur</h1>
+<p>MunchMail est une <strong>API REST</strong> permettant la gestion et l'expédition de
 campagnes d'email vers <strong>un grand nombre de destinataires</strong>.</p>
 <p>Cette documentation vise à vous aider dans la réalisation d'une application
-exploitant l'API MunchMailer.</p>
+exploitant l'API MunchMail.</p>
 <!--
 
 ## TODO pour cette doc
@@ -147,15 +147,15 @@ exploitant l'API MunchMailer.</p>
 -->
 
 <h2 id="portee">Portée</h2>
-<p>MunchMailer est :</p>
+<p>MunchMail est :</p>
 <ul>
 <li>une API HTTP/REST</li>
 <li>une infrastructure dédiée à la remise de mails en nombre</li>
 </ul>
-<p>MunchMailer n'est pas :</p>
+<p>MunchMail n'est pas :</p>
 <ul>
 <li>une application utilisateur : c'est à vous de construire une interface
-  exploitant MunchMailer</li>
+  exploitant MunchMail</li>
 <li>une relais de spam : c'est votre devoir et votre
   responsabilité de respecter
   <a href="http://www.arobase.org/spam/comprendre-regulation.htm">les règles en vigueur</a>
@@ -176,11 +176,11 @@ nombre de destinataire, il s'agit d'un outil de communication de masse.</p>
 <p>On parle de <em>Bounce</em> (littéralement <em>Rebond</em>) lorsqu'un mail envoyé ne peut pas
 être remis au destinataire. Les raisons sont multiples : adresse inexistante,
 boite pleine, serveur mal configuré…</p>
-<p>MunchMailer se charge de désinscrire automatiquement les adresses produisant des
+<p>MunchMail se charge de désinscrire automatiquement les adresses produisant des
 <em>bounces</em> trop fréquents, en vous notifiant.</p>
 <h2 id="prerequis">Prérequis</h2>
 <p>Pour un <em>taux de remise</em> optimal de vos messages, nous respectons un certain
-nombre de bonne pratiques. <em>MunchMailer</em> gère l'essentiel de ces pratiques pour
+nombre de bonne pratiques. <em>MunchMail</em> gère l'essentiel de ces pratiques pour
 vous. Cependant, certaines opérations sur le nom de domaine <strong>restent à votre
 charge</strong> :</p>
 <h3 id="enregistrement-spf">Enregistrement SPF</h3>
@@ -205,13 +205,13 @@ devez ajouter l'enregistrement <code>TXT</code> suivant :</p>
 <pre class="prettyprint well"><code>KEY-FINGER-PRINT._domainkey.mailling.example.com.   341222 IN TXT "v=DKIM1\; k=rsa\; p=KEY-CONTENT"
 </code></pre>
 <h2 id="fonctionnement">Fonctionnement</h2>
-<p><em>MunchMailer</em> définit plusieurs notions :</p>
+<p><em>MunchMail</em> définit plusieurs notions :</p>
 <h3 id="campagne">Campagne</h3>
 <p>C'est simplement l'envoi d'un mail identique à un certain nombre de
 personne. Cette notion est au-dessus des autres. Une campagne peut-être
 programmée pour être envoyée à une certaine date.</p>
 <h3 id="message">Message</h3>
-<p>Le corps du texte de votre communication. MunchMailer requiert que vous fournissiez une
+<p>Le corps du texte de votre communication. MunchMail requiert que vous fournissiez une
 version HTML et se chargera de proposer aux destinataires à la fois</p>
 <ul>
 <li>cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
@@ -229,7 +229,7 @@ version HTML et se chargera de proposer aux destinataires à la fois</p>
 <p>Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés.</p>
 <h3 id="desinscription-opt-out">Désinscription (Opt-out)</h3>
 <p>Vous <strong>devez</strong> (c'est la loi), offrir une possibilité à vos destinataires de se
-désinscrire de vos envois. MunchMailer gère cela pour vous :</p>
+désinscrire de vos envois. MunchMail gère cela pour vous :</p>
 <ul>
 <li>un lien est inclus en bas des emails pour offrir cette possibilité ;</li>
 <li>une adresse de désinscription est encodée dans le mail. Certains clients de

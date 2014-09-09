@@ -123,6 +123,8 @@
         
             <li><a href="#comment-personnaliser-le-lien-se-desinscrire">Comment personnaliser le lien « Se désinscrire » ?</a></li>
         
+            <li><a href="#puis-je-ajouter-des-pieces-jointes">Puis-je ajouter des pièces jointes ?</a></li>
+        
     
     </ul>
 </div></div>
@@ -134,7 +136,7 @@
 cependant :</p>
 <ul>
 <li>on finit vite classé en tant que spam ou rejetés (les serveurs de destination
-  sont plus stricts sur les mails « massifs ») ;</li>
+  sont plus stricts sur les mails « massifs ») ;</li>
 <li>on n'a aucune idée de qui reçoit ou ne reçoit pas les mails ;</li>
 <li>quand les mails ne sont pas reçus, on reçoit tout un tas de mails d'erreur
   dans sa boite mail.</li>
@@ -147,6 +149,21 @@ mettre la chaîne <code>UNSUBSCRIBE_URL</code> là où vous voulez que l'adresse
 désinscription apparaisse, par exemple :</p>
 <pre class="prettyprint well"><code>Message ennuyeux ? Vous pouvez &lt;a href="UNSUBSCRIBE_URL"&gt;vous désinscrire&lt;/a&gt;
 </code></pre>
+<h3 id="puis-je-ajouter-des-pieces-jointes">Puis-je ajouter des pièces jointes ?</h3>
+<p>Oui, il faut toutefois que votre compte soit autorisé à le faire, contactez-nous
+pour celà.</p>
+<hr />
+<p><strong>⚠ Il est déconseillé d'utiliser des pièces-jointes dans des envois
+en masse</strong>. Il est beaucoup plus efficace d'héberger images et pièces-jointes
+sur un serveur web et de fournir des liens. Celà allège l'envoi, l'accélère et
+évite d'encombre la boite mail de vos destinataires.</p>
+<hr />
+<p>Pour ajouter une pièce-jointe sur la campagne <code>/api/v1/campaigns/1/</code> :</p>
+<pre class="prettyprint well"><code>POST /api/v1/campaigns/1/attachments/
+file: votre fichier
+</code></pre>
+<p>Cette requête <em>doit</em> avoir un <code>Content-Type</code> à <code>multipart/form-data</code> à l'inverse
+de beaucoup d'autres qui transfèrent leur contenu en <code>application/json</code>.</p>
 <!--  LocalWords:  A-minima
  -->
 

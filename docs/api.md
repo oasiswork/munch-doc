@@ -113,6 +113,7 @@ Notons quelques champs :
    [étape 2](#2-ajoutmodification-dune-liste-de-destinataires))
 * **preview** Permet de voir un résumé de la campagne, utile notamment avant de
    [valider la campagne](#4-validation-de-la-campagne-envoi)
+* **tech_contacts** et **owners** : [plus d'infos](/#contacts-techniques)
 
 En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
 notamment concerner les enregistrements [DKIM](/#enregistrement-dkim) ou [SPF](/#enregistrement-spf)

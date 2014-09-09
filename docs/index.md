@@ -11,7 +11,6 @@ exploitant l'API MunchMail.
 ## TODO pour cette doc
 
 - Mettre la bonne clef DKIM
-- Rôle des *owners*
 
 -->
 
@@ -124,7 +123,20 @@ Une liste d'emails qu'Oasiswork utilisera  pour signaler :
 - les résiliations (quelles que soient leur origine)
 - les rapports d'abus
 
-Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés.
+Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés à
+vos destinataires.
+
+### Propriétaires de la campagne
+
+Une liste d'adresses qui reçoivent les notifications de début et fin d'envoi de
+la campagne.
+
+Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés à
+vos destinataires.
+
+En outre, Oasiswork pourra dialoguer avec ces adresses manuellement pour
+remonter des abus.
+
 
 ### Désinscription (Opt-out)
 

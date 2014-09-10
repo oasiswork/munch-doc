@@ -205,6 +205,7 @@ sans installation de bibliothèque supplémentaire).</p>
     "mails": "http://localhost:8000/api/v1/campaigns/6/mails/",
     "completion_date": null,
     "preview": "https://demo.munchmail.fr/api/v1/campaigns/6/preview/",
+    "preview_send": "https://demo.munchmail.fr/api/v1/campaigns/6/preview_send/",
     "attachments": [],
     "url": "http://localhost:8000/api/v1/campaigns/6/",
     "name": "Newsletter de Juillet",
@@ -227,7 +228,9 @@ sans installation de bibliothèque supplémentaire).</p>
 <li><strong>mails</strong> est un lien vers la liste des destinataires et leur état courant (voir
    <a href="#2-ajoutmodification-dune-liste-de-destinataires">étape 2</a>)</li>
 <li><strong>preview</strong> Permet de voir un résumé de la campagne, utile notamment avant de
-   <a href="#4-validation-de-la-campagne-envoi">valider la campagne</a></li>
+   <a href="#4-validation-de-la-campagne">valider la campagne</a></li>
+<li><strong>preview_send</strong> Permet d'envoyer la campagne à quelques destinataires de test
+    (cf )</li>
 <li><strong>tech_contacts</strong> et <strong>owners</strong> : <a href="/#contacts-techniques">plus d'infos</a></li>
 </ul>
 <p>En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
@@ -337,7 +340,7 @@ suivante :</p>
 <li><strong>preview</strong>, <strong>html_preview</strong> et <strong>plaintext_preview</strong> permettent d'avoir une
     idée du code et du rendu du mail une fois « nettoyé » par MunchMail.</li>
 </ul>
-<h3 id="4-validation-de-la-campagne-envoi">4. Validation de la campagne (envoi)</h3>
+<h3 id="4-validation-de-la-campagne">4. Validation de la campagne</h3>
 <p>Tout est prêt, la campagne n'est pas considérée comme spam, le département de
 communication est aux anges, il est temps de démarrer l'envoi de la campagne.</p>
 <p>Une dernière vue de validation est offerte (mentionnée dans l'objet <em>campagne</em>,
@@ -371,6 +374,25 @@ prévisualisation.</p>
     désinscription (<a href="/#desinscription-opt-out">résiliation</a>) de leur part ou des raisons techniques (<a href="/#bounce">bounces</a>).</li>
 </ul>
 <p>Pour avoir le détail des résiliation, se référer à l'étape suivante.</p>
+<h3 id="5-envoi-a-quelques-destinataire-pilotes">5. Envoi à quelques destinataire « pilotes »</h3>
+<p>À ce stade, vous pouvez envoyer la campagne à un ou plusieurs destinataires
+« pilotes », par exemple vous-même, des collègues…</p>
+<p>Cette étape peut vous servir, par exemple, à valider l'affichage de la campagne
+sur différents webmails, téléphones…</p>
+<p>Les mails générés seront identiques à ceux réellement envoyés à vos
+destinataires, sauf :</p>
+<ul>
+<li>le sujet sera préfixé par « <em>TEST</em> » ;</li>
+<li>les liens de désinscription et d'abus pointeront vers des pages inactives ;</li>
+<li>
+<p>vous ne pourrez pas suivre l'état de livraison de ces emails.</p>
+<p>POST /api/v1/campaigns/1/preview_send/
+{
+   "to": "peter@example.com, steven@example.com"
+}</p>
+</li>
+</ul>
+<h3 id="6-declenchement-de-lenvoi">6. Déclenchement de l'envoi</h3>
 <p>Une fois que tout semble bon, il n'y a qu'à changer l'attribut <strong>status</strong> de la
 campagne à sending à l'aide d'une requête <code>PUT</code> (en passant tous les attributs
 de la campagne) ou <code>PATCH</code> (en ne passant que l'attribut <em>status</em>):</p>
@@ -381,7 +403,7 @@ de la campagne) ou <code>PATCH</code> (en ne passant que l'attribut <em>status</
 </code></pre>
 <p>Si tout va bien, l'API retourne un <code>200 OK</code>.</p>
 <p>Les mails commencent à-partir de ce moment à être envoyés aux destinataires.</p>
-<h3 id="5-suivi-des-envois">5. Suivi des envois</h3>
+<h3 id="7-suivi-des-envois">7. Suivi des envois</h3>
 <h4 id="suivi-des-emails">Suivi des emails</h4>
 <p>Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 l'attribut <code>mails</code> de la campagne. Par exemple :</p>

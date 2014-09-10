@@ -90,6 +90,7 @@ Si tout se passe bien, l'API devrait vous retourner :
         "mails": "http://localhost:8000/api/v1/campaigns/6/mails/",
         "completion_date": null,
         "preview": "https://demo.munchmail.fr/api/v1/campaigns/6/preview/",
+		"preview_send": "https://demo.munchmail.fr/api/v1/campaigns/6/preview_send/",
 		"attachments": [],
         "url": "http://localhost:8000/api/v1/campaigns/6/",
         "name": "Newsletter de Juillet",
@@ -112,7 +113,9 @@ Notons quelques champs :
 * **mails** est un lien vers la liste des destinataires et leur état courant (voir
    [étape 2](#2-ajoutmodification-dune-liste-de-destinataires))
 * **preview** Permet de voir un résumé de la campagne, utile notamment avant de
-   [valider la campagne](#4-validation-de-la-campagne-envoi)
+   [valider la campagne](#4-validation-de-la-campagne)
+* **preview_send** Permet d'envoyer la campagne à quelques destinataires de test
+    (cf )
 * **tech_contacts** et **owners** : [plus d'infos](/#contacts-techniques)
 
 En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
@@ -244,7 +247,8 @@ La réponse à notre requête PUT ressemblerait à :
 * **preview**, **html_preview** et **plaintext_preview** permettent d'avoir une
     idée du code et du rendu du mail une fois « nettoyé » par MunchMail.
 
-### 4. Validation de la campagne (envoi)
+
+### 4. Validation de la campagne
 
 Tout est prêt, la campagne n'est pas considérée comme spam, le département de
 communication est aux anges, il est temps de démarrer l'envoi de la campagne.
@@ -285,6 +289,29 @@ prévisualisation.
 
 Pour avoir le détail des résiliation, se référer à l'étape suivante.
 
+
+### 5. Envoi à quelques destinataire « pilotes »
+
+À ce stade, vous pouvez envoyer la campagne à un ou plusieurs destinataires
+« pilotes », par exemple vous-même, des collègues…
+
+Cette étape peut vous servir, par exemple, à valider l'affichage de la campagne
+sur différents webmails, téléphones…
+
+Les mails générés seront identiques à ceux réellement envoyés à vos
+destinataires, sauf :
+
+- le sujet sera préfixé par « *TEST* » ;
+- les liens de désinscription et d'abus pointeront vers des pages inactives ;
+- vous ne pourrez pas suivre l'état de livraison de ces emails.
+
+    POST /api/v1/campaigns/1/preview_send/
+	{
+	   "to": "peter@example.com, steven@example.com"
+	}
+
+### 6. Déclenchement de l'envoi
+
 Une fois que tout semble bon, il n'y a qu'à changer l'attribut **status** de la
 campagne à sending à l'aide d'une requête `PUT` (en passant tous les attributs
 de la campagne) ou `PATCH` (en ne passant que l'attribut *status*):
@@ -299,7 +326,7 @@ Si tout va bien, l'API retourne un `200 OK`.
 
 Les mails commencent à-partir de ce moment à être envoyés aux destinataires.
 
-### 5. Suivi des envois
+### 7. Suivi des envois
 
 #### Suivi des emails
 

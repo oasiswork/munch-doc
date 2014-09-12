@@ -47,5 +47,13 @@ Pour ajouter une pièce-jointe sur la campagne `/api/v1/campaigns/1/` :
 Cette requête *doit* avoir un `Content-Type` à `multipart/form-data` à l'inverse
 de beaucoup d'autres qui transfèrent leur contenu en `application/json`.
 
+Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une erreur 400 est renvoyée
+et le fichier rejeté, par exemple :
+
+	HTTP 400 BAD REQUEST
+    {
+	   'file': ['Le fichier envoyé contient un virus : "Eicar-Test-Signature"']
+    }
+
 <!--  LocalWords:  A-minima
  -->

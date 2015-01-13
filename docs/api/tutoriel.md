@@ -24,7 +24,7 @@ Les étapes de la vie d'une campagne sont :
 * **name** : Le nom interne donné à la campagne, il ne sera pas visible de vos
    destinataires.
 * **sender_email** : le mail d'expéditeur de la campagne, le domaine de cette
-    adresse doit préalablement avoir été [configuré correctement](/domaines/).
+    adresse doit préalablement avoir été [configuré correctement](../domaines/).
 * **sender_name** : le nom de l'expéditeur, qui apparaîtra dans le client mail de
    vos destinataires.
 * **subject** : Le sujet de votre email.
@@ -105,9 +105,9 @@ Notons quelques champs :
 * **spam_details** permet d'accéder au barème détaillé du *spam_score*, afin de
     pouvoir apporter les modifications nécessaires au contenu de **html**.
 * **preview**, **html_preview** et **plaintext_preview** permettent d'avoir une
-    idée du code et du rendu du mail une fois « nettoyé » par MunchMail.
+    idée du code et du rendu du mail une fois « nettoyé » par MunchMail (voir [Prévisualisation](#previsualisation))
 * **preview_send** Permet d'envoyer le message à quelques destinataires de test
-    (cf FIXME)
+    (voir [plus bas](#envoi-a-quelques-destinataires-pilote))
 
 En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
 notamment concerner les enregistrements [DKIM](/#enregistrement-dkim) et [SPF](/#enregistrement-spf)

@@ -10,7 +10,7 @@ nécessaires.
 
 ----
 
-*⚠ Il est nécessaire d'être [authentifié](../authentification) pour manipuler les domaines*.
+*⚠ Il est nécessaire d'être [authentifié](../auth/) pour manipuler les domaines*.
 
 ----
 
@@ -45,7 +45,7 @@ Les 3 vérifications automatiques sont `spf_status`, `dkim_status` et
 * *bad* L'enregistrement DNS existe mais est incorrect
 
 Une fois que vous avez modifié vos paramètres DNS en suivant
-[la documentation]([SPF](/#enregistrement-spf)), vous pouvez relancer une
+[la documentation SPF](/#enregistrement-spf), vous pouvez relancer une
 vérification :
 
     POST /api/v1/domains/revalidate/

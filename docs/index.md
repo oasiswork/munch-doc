@@ -106,9 +106,9 @@ Pour la création du compte, vous seront demandées :
 
 Vous seront ensuite communiquées :
 
-* Un mot de passe utilisateur pour l'[API navigable](FIXME), à utiliser avec
+* Un mot de passe utilisateur pour l'[API navigable](api/intro/#api-navigable), à utiliser avec
   l'email principal
-* Une [clef d'API](FIXME) pour la connexion de votre application à MunchMail
+* Une [clef d'API](api/auth/#par-clef-dapi-http-basic) pour la connexion de votre application à MunchMail
 
 ## Configuration DNS requise
 

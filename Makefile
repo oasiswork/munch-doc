@@ -9,3 +9,7 @@ publish:
 	make examples
 	mkdocs build
 	cd site; git add --all; git commit -m "site build"; git push
+
+check_links:
+	echo 'Dead links :'
+	wget --spider -r -p http://localhost:8092 2>&1 |grep '^http://'

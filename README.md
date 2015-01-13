@@ -7,6 +7,10 @@ Working :
 * make examples
 * mkdocs serve
 
+Checking for broken links:
+
+* make check_links
+
 Site Builds :
 
 * mkdir site
@@ -16,6 +20,6 @@ Site Builds :
 * git branch -d master
 * cd ..
 
-Build & push current version to gh-pages :
+Build & push current version to gh-pages:
 
 * make publish

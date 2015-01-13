@@ -4,7 +4,7 @@ Instance de test/démonstration
 Durant la phase de tests et de développement de votre application, nous vous
 encourageons à utiliser l'instance publique de démonstration :
 
-**[https://demo.munchmail.net](https://demo.munchmail.net)**
+**[https://api.munchmail.net](https://demo.munchmail.net)**
 
 Il est identique au serveur de production, mais :
 
@@ -35,7 +35,7 @@ Exploration de l'API
 -------------------
 
 L'API est *explorable* : en ouvrant votre navigateur sur
-https://demo.munchmail.net, vous avez une version graphique de l'API que vous
+https://api.munchmail.net, vous avez une version graphique de l'API que vous
 pouvez utiliser tester depuis le navigateur pour découvrir ou débuguer par
 exemple.
 
@@ -60,7 +60,7 @@ Consultation des mails envoyés
 
 Tous les mails qui devraient-être envoyés (campagne, notifications, mails de
 test…) sont, dans l'instance de démonstration,  stockés dans des fichiers accessibles à
-[https://demo.munchmail.net/logs/mails/](https://demo.munchmail.net/logs/mails/).
+[https://api.munchmail.net/logs/mails/](https://demo.munchmail.net/logs/mails/).
 
 Cela vous permet de vérifier le comportement de Munch par rapport à vos attentes.
 

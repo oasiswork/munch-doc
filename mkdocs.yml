@@ -3,8 +3,11 @@ theme: yeti
 dev_addr: '127.0.0.1:8092'
 pages:
   - [index.md, "Guide du développeur"]
-  - [api.md, "L'API"]
+  - [api/intro.md, "L'API", "Introduction"]
+  - [api/auth.md, "L'API", "Authentification"]
+  - [api/campagnes.md, "L'API", "Les Campagnes"]
+  - [api/domaines.md, "L'API", "Domaines"]
+  - [api/tutoriel.md, "L'API", "Tutoriel : Un Message de A à Z"]
   - [exemples/php.md, "Exemples de code", "PHP"]
-  - [demonstration.md, "Instance de démonstration"]
   - [faq.md, FAQ]
   - [annexes.md, Annexes]

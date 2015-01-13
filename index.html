@@ -56,8 +56,31 @@
             
             
             
-                <li >
-                    <a href="api/">L'API</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="api/intro/">Introduction</a>
+                        </li>
+                    
+                        <li >
+                            <a href="api/auth/">Authentification</a>
+                        </li>
+                    
+                        <li >
+                            <a href="api/campagnes/">Campagnes</a>
+                        </li>
+                    
+                        <li >
+                            <a href="api/domaines/">Domaines</a>
+                        </li>
+                    
+                        <li >
+                            <a href="api/tutoriel/">Tutoriel : un envoi de A à Z</a>
+                        </li>
+                    
+                    </ul>
                 </li>
             
             
@@ -71,12 +94,6 @@
                         </li>
                     
                     </ul>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="demonstration/">Instance de démonstration</a>
                 </li>
             
             
@@ -103,7 +120,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="api/">
+                    <a rel="prev" href="api/intro/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -123,9 +140,11 @@
         
             <li><a href="#vocabulaire">Vocabulaire</a></li>
         
-            <li><a href="#prerequis">Prérequis</a></li>
+            <li><a href="#fonctionnement-general">Fonctionnement général</a></li>
         
-            <li><a href="#fonctionnement">Fonctionnement</a></li>
+            <li><a href="#votre-compte-munchmail">Votre compte MunchMail</a></li>
+        
+            <li><a href="#configuration-dns-requise">Configuration DNS requise</a></li>
         
     
     </ul>
@@ -137,14 +156,6 @@
 campagnes d'email vers <strong>un grand nombre de destinataires</strong>.</p>
 <p>Cette documentation vise à vous aider dans la réalisation d'une application
 exploitant l'API MunchMail.</p>
-<!--
-
-## TODO pour cette doc
-
-- Mettre la bonne clef DKIM
-
--->
-
 <h2 id="portee">Portée</h2>
 <p>MunchMail est :</p>
 <ul>
@@ -161,97 +172,100 @@ exploitant l'API MunchMail.</p>
   sur l'envoi de courriels marketting.</li>
 </ul>
 <h2 id="vocabulaire">Vocabulaire</h2>
-<h3 id="email-transactionnel-vs-email-massif">email transactionnel vs email massif</h3>
+<h3 id="email-transactionnel-vs-email-massif">Email transactionnel vs email massif</h3>
 <p>Un email transactionnel est destiné précisément à une personne ou à un petit
 groupe de personnes connues.</p>
-<p>Un email massif est envoyé de manière automatique ou non à un grand
-nombre de destinataire, il s'agit d'un outil de communication de masse.</p>
-<p>Les emails massifs incluent :
-- les newsletters
-- les communications à destination des adhérents d'une association
-- les mails marketing
-- ...</p>
+<p>Un email massif est envoyé de manière automatique ou manuelle à un grand
+nombre de destinataires, il s'agit d'un outil de communication de masse.</p>
+<p>Les emails massifs incluent :</p>
+<ul>
+<li>les newsletters</li>
+<li>les communications à destination des adhérents d'une association</li>
+<li>les mails marketing</li>
+<li>...</li>
+</ul>
 <h3 id="bounce">Bounce</h3>
 <p>On parle de <em>Bounce</em> (littéralement <em>Rebond</em>) lorsqu'un mail envoyé ne peut pas
 être remis au destinataire. Les raisons sont multiples : adresse inexistante,
-boite pleine, serveur mal configuré…</p>
+boite saturée, serveur mal configuré…</p>
 <p>MunchMail se charge de désinscrire automatiquement les adresses produisant des
 <em>bounces</em> trop fréquents, en vous notifiant.</p>
-<h2 id="prerequis">Prérequis</h2>
-<p>Pour un <em>taux de remise</em> optimal de vos messages, nous respectons un certain
-nombre de bonne pratiques. <em>MunchMail</em> gère l'essentiel de ces pratiques pour
-vous. Cependant, certaines opérations sur le nom de domaine <strong>restent à votre
-charge</strong> :</p>
-<h3 id="enregistrement-spf">Enregistrement SPF</h3>
-<p>L'enregistrement <strong>SPF</strong> (<em>Sender Policy Framework</em>) permet d'autoriser nos serveurs à
-envoyer des mails en provenance de votre domaine.</p>
-<p>Si vous souhaitez envoyer vos emails depuis <em>elvis@mailling.example.com</em>, vous
-devez ajouter un enregistrement <code>TXT</code> sur le domaine <em>mailling.example.com</em>.</p>
-<p>A-minima, si vous ne disposez pas encore d'un enregistrement SPF sur votre
-domaine, vous pouvez ajouter quelque chose comme :</p>
-<pre class="prettyprint well"><code>mailling.example.com. 720 IN TXT "v=spf1 include:_spf.mailling.oasismail.fr ?all"
-</code></pre>
-<p>Si vous disposez déjà d'un enregistrement SPF, vous pouvez vous contenter
-d'ajouter la règle <code>include:_spf.mailling.oasismail.fr</code> à votre chaîne afin
-d'autoriser nos serveurs.</p>
-<p><a href="http://fr.wikipedia.org/wiki/Sender_Policy_Framework">Plus d'informations sur SPF</a>.</p>
-<h3 id="enregistrement-dkim">Enregistrement DKIM</h3>
-<p>L'enregistrement <strong>DKIM</strong> (<em>Domain Keys Identified Mail</em>) permet d'autoriser nos
-serveurs à signer cryptographiquement les mails envoyés en votre nom avec notre
-propre clef.</p>
-<p>Si vous souhaitez envoyer vos emails depuis <em>elvis@mailling.example.com</em>, vous
-devez ajouter l'enregistrement <code>TXT</code> suivant :</p>
-<pre class="prettyprint well"><code>KEY-FINGER-PRINT._domainkey.mailling.example.com.   341222 IN TXT "v=DKIM1\; k=rsa\; p=KEY-CONTENT"
-</code></pre>
-<h2 id="fonctionnement">Fonctionnement</h2>
+<h2 id="fonctionnement-general">Fonctionnement général</h2>
 <p><em>MunchMail</em> définit plusieurs notions :</p>
-<h3 id="campagne">Campagne</h3>
-<p>C'est simplement l'envoi d'un mail identique à un certain nombre de
-personne. Cette notion est au-dessus des autres. Une campagne peut-être
-programmée pour être envoyée à une certaine date.</p>
 <h3 id="message">Message</h3>
-<p>Le corps du texte de votre communication. MunchMail requiert que vous fournissiez une
-version HTML et se chargera de proposer aux destinataires à la fois</p>
+<p>C'est simplement l'envoi d'un mail identique à une liste de destinataires.</p>
+<p>Le <em>message</em> regrouppe à la fois le contenu lui-même ainsi que les
+méta-informations (expéditeur, paramètres d'envoi...).</p>
+<p>Concernant le contenu lui-même, <em>MunchMail</em> requiert que vous fournissiez une
+version HTML et se chargera de proposer aux destinataires à la fois :</p>
 <ul>
 <li>cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
   pratiques et s'afficher correctement chez tous vos destinataires (voir <a href="/annexes/#details-des-modifications-appliquees-aux-emails">détail
   des modifications</a>)</li>
-<li>une version texte pour les clients ne supportant que ce format ou les
-  destinataires ayant fait ce choix.</li>
+<li>une version texte pour les clients mail ne supportant que ce format ou les
+  destinataires ayant fait ce choix d'affichage.</li>
 </ul>
-<h3 id="contacts-techniques">Contacts techniques</h3>
-<p>Une liste d'emails qu'Oasiswork utilisera  pour signaler :</p>
-<ul>
-<li>les résiliations (quelles que soient leur origine)</li>
-<li>les rapports d'abus</li>
-</ul>
-<p>Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés à
-vos destinataires.</p>
-<h3 id="proprietaires-de-la-campagne">Propriétaires de la campagne</h3>
-<p>Une liste d'adresses qui reçoivent les notifications de début et fin d'envoi de
-la campagne.</p>
-<p>Cette liste n'est ni rendue publique ni mentionnée dans les messages envoyés à
-vos destinataires.</p>
-<p>En outre, Oasiswork pourra dialoguer avec ces adresses manuellement pour
-remonter des abus.</p>
 <h3 id="desinscription-opt-out">Désinscription (Opt-out)</h3>
 <p>Vous <strong>devez</strong> (c'est la loi), offrir une possibilité à vos destinataires de se
-désinscrire de vos envois. MunchMail gère cela pour vous :</p>
+désinscrire de vos envois. <em>MunchMail</em> gère cela pour vous :</p>
 <ul>
 <li>un lien est inclus en bas des emails pour offrir cette possibilité ;</li>
 <li>une adresse de désinscription est encodée dans le mail. Certains clients de
-  mail (gmail notamment) exploitent cette adresse pour fournir automatiquement un
-  bouton « se désinscrire » directement depuis leur interface.</li>
-<li>si un de vos destinataires marque le courriel comme <em>spam</em>, et que son hébergeur
-  nous le notifie, il sera désinscrit</li>
+  mail (<em>gmail</em> notamment) exploitent cette adresse pour fournir automatiquement
+  un bouton « se désinscrire » directement depuis leur interface.</li>
+<li>si un de vos destinataires marque le courriel comme <em>spam</em>, et que son
+  hébergeur nous le notifie, il sera désinscrit</li>
 <li>si une adresse <a href="#bounce">bounce</a> trop, elle sera désinscrite</li>
 </ul>
-<p>Vous ne pouvez pas passer outre ces <em>résiliations</em>. Cependant, dans certains cas très
+<p>Vous ne pouvez pas passer outre ces <em>résiliations</em>. Cependant, dans certains cas
 spécifiques, nous pouvons rediriger vos destinataires vers un moyen de vous
 contacter plutôt que de leur proposer une désinscription en ligne.</p>
 <p><em>Exemple : Communication d'une association à ses membres, où le refus de recevoir
  les informations équivaut à quitter l'association.</em></p>
 <p>Cette fonctionnalité n'est activée qu'au cas par cas, merci de nous contacter.</p>
+<h2 id="votre-compte-munchmail">Votre compte MunchMail</h2>
+<p>Il est créé sur demande faite auprès d'OasisWork, merci de
+<a href="http://www.oasiswork.fr/contact/">nous contacter</a>.</p>
+<p>Pour la création du compte, vous seront demandées :</p>
+<ul>
+<li>Une adresse email principale, qui constituera votre login pour naviguer l'API
+  dans votre navigateur.</li>
+<li>une adresse email de notifications qui recevra le suivi (début/fin d'envoi et
+  désinscriptions)</li>
+</ul>
+<p>Vous seront ensuite communiquées :</p>
+<ul>
+<li>Un mot de passe utilisateur pour l'<a href="api/intro/#api-navigable">API navigable</a>, à utiliser avec
+  l'email principal</li>
+<li>Une <a href="api/auth/#par-clef-dapi-http-basic">clef d'API</a> pour la connexion de votre application à MunchMail</li>
+</ul>
+<h2 id="configuration-dns-requise">Configuration DNS requise</h2>
+<p>Pour un <em>taux de remise</em> optimal de vos messages, nous respectons un certain
+nombre de bonne pratiques. <em>MunchMail</em> gère l'essentiel de ces pratiques pour
+vous. Cependant, certaines opérations sur le nom de domaine <strong>restent à votre
+charge</strong>, elles sont obligatoires, le système <strong>refusera d'envoyer des emails
+depuis votre domaine</strong> tant qu'elles ne sont pas remplies.</p>
+<h4 id="enregistrement-spf">Enregistrement SPF</h4>
+<p>L'enregistrement <strong>SPF</strong> (<em>Sender Policy Framework</em>) permet d'autoriser nos
+serveurs à envoyer des mails en provenance de votre domaine.</p>
+<p>Si vous souhaitez envoyer vos emails depuis <em>elvis@mailling.example.com</em>, vous
+devez ajouter un enregistrement <code>TXT</code> sur le domaine <em>mailling.example.com</em>.</p>
+<p>A-minima, si vous ne disposez pas encore d'un enregistrement SPF sur votre
+domaine, vous pouvez ajouter quelque chose comme :</p>
+<pre class="prettyprint well"><code>mailling.example.com. 720 IN TXT "v=spf1 include:_spf.munchmail.net ?all"
+</code></pre>
+<p>Si vous disposez déjà d'un enregistrement SPF, vous pouvez vous contenter
+d'ajouter la règle <code>include:_spf.munchmail.net</code> à votre chaîne afin
+d'autoriser nos serveurs.</p>
+<p><a href="http://fr.wikipedia.org/wiki/Sender_Policy_Framework">Plus d'informations sur SPF</a>.</p>
+<h4 id="enregistrement-dkim">Enregistrement DKIM</h4>
+<p>L'enregistrement <strong>DKIM</strong> (<em>Domain Keys Identified Mail</em>) permet d'autoriser nos
+serveurs à signer cryptographiquement les mails envoyés en votre nom avec notre
+propre clef.</p>
+<p>Si vous souhaitez envoyer vos emails depuis <em>elvis@mailling.example.com</em>, vous
+devez ajouter l'enregistrement <code>TXT</code> suivant :</p>
+<pre class="prettyprint well"><code>munchmail-mta._domainkey.mailling.example.com.  500 IN TXT "v=DKIM1\; k=rsa\; t=y\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUOpGbKv4CiE0Wpv6z/lPx7gVKsqirF45wvySQwBampWcVbB152vBG59bFEtCmk9fwelon7JPAazFH67VhgVbCdGh+oZ2+iMnfRzo7yA1SaR2UeFXQUdxVvkDE5tf194/groY07fOyb5ukuYZMI35/8xrhmYed+yQz/RDchTprUQIDAQAB"
+</code></pre>
 </div>
         </div>
 

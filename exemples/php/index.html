@@ -56,8 +56,31 @@
             
             
             
-                <li >
-                    <a href="../../api/">L'API</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../api/intro/">Introduction</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/auth/">Authentification</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/campagnes/">Campagnes</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/domaines/">Domaines</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/tutoriel/">Tutoriel : un envoi de A à Z</a>
+                        </li>
+                    
+                    </ul>
                 </li>
             
             
@@ -71,12 +94,6 @@
                         </li>
                     
                     </ul>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="../../demonstration/">Instance de démonstration</a>
                 </li>
             
             
@@ -98,12 +115,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../../api/">
+                    <a rel="next" href="../../api/tutoriel/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../demonstration/">
+                    <a rel="prev" href="../../faq/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -128,7 +145,7 @@
 <pre class="prettyprint well"><code>&lt;?php
 class HTTPException extends Exception {}
 
-class HTTPSClient{
+class HTTPClient{
     /** Classe utilitaire pour accéder à l'API
 
         Utilise php5-curl (il est donc nécessaire de l'installer).
@@ -140,12 +157,11 @@ class HTTPSClient{
     private $ch;
     private $base_options;
 
-    public function __construct($cert_file, $ca_file) {
+    public function __construct($api_key) {
         $this-&gt;base_options = array(
           CURLOPT_RETURNTRANSFER =&gt; true,
           CURLOPT_FOLLOWLOCATION =&gt; true,
-          CURLOPT_CAINFO         =&gt; $ca_file,
-          CURLOPT_SSLCERT        =&gt; $cert_file,
+          CURLOPT_USERPWD        =&gt; 'api:'.$api_key,
           CURLOPT_HTTPHEADER     =&gt; array('Content-Type: application/json')
         );
         $this-&gt;ch = curl_init();
@@ -181,40 +197,62 @@ class HTTPSClient{
 }
 
 
+function print_r($json) {
+  print_r($json);
+}
+
 /************************
  * Déroulé de l'exemple *
  ************************/
 
 // Paramètres
-$ca_file = 'docs/files/ssl/demo-ca.pem';
-$cert_file = 'docs/files/ssl/demo-client-cert.pem';
-$client_url = 'https://demo.munchmail.net/api/v1/customers/42/';
+
+$base_url = 'https://api.munchmail.net/api/v1';
+$client_url = $base_url.'/customers/42/';
+$api_key = 'key-xxxxxxxxxxxxx'
 
 // Initialisation du client HTTP
-$client = new HTTPSClient($cert_file, $ca_file);
+$client = new HTTPClient($api_key);
 
 // Récupération des informations client
 $customer = $client-&gt;get($client_url);
 
-// Création d'une campagne
-$campaigns_url = 'https://localhost:4243/api/v1/campaigns/';
-$campaign = $client-&gt;post($campaigns_url, array(
+echo &quot;**** Ajout d'un domaine\n&quot;;
+
+$domains_url = $base_url.'/domains/';
+
+try {
+  $domain = $client-&gt;post($domains_url, array('name'=&gt; 'sandbox.munchmail.net'));
+  if (($domain-&gt;spf_status == 'ok') &amp;&amp;
+      ($domain-&gt;dkim_status == 'ok') &amp;&amp;
+      ($domain-&gt;mx_status == 'ok')) {
+      print_r($domain);
+    printf('Domaine %s bien configuré\n');
+  } else {
+    printf('Domaine %s mal configuré\n');
+    die();
+  }
+
+} catch (HTTPException $e) {
+  echo 'Error creating the domain, maybe it already exists';
+}
+
+
+
+
+echo &quot;**** Création d'un message\n&quot;;
+
+$messages_url = $base_url.'/messages/';
+$message = $client-&gt;post($messages_url, array(
   'name'         =&gt; 'Newsletter de Juillet',
-  'sender_email' =&gt; 'newsletter@example.com',
+  'sender_email' =&gt; 'newsletter@sandbox.example.com',
   'sender_name'  =&gt; 'Communication ACME chaussures',
-  'tech_contacts'=&gt; 'admins@example.com, communication@example.com',
-  'owners'       =&gt; 'communication@example.com',
-  'customer'     =&gt; 42));
+  'subject'      =&gt;  &quot;Tu peux faire tout ce que tu veux&quot;,
+  'html'  =&gt; &quot;&lt;h1&gt;Mais ne marche pas sur mes chaussures en suédine bleue&lt;/h1&gt;&quot;,
+));
 
 
-echo &quot;**** Détails de la campagne\n&quot;;
-
-print_r($campaign);
-
-// Définition du message de la campagne
-$message = $client-&gt;put($campaign-&gt;message,
-                        array('subject' =&gt; 'Mon subjet',
-                              'html'    =&gt; '&lt;h1&gt;Hello world&lt;/h1&gt;'));
+print_r($message);
 
 // Vérification du niveau de spam.
 if ($message-&gt;is_spam) {
@@ -224,33 +262,34 @@ if ($message-&gt;is_spam) {
 }
 
 // Ajout des destinataires individuellement…
+$mails_url = $base_url.'/mails/';
 
-$client-&gt;post($campaign-&gt;mails, array(&quot;to&quot;=&gt;&quot;solo@domaine.tld&quot;));
-
+$client-&gt;post($mails_url, array(&quot;to&quot;=&gt;&quot;solo@domaine.tld&quot;,
+                &quot;message&quot;=&gt;$message-&gt;url));
 
 // ou par lot…
 
-$client-&gt;post($campaign-&gt;mails, array(
-                                      array(&quot;to&quot;=&gt;&quot;john@domaine.tld&quot;),
-                                      array(&quot;to&quot;=&gt;&quot;jane@domain.tld&quot;),
-                                      array(&quot;to&quot;=&gt;&quot;fox@autredomaine.tld&quot;)));
+$client-&gt;post($mails_url, array(
+  array(&quot;to&quot;=&gt;&quot;john@domaine.tld&quot;, &quot;message&quot;=&gt; $message-&gt;url),
+  array(&quot;to&quot;=&gt;&quot;jane@domain.tld&quot;, &quot;message&quot;=&gt; $message-&gt;url),
+  array(&quot;to&quot;=&gt;&quot;fox@autredomaine.tld&quot;, &quot;message&quot;=&gt; $message-&gt;url)));
 
 // Récupération de tous les destinataires
 
 echo &quot;**** Destinataires\n&quot;;
-print_r($client-&gt;get($campaign-&gt;mails));
+print_r($client-&gt;get($message-&gt;_links-&gt;mails-&gt;href));
 
-echo &quot;**** Preview de la campagne\n&quot;;
-print_r($client-&gt;get($campaign-&gt;preview));
+echo &quot;**** Preview du message\n&quot;;
+print_r($client-&gt;get($message-&gt;_links-&gt;preview-&gt;href));
 
 // Envoi
 
-print_r($client-&gt;patch($campaign-&gt;url, array(&quot;status&quot;=&gt;&quot;sending&quot;)));
+print_r($client-&gt;patch($message-&gt;url, array(&quot;status&quot;=&gt;&quot;sending&quot;)));
 
 // Consultation des optout
 
 echo &quot;**** Consultation des opt-outs\n&quot;;
-print_r($client-&gt;get($customer-&gt;opt_outs));
+print_r($client-&gt;get($customer-&gt;_links-&gt;opt_outs-&gt;href));
 
 ?&gt;
 </code></pre>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>Authentification - MunchMail</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">MunchMail</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Guide du développeur</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../intro/">Introduction</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Authentification</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../campagnes/">Campagnes</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../domaines/">Domaines</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../tutoriel/">Tutoriel : un envoi de A à Z</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples de code <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../exemples/php/">PHP</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../faq/">FAQ</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../annexes/">Annexes</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../intro/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../campagnes/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#authentification">Authentification</a></li>
+        
+            <li><a href="#par-session-pour-testsdebug">Par session (pour tests/debug)</a></li>
+        
+            <li><a href="#par-clef-dapi-http-basic">Par clef d'API (HTTP Basic)</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="authentification">Authentification</h1>
+<p>Deux modes d'authentification sont offerts :</p>
+<ul>
+<li>L'une dédiée à la navigation manuelle de
+l'API, au sein d'un navigateur web, pour découvrir, tester ou debugger votre
+application et</li>
+<li>L'autre à l'exploitation par des applications, en production.</li>
+</ul>
+<p>Par ailleurs, la communication est chiffrée via HTTPS. ce qui
+offre d'une manière standard les fonctionalités suivantes :</p>
+<ul>
+<li>Nous <strong>authentifions votre application</strong> (<em>clef d'API</em>) et isolons vos données
+  de celles de nos autres clients</li>
+<li>Votre application <strong>authentifie notre serveur</strong> (<em>certificat serveur</em>)</li>
+<li>Le traffic entre votre application et notre serveur est <strong>chiffré</strong></li>
+</ul>
+<h2 id="par-session-pour-testsdebug">Par session (pour tests/debug)</h2>
+<p>Vous pouvez vous authentifier avec votre email et votre mot de passe, dans un
+navigateur, à l'adresse
+<a href="https://api.munchmail.net/api/v1/api-auth/login/">https://api.munchmail.net/api/v1/api-auth/login/</a>.</p>
+<h2 id="par-clef-dapi-http-basic">Par clef d'API (HTTP Basic)</h2>
+<h3 id="recuperer-la-clef-dapi">Récupérer la clef d'API</h3>
+<p>Une fois connecté via la méthode précédente, vous pouvez vous rendre à l'adresse
+<a href="https://api.munchmail.net/api/v1/profile/">https://api.munchmail.net/api/v1/profile/</a>
+pour récupérer la clef d'API. Cette opération n'est à faire qu'une fois, la clef
+résidant ensuite traditionellement dans la configuration de votre application.</p>
+<h3 id="sauthentifier">S'authentifier</h3>
+<p>L'authentification de cette API s'appuie sur le mécanisme standard
+<a href="https://fr.wikipedia.org/wiki/Authentification_HTTP#M.C3.A9thode_Basic">HTTP Basic</a>,</p>
+<p>Référez-vous à la documentation de votre langage de programmation pour savoir
+comment utiliser l'authentification <em>HTTP Basic</em>.</p>
+<p>Les détails à fournir sont :</p>
+<ul>
+<li>login : <em>« api »</em></li>
+<li>password : votre clef d'API (commençant par <em>« key- »</em>)</li>
+</ul>
+<p>Les détails d'authentification sont à attacher à chaque requête.</p>
+<p>L'authentification est abordée notamment dans nos
+<a href="/exemples/php/">exemples pour PHP</a>.</p>
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>

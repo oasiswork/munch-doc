@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>Campagnes - MunchMail</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">MunchMail</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Guide du développeur</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../intro/">Introduction</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../auth/">Authentification</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Campagnes</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../domaines/">Domaines</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../tutoriel/">Tutoriel : un envoi de A à Z</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples de code <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../exemples/php/">PHP</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../faq/">FAQ</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../annexes/">Annexes</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../auth/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../domaines/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#campagnes">Campagnes</a></li>
+        
+            <li><a href="#creation-dune-campagne">Création d'une campagne</a></li>
+        
+            <li><a href="#attacher-des-messages-a-une-campagne">Attacher des messages à une campagne</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="campagnes">Campagnes</h1>
+<p>Les campagnes sont une notion facultative, qui permet de grouper
+de façon logique plusieurs <code>messages</code>, la ressource d'API associée est
+<code>campaign</code>.</p>
+<p>Des cas d'utilisation sont :</p>
+<ul>
+<li>Les différents numéros d'une Newsletter</li>
+<li>Les communications commerciales envoyées à une certaine base de clients</li>
+<li>...</li>
+</ul>
+<p>Si vous utilisez la notion de <code>campaign</code>, les
+désinscriptions ne sont honorées qu'au sein d'une même campagne. Un même
+destinataire peut donc s'être désinscrit d'une campagne mais continuer à
+recevoir les communications d'une autre campagne.</p>
+<h2 id="creation-dune-campagne">Création d'une campagne</h2>
+<pre class="prettyprint well"><code>POST /api/v1/campaigns/
+{
+    "name": Newsletter clients ACME"
+}
+</code></pre>
+<p>Retourne</p>
+<pre class="prettyprint well"><code>HTTP 201 CREATED
+{
+    "url": "https://api.munchmail.net/api/v1/campaigns/2/",
+    "name": "Newsletter clients ACME"
+    "messages": [],
+    "_links": {
+        "opt_outs": {
+            "href": "http://localhost:8000/api/v1/campaigns/2/opt_outs/"
+        }
+    }
+}
+</code></pre>
+<p>Notez le lien <code>opt_outs</code> permettant de lire la liste des <a href="../tutoriel/#suivi-des-resiliations">opt_outs</a> associés à
+une campagne.</p>
+<h2 id="attacher-des-messages-a-une-campagne">Attacher des messages à une campagne</h2>
+<p>Cela se passe via l'attribut <code>campaign</code> de la ressource <code>message</code>. Par exemple
+si vous voulez attacher la campagne précédemment créée au message
+<code>https://api.munchmail.net/api/v1/messages/4/</code>, faites simplement :</p>
+<pre class="prettyprint well"><code>PATCH /api/v1/messages/4/
+{
+    "campaign": "https://api.munchmail.net/api/v1/campaigns/2/"
+}
+</code></pre>
+<p>Vous pouvez bien évidemment définir cet attribut dès
+<a href="../tutoriel/#1-creationedition-dun-message-avec-ses-attributs">la création du message</a>.</p>
+<p>Placer l'attribut à <code>null</code> pour retirer l'association à la campagne.</p>
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>

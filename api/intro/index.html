@@ -7,14 +7,14 @@
         
         
         
-        <link rel="shortcut icon" href="../img/favicon.ico">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
 
-        <title>Annexes - MunchMail</title>
+        <title>Introduction - MunchMail</title>
 
-        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link href="../css/prettify-1.0.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">MunchMail</a>
+            <a class="navbar-brand" href="../..">MunchMail</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -51,33 +51,33 @@
             
             
                 <li >
-                    <a href="..">Guide du développeur</a>
+                    <a href="../..">Guide du développeur</a>
                 </li>
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li >
-                            <a href="../api/intro/">Introduction</a>
+                        <li class="active">
+                            <a href="./">Introduction</a>
                         </li>
                     
                         <li >
-                            <a href="../api/auth/">Authentification</a>
+                            <a href="../auth/">Authentification</a>
                         </li>
                     
                         <li >
-                            <a href="../api/campagnes/">Campagnes</a>
+                            <a href="../campagnes/">Campagnes</a>
                         </li>
                     
                         <li >
-                            <a href="../api/domaines/">Domaines</a>
+                            <a href="../domaines/">Domaines</a>
                         </li>
                     
                         <li >
-                            <a href="../api/tutoriel/">Tutoriel : un envoi de A à Z</a>
+                            <a href="../tutoriel/">Tutoriel : un envoi de A à Z</a>
                         </li>
                     
                     </ul>
@@ -90,7 +90,7 @@
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../exemples/php/">PHP</a>
+                            <a href="../../exemples/php/">PHP</a>
                         </li>
                     
                     </ul>
@@ -99,13 +99,13 @@
             
             
                 <li >
-                    <a href="../faq/">FAQ</a>
+                    <a href="../../faq/">FAQ</a>
                 </li>
             
             
             
-                <li class="active">
-                    <a href="./">Annexes</a>
+                <li >
+                    <a href="../../annexes/">Annexes</a>
                 </li>
             
             
@@ -115,12 +115,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../faq/">
+                    <a rel="next" href="../..">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li class="disabled">
-                    <a rel="prev" >
+                <li >
+                    <a rel="prev" href="../auth/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -134,35 +134,53 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#annexes">Annexes</a></li>
+        <li class="main active"><a href="#lapi">L'API</a></li>
         
-    
-        <li class="main "><a href="#modifications-appliquees-aux-emails">Modifications appliquées aux emails</a></li>
+            <li><a href="#points-notables">Points notables</a></li>
+        
+            <li><a href="#api-navigable">API navigable</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h2 id="annexes">Annexes</h2>
-<h2 id="modifications-appliquees-aux-emails">Modifications appliquées aux emails</h2>
+<h1 id="lapi">L'API</h1>
+<p>L'API est accessible à l'adresse <em><a href="https://api.munchmail.net">https://api.munchmail.net</a></em>. Elle
+requiert une authentification pour fonctionner.</p>
+<p>Elle suit les principes
+<a href="http://fr.wikipedia.org/wiki/Representational_State_Transfer">HTTP/REST</a>, et utilise
+le format <a href="http://fr.wikipedia.org/wiki/JavaScript_Object_Notation">JSON</a>, ce
+qui la rend exploitable depuis un grand nombre de langages de programmation.</p>
+<p>Tant que la campagne n'est pas validée, elle peut-être modifiée.</p>
+<h2 id="points-notables">Points notables</h2>
 <ul>
-<li>les images sont détachées et hébergées sur nos serveurs (pour éviter de
-  surcharger les votres)</li>
-<li>le javascript et le flash sont retirés (ils ne sont que
-  <a href="https://www.campaignmonitor.com/resources/will-it-work/">rarement supportés</a>)</li>
-<li>les éventuelles erreurs HTML sont corrigées</li>
-<li>les règles CSS sont appliquées directement aux attributs (on parle
-  d'<em>inlining</em>), la plupart des clients mail ne supportant pas les styles externes.</li>
+<li>Les urls des objets (rappelés dans des attributs <strong>url</strong> de chaque ressource)
+  constituent l'identifiant unique d'un objet dans le système. Elles
+  peuvent-être utilisées à la fois pour consulter l'objet (requête <code>GET</code>) ou le
+  modifier (requête <code>PUT</code> ou <code>PATCH</code>).</li>
+<li>Si accédée depuis un client <code>HTTP</code> ne présentant pas de <code>Content-type</code> (ex:
+  <em>php5-curl</em>), l'API dialogue par défaut en JSON.</li>
 </ul>
+<h2 id="api-navigable">API navigable</h2>
+<p>L'API est <em>navigable</em>, en accédant à
+<em><a href="https://api.munchmail.fr/api/v1">https://api.munchmail.net/api/v1</a></em>
+directement depuis votre navigateur, puis en vous
+<a href="../auth/#par-session-pour-testsdebug">authentifiant avec votre email</a>, vous
+pouvez exploiter toutes les possibilités offertes à votre application depuis une
+interface conviviale, conçue pour les humains.</p>
+<p>Cet usage est évidemement à réserver à des fins de debug et de test. Elle n'est
+en aucun cas une interface pour les utilisateurs finaux.</p>
+<p>Les <strong>attributs des différentes resources</strong> sont documentées de manière
+précise au sein de cette interface.</p>
 </div>
         </div>
 
         
 
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../js/prettify-1.0.min.js"></script>
-        <script src="../js/base.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/base.js"></script>
     </body>
 </html>

@@ -48,54 +48,14 @@ boite saturée, serveur mal configuré…
 MunchMail se charge de désinscrire automatiquement les adresses produisant des
 *bounces* trop fréquents, en vous notifiant.
 
-## Prérequis
 
-Pour un *taux de remise* optimal de vos messages, nous respectons un certain
-nombre de bonne pratiques. *MunchMail* gère l'essentiel de ces pratiques pour
-vous. Cependant, certaines opérations sur le nom de domaine **restent à votre
-charge**, elles sont obligatoires, le système **refusera d'envoyer des emails
-depuis votre domaine** tant qu'elles ne sont pas remplies.
-
-### Enregistrement SPF
-
-L'enregistrement **SPF** (*Sender Policy Framework*) permet d'autoriser nos
-serveurs à envoyer des mails en provenance de votre domaine.
-
-Si vous souhaitez envoyer vos emails depuis *elvis@mailling.example.com*, vous
-devez ajouter un enregistrement `TXT` sur le domaine *mailling.example.com*.
-
-A-minima, si vous ne disposez pas encore d'un enregistrement SPF sur votre
-domaine, vous pouvez ajouter quelque chose comme :
-
-    mailling.example.com. 720 IN TXT "v=spf1 include:_spf.munchmail.net ?all"
-
-Si vous disposez déjà d'un enregistrement SPF, vous pouvez vous contenter
-d'ajouter la règle `include:_spf.munchmail.net` à votre chaîne afin
-d'autoriser nos serveurs.
-
-[Plus d'informations sur SPF](http://fr.wikipedia.org/wiki/Sender_Policy_Framework).
-
-### Enregistrement DKIM
-
-L'enregistrement **DKIM** (*Domain Keys Identified Mail*) permet d'autoriser nos
-serveurs à signer cryptographiquement les mails envoyés en votre nom avec notre
-propre clef.
-
-Si vous souhaitez envoyer vos emails depuis *elvis@mailling.example.com*, vous
-devez ajouter l'enregistrement `TXT` suivant :
-
-	munchmail-mta._domainkey.mailling.example.com.	500 IN TXT "v=DKIM1\; k=rsa\; t=y\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUOpGbKv4CiE0Wpv6z/lPx7gVKsqirF45wvySQwBampWcVbB152vBG59bFEtCmk9fwelon7JPAazFH67VhgVbCdGh+oZ2+iMnfRzo7yA1SaR2UeFXQUdxVvkDE5tf194/groY07fOyb5ukuYZMI35/8xrhmYed+yQz/RDchTprUQIDAQAB"
-
-
-## Fonctionnement
+## Fonctionnement général
 
 *MunchMail* définit plusieurs notions :
 
 ### Message
 
 C'est simplement l'envoi d'un mail identique à une liste de destinataires.
-Cette notion est au-dessus des autres. Un *message* peut-être programmée pour
-être envoyée à une certaine date.
 
 Le *message* regrouppe à la fois le contenu lui-même ainsi que les
 méta-informations (expéditeur, paramètres d'envoi...).
@@ -130,3 +90,60 @@ contacter plutôt que de leur proposer une désinscription en ligne.
  les informations équivaut à quitter l'association.*
 
 Cette fonctionnalité n'est activée qu'au cas par cas, merci de nous contacter.
+
+
+## Votre compte MunchMail
+
+Il est créé sur demande faite auprès d'OasisWork, merci de
+[nous contacter](http://www.oasiswork.fr/contact/).
+
+Pour la création du compte, vous seront demandées :
+
+* Une adresse email principale, qui constituera votre login pour naviguer l'API
+  dans votre navigateur.
+* une adresse email de notifications qui recevra le suivi (début/fin d'envoi et
+  désinscriptions)
+
+Vous seront ensuite communiquées :
+
+* Un mot de passe utilisateur pour l'[API navigable](FIXME), à utiliser avec
+  l'email principal
+* Une [clef d'API](FIXME) pour la connexion de votre application à MunchMail
+
+## Configuration DNS requise
+
+Pour un *taux de remise* optimal de vos messages, nous respectons un certain
+nombre de bonne pratiques. *MunchMail* gère l'essentiel de ces pratiques pour
+vous. Cependant, certaines opérations sur le nom de domaine **restent à votre
+charge**, elles sont obligatoires, le système **refusera d'envoyer des emails
+depuis votre domaine** tant qu'elles ne sont pas remplies.
+
+#### Enregistrement SPF
+
+L'enregistrement **SPF** (*Sender Policy Framework*) permet d'autoriser nos
+serveurs à envoyer des mails en provenance de votre domaine.
+
+Si vous souhaitez envoyer vos emails depuis *elvis@mailling.example.com*, vous
+devez ajouter un enregistrement `TXT` sur le domaine *mailling.example.com*.
+
+A-minima, si vous ne disposez pas encore d'un enregistrement SPF sur votre
+domaine, vous pouvez ajouter quelque chose comme :
+
+    mailling.example.com. 720 IN TXT "v=spf1 include:_spf.munchmail.net ?all"
+
+Si vous disposez déjà d'un enregistrement SPF, vous pouvez vous contenter
+d'ajouter la règle `include:_spf.munchmail.net` à votre chaîne afin
+d'autoriser nos serveurs.
+
+[Plus d'informations sur SPF](http://fr.wikipedia.org/wiki/Sender_Policy_Framework).
+
+#### Enregistrement DKIM
+
+L'enregistrement **DKIM** (*Domain Keys Identified Mail*) permet d'autoriser nos
+serveurs à signer cryptographiquement les mails envoyés en votre nom avec notre
+propre clef.
+
+Si vous souhaitez envoyer vos emails depuis *elvis@mailling.example.com*, vous
+devez ajouter l'enregistrement `TXT` suivant :
+
+	munchmail-mta._domainkey.mailling.example.com.	500 IN TXT "v=DKIM1\; k=rsa\; t=y\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUOpGbKv4CiE0Wpv6z/lPx7gVKsqirF45wvySQwBampWcVbB152vBG59bFEtCmk9fwelon7JPAazFH67VhgVbCdGh+oZ2+iMnfRzo7yA1SaR2UeFXQUdxVvkDE5tf194/groY07fOyb5ukuYZMI35/8xrhmYed+yQz/RDchTprUQIDAQAB"

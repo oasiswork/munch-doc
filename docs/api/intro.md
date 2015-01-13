@@ -27,8 +27,20 @@ Points notables
   modifier (requête `PUT` ou `PATCH`).
 * Si accédée depuis un client `HTTP` ne présentant pas de `Content-type` (ex:
   *php5-curl*), l'API dialogue par défaut en JSON.
-* En accédant à
-  *[https://api.munchmail.net/api/v1](https://api.munchmail.fr/api/v1)* depuis
-  votre navigateur, vous pouvez naviguer l'API manuellement pour la découvrir ou
-  la tester (cf
-  *[authentification par session](../aut/#par-session-pour-testsdebug)).
+
+
+API navigable
+---------------
+
+L'API est *navigable*, en accédant à
+*[https://api.munchmail.net/api/v1](https://api.munchmail.fr/api/v1)*
+directement depuis votre navigateur, puis en vous
+[authentifiant avec votre email](../auth/#par-session-pour-testsdebug), vous
+pouvez exploiter toutes les possibilités offertes à votre application depuis une
+interface conviviale, conçue pour les humains.
+
+Cet usage est évidemement à réserver à des fins de debug et de test. Elle n'est
+en aucun cas une interface pour les utilisateurs finaux.
+
+Les **attributs des différentes resources** sont documentées de manière
+précise au sein de cette interface.

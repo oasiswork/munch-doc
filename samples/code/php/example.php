@@ -1,7 +1,7 @@
 <?php
 class HTTPException extends Exception {}
 
-class HTTPSClient{
+class HTTPClient{
 	/** Classe utilitaire pour accéder à l'API
 
 	    Utilise php5-curl (il est donc nécessaire de l'installer).
@@ -13,12 +13,11 @@ class HTTPSClient{
 	private $ch;
 	private $base_options;
 
-	public function __construct($cert_file, $ca_file) {
+	public function __construct($api_key) {
 		$this->base_options = array(
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_FOLLOWLOCATION => true,
-		  CURLOPT_CAINFO         => $ca_file,
-		  CURLOPT_SSLCERT        => $cert_file,
+		  CURLOPT_USERPWD        => 'api:'.$api_key,
 		  CURLOPT_HTTPHEADER     => array('Content-Type: application/json')
 		);
 		$this->ch = curl_init();
@@ -54,40 +53,62 @@ class HTTPSClient{
 }
 
 
+function print_r($json) {
+  print_r($json);
+}
+
 /************************
  * Déroulé de l'exemple *
  ************************/
 
 // Paramètres
-$ca_file = 'docs/files/ssl/demo-ca.pem';
-$cert_file = 'docs/files/ssl/demo-client-cert.pem';
-$client_url = 'https://demo.munchmail.net/api/v1/customers/42/';
+
+$base_url = 'https://api.munchmail.net/api/v1';
+$client_url = $base_url.'/customers/42/';
+$api_key = 'key-xxxxxxxxxxxxx'
 
 // Initialisation du client HTTP
-$client = new HTTPSClient($cert_file, $ca_file);
+$client = new HTTPClient($api_key);
 
 // Récupération des informations client
 $customer = $client->get($client_url);
 
-// Création d'une campagne
-$campaigns_url = 'https://localhost:4243/api/v1/campaigns/';
-$campaign = $client->post($campaigns_url, array(
+echo "**** Ajout d'un domaine\n";
+
+$domains_url = $base_url.'/domains/';
+
+try {
+  $domain = $client->post($domains_url, array('name'=> 'sandbox.munchmail.net'));
+  if (($domain->spf_status == 'ok') &&
+      ($domain->dkim_status == 'ok') &&
+      ($domain->mx_status == 'ok')) {
+      print_r($domain);
+    printf('Domaine %s bien configuré\n');
+  } else {
+    printf('Domaine %s mal configuré\n');
+    die();
+  }
+
+} catch (HTTPException $e) {
+  echo 'Error creating the domain, maybe it already exists';
+}
+
+
+
+
+echo "**** Création d'un message\n";
+
+$messages_url = $base_url.'/messages/';
+$message = $client->post($messages_url, array(
   'name'         => 'Newsletter de Juillet',
-  'sender_email' => 'newsletter@example.com',
+  'sender_email' => 'newsletter@sandbox.example.com',
   'sender_name'  => 'Communication ACME chaussures',
-  'tech_contacts'=> 'admins@example.com, communication@example.com',
-  'owners'       => 'communication@example.com',
-  'customer'     => 42));
+  'subject'      =>  "Tu peux faire tout ce que tu veux",
+  'html'  => "<h1>Mais ne marche pas sur mes chaussures en suédine bleue</h1>",
+));
 
 
-echo "**** Détails de la campagne\n";
-
-print_r($campaign);
-
-// Définition du message de la campagne
-$message = $client->put($campaign->message,
-                        array('subject' => 'Mon subjet',
-                              'html'    => '<h1>Hello world</h1>'));
+print_r($message);
 
 // Vérification du niveau de spam.
 if ($message->is_spam) {
@@ -97,32 +118,33 @@ if ($message->is_spam) {
 }
 
 // Ajout des destinataires individuellement…
+$mails_url = $base_url.'/mails/';
 
-$client->post($campaign->mails, array("to"=>"solo@domaine.tld"));
-
+$client->post($mails_url, array("to"=>"solo@domaine.tld",
+				"message"=>$message->url));
 
 // ou par lot…
 
-$client->post($campaign->mails, array(
-                                      array("to"=>"john@domaine.tld"),
-                                      array("to"=>"jane@domain.tld"),
-                                      array("to"=>"fox@autredomaine.tld")));
+$client->post($mails_url, array(
+  array("to"=>"john@domaine.tld", "message"=> $message->url),
+  array("to"=>"jane@domain.tld", "message"=> $message->url),
+  array("to"=>"fox@autredomaine.tld", "message"=> $message->url)));
 
 // Récupération de tous les destinataires
 
 echo "**** Destinataires\n";
-print_r($client->get($campaign->mails));
+print_r($client->get($message->_links->mails->href));
 
-echo "**** Preview de la campagne\n";
-print_r($client->get($campaign->preview));
+echo "**** Preview du message\n";
+print_r($client->get($message->_links->preview->href));
 
 // Envoi
 
-print_r($client->patch($campaign->url, array("status"=>"sending")));
+print_r($client->patch($message->url, array("status"=>"sending")));
 
 // Consultation des optout
 
 echo "**** Consultation des opt-outs\n";
-print_r($client->get($customer->opt_outs));
+print_r($client->get($customer->_links->opt_outs->href));
 
 ?>

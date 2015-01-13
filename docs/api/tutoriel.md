@@ -43,7 +43,7 @@ traitements :
 
 ----
 
-*ⓘ Factultativement, un message peut-être rattaché à une campagne, ce
+*ⓘ Facultativement, un message peut-être rattaché à une campagne, ce
 point est traité dans la [section dédiée de la documentation](../campagnes/).*
 
 ----
@@ -121,7 +121,7 @@ notamment concerner les enregistrements [DKIM](/#enregistrement-dkim) et [SPF](/
         ]
     }
 
-En cas d'erreur de validation, **le message n'est pas créée**.
+En cas d'erreur de validation, **le message n'est pas créé**.
 
 Pour *modifier* le message , il faut effectuer une requête de type `PUT` à
 l'adresse retournée dans l'attribut **url** en envoyant la totalité du contenu
@@ -191,18 +191,19 @@ Par exemple…
 	}
 
 
-## 5. Prévisualisation et envoi à quelques destinataire « pilotes »
+## 3. Prévisualisation et envoi à quelques destinataires « pilotes »
 
 ### Prévisualisation
 
-Une vue de validation est offerte (cf
-[étape 1.](#1-creationedition-du-message-avec-ses-attributs)).
+Une vue de validation est offerte sur les `messages` ; comme toutes les actions
+liées aux ressources, son URL est proposée dans l'attribut `_links` ; celle-ci
+l'est sous le nom `preview_send`.
 
-Par exemple…
+On appelle la prévisualisation :
 
     GET /api/v1/messages/4/preview/
 
-… retourne :
+… elle retourne :
 
     HTTP 200 OK
     {
@@ -225,12 +226,10 @@ Par exemple…
     destinataires auxquels la campagne ne sera pas envoyée pour des raisons de
     désinscription ([résiliation](/#desinscription-opt-out)) de leur part ou des raisons techniques ([bounces](/#bounce)).
 
-Pour avoir le détail des résiliation, se référer à l'étape suivante.
-
 ### Envoi à quelques destinataires pilotes
 
 À ce stade, vous pouvez envoyer votre message à un ou plusieurs destinataires
-« pilotes », par exemple vous-même, des collègues…
+« pilotes », par exemple vous-même, des collègues, proches…
 
 Cette étape peut vous servir, par exemple, à valider l'affichage de la campagne
 sur différents webmails, terminaux mobiles…
@@ -247,7 +246,7 @@ destinataires, à ces exceptions près :
 	   "to": "peter@example.com, steven@example.com"
 	}
 
-## 6. Déclenchement de l'envoi
+## 4. Déclenchement de l'envoi
 
 Une fois que tout semble bon, il n'y a qu'à changer l'attribut **status** du
 message à *sending*, par exemple à l'aide d'une requête `PATCH` (en ne passant
@@ -260,43 +259,52 @@ que l'attribut *status*):
 
 Si tout va bien, l'API retourne un `200 OK`.
 
-Les mails commencent à-partir de ce moment à être envoyés aux destinataires.
+Les mails commencent immédiatement à être envoyés aux destinataires, une
+[notification](/#votre-compte-munchmail) vous est envoyée, une seconde sera
+envoyée à la fin du processus.
 
-## 7. Suivi des envois
+## 5. Suivi des envois
 
 ### Suivi des emails
 
 Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 le lien `mails` de la campagne. Par exemple :
 
-    GET https://api.munchmail.net/api/v1/messages/4/mails/"
+    GET /api/v1/messages/4/mails/
 	[
     {
+        "url": "https://api.munchmail.net/api/v1/messages/4/mails/1/",
         "to": "jane@domain.tld",
         "date": "2014-08-05T12:44:28.556Z",
         "last_status": {
             "status": "sent",
             "date": "2014-08-05T12:59:11Z",
             "raw_msg": "Accepted by local MTA"
-        }
+        },
+        "message": "https://api.munchmail.net/api/v1/messages/4/",
+
     },
     {
+        "url": "https://api.munchmail.net/api/v1/messages/4/mails/2/",
         "to": john@domain.tld",
         "date": "2014-07-25T08:52:34.261Z",
         "last_status": {
             "status": "delivered",
             "date": "2014-07-25T12:07:49Z",
             "raw_msg": Delivered to remote server"
-        }
+        },
+        "message": "https://api.munchmail.net/api/v1/messages/4/",
     },
     {
+        "url": "https://api.munchmail.net/api/v1/messages/4/mails/3/",
         "to": "mon-destinataire@domaine.tld",
         "date": "2014-07-30T08:40:56Z",
         "last_status": {
             "status": "hardbounced",
             "date": "2014-07-30T08:41:44Z",
             "raw_msg": "recipient mon-destinataire@domain.tld do not exist"
-        }
+        },
+        "message": "https://api.munchmail.net/api/v1/messages/4/",
     }
 	]
 
@@ -308,14 +316,14 @@ Les différents statuts possibles sont :
 * **sent** : le message a été accepté par les serveurs d'oasiswork est en cours
     d'acheminement
 * **delivered** : le message a été remis au serveur du destinataire
-* **softbounced** : le message a été rejeté à chaque tentative  pour
-    *soft-bounce*, il n'a pu être remis.
+* **softbounced** : le message a été rejeté à plusieurs reprises,
+    il n'a pu être remis.
 * **hardbounced** : le message a été rejeté net par le serveur distant
     (hard-bounce).
 
 ### Suivi des résiliations
 
-Les contacts techniques sont notifiés par email à chaque résiliation.
+Une [notification](/#votre-compte-munchmail) est envoyée à chaque résiliation.
 
 Par ailleurs, il est possible de consulter les résiliations via l'API ; si votre
 identifiant de client est le 42 :
@@ -352,5 +360,5 @@ les valeurs suivantes:
 
 Si vous recevez de nombreuses désinscriptions de type **abuse**, il faut vous
 poser des question sur la légitimité de votre liste de
-contacts. **N'utilisez-pas de liste de mails achetées**… et respectez la
+contacts. **N'utilisez pas de liste de mails achetées**… et respectez la
 législation en vigueur.

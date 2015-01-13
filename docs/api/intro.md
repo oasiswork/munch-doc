@@ -9,13 +9,6 @@ Elle suit les principes
 le format [JSON](http://fr.wikipedia.org/wiki/JavaScript_Object_Notation), ce
 qui la rend exploitable depuis un grand nombre de langages de programmation.
 
-Les étapes de la vie d'une campagne sont :
-
-1. Création/édition d'un message et de ses attributs
-2. Ajout/modification d'une liste de destinataires
-4. Validation de la campagne (envoi)
-5. Suivi des envois
-
 Tant que la campagne n'est pas validée, elle peut-être modifiée.
 
 Points notables

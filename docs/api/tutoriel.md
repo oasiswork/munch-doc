@@ -1,7 +1,16 @@
-Un Envoi de A à Z
-=================
+Tutoriel : Un envoi de A à Z
+=============================
 
-### 1. Création/édition d'un message avec ses attributs
+Les étapes de la vie d'une campagne sont :
+
+1. Création/édition d'un message avec ses attributs
+2. Ajout/modification d'une liste de destinataires
+3. Prévisualisation et envoi à quelques destinataires « pilotes »
+4. Déclenchement de l'envoi
+5. Suivi des envois
+
+
+## 1. Création/édition d'un message avec ses attributs
 
     POST /api/v1/messages/
 	{

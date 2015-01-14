@@ -246,8 +246,8 @@ point est traité dans la <a href="../campagnes/">section dédiée de la documen
 <li><strong>preview</strong> Permet de voir un résumé du message ; utile notamment avant de
    <a href="#4-validation-du-message">valider le message</a></li>
 <li><strong>is_spam</strong> devrait vous alerter si il est à <code>true</code> (viser le zéro de
-    <strong>spam_score</strong> peut-être un bon objectif), le système refusera quoi qu'il en
-    <strong>soit d'envoyer un </strong>message considéré comme spam ;</li>
+    <strong>spam_score</strong> peut-être un bon objectif), le système <strong>refusera quoi qu'il
+    en soit d'envoyer</strong> un message considéré comme spam ;</li>
 <li><strong>spam_details</strong> permet d'accéder au barème détaillé du <em>spam_score</em>, afin de
     pouvoir apporter les modifications nécessaires au contenu de <strong>html</strong>.</li>
 <li><strong>preview</strong>, <strong>html_preview</strong> et <strong>plaintext_preview</strong> permettent d'avoir une
@@ -255,8 +255,9 @@ point est traité dans la <a href="../campagnes/">section dédiée de la documen
 <li><strong>preview_send</strong> Permet d'envoyer le message à quelques destinataires de test
     (voir <a href="#envoi-a-quelques-destinataires-pilote">plus bas</a>)</li>
 </ul>
-<p>En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
-notamment concerner les enregistrements <a href="/#enregistrement-dkim">DKIM</a> et <a href="/#enregistrement-spf">SPF</a></p>
+<p>En cas d'erreur, vous recevrez une erreur 400 détaillant le ou les problèmes,
+qui peuvent notamment concerner les enregistrements
+<a href="/#enregistrement-dkim">DKIM</a> et <a href="/#enregistrement-spf">SPF</a></p>
 <pre class="prettyprint well"><code>HTTP 400 BAD REQUEST
 {
     "sender_email": [
@@ -278,7 +279,7 @@ de texte… etc.</p>
 <a href="https://github.com/mailchimp/Email-Blueprints">ce dépôt d'exemples</a>.</p>
 <h2 id="2-ajoutmodification-dune-liste-de-destinataires">2. Ajout/modification d'une liste de destinataires</h2>
 <p>Il est possible d'ajouter des destinataires soit un par un, soit en lots :</p>
-<p>(on utilise l'adresse contenue dans l'attribut <strong>message</strong> de notre objet, voir
+<p>(on utilise l'URL pointée par l'attribut <code>_links.message</code> de notre objet, voir
 étape précédente).</p>
 <h3 id="ajout-des-destinataires-un-par-un">Ajout des destinataires un par un</h3>
 <p>Il suffit de faire autant de requêtes POST que de destinataires à ajouter.</p>
@@ -359,18 +360,18 @@ destinataires, à ces exceptions près :</p>
 <ul>
 <li>le sujet sera préfixé par « <em>TEST</em> » ;</li>
 <li>les liens de désinscription et d'abus pointeront vers des pages inactives ;</li>
-<li>
-<p>vous ne pourrez pas suivre l'état de livraison de ces emails.</p>
-<p>POST /api/v1/messages/1/preview_send/
+<li>vous ne pourrez pas suivre l'état de livraison de ces emails.</li>
+</ul>
+<p>La requête est la suivante :</p>
+<pre class="prettyprint well"><code>POST /api/v1/messages/1/preview_send/
 {
    "to": "peter@example.com, steven@example.com"
-}</p>
-</li>
-</ul>
+}
+</code></pre>
 <h2 id="4-declenchement-de-lenvoi">4. Déclenchement de l'envoi</h2>
-<p>Une fois que tout semble bon, il n'y a qu'à changer l'attribut <strong>status</strong> du
-message à <em>sending</em>, par exemple à l'aide d'une requête <code>PATCH</code> (en ne passant
-que l'attribut <em>status</em>):</p>
+<p>Une fois que tout semble bon, il n'y a plus qu'à changer l'attribut <strong>status</strong>
+du message à <em>sending</em>, par exemple à l'aide d'une requête <code>PATCH</code> (en ne
+passant que l'attribut <em>status</em>):</p>
 <pre class="prettyprint well"><code>PATCH /api/v1/campaigns/1/
 {
     "status"       :"sending"
@@ -444,12 +445,14 @@ identifiant de client est le 42 :</p>
 {
     "address": "jane-blacklist@example.com",
     "date": "2014-08-08T14:54:35Z",
-    "origin": "mail"
+    "origin": "mail",
+    "campaign": null
 },
 {
     "address": "john-greylist@example.com",
     "date": "2014-08-08T14:55:16Z",
-    "origin": "feedback-loop"
+    "origin": "feedback-loop",
+    "campaign": null
 },
 ]
 </code></pre>

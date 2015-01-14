@@ -153,7 +153,7 @@
 
 <h1 id="munchmail-guide-du-developpeur">MunchMail − Guide du développeur</h1>
 <p>MunchMail est une <strong>API REST</strong> permettant la gestion et l'expédition de
-campagnes d'email vers <strong>un grand nombre de destinataires</strong>.</p>
+campagnes d'emails vers <strong>un grand nombre de destinataires</strong>.</p>
 <p>Cette documentation vise à vous aider dans la réalisation d'une application
 exploitant l'API MunchMail.</p>
 <h2 id="portee">Portée</h2>
@@ -189,20 +189,20 @@ nombre de destinataires, il s'agit d'un outil de communication de masse.</p>
 être remis au destinataire. Les raisons sont multiples : adresse inexistante,
 boite saturée, serveur mal configuré…</p>
 <p>MunchMail se charge de désinscrire automatiquement les adresses produisant des
-<em>bounces</em> trop fréquents, en vous notifiant.</p>
+<em>bounces</em> trop fréquents, et vous en notifie.</p>
 <h2 id="fonctionnement-general">Fonctionnement général</h2>
 <p><em>MunchMail</em> définit plusieurs notions :</p>
 <h3 id="message">Message</h3>
 <p>C'est simplement l'envoi d'un mail identique à une liste de destinataires.</p>
-<p>Le <em>message</em> regrouppe à la fois le contenu lui-même ainsi que les
+<p>Le <em>message</em> regroupe à la fois le contenu lui-même ainsi que les
 méta-informations (expéditeur, paramètres d'envoi...).</p>
 <p>Concernant le contenu lui-même, <em>MunchMail</em> requiert que vous fournissiez une
 version HTML et se chargera de proposer aux destinataires à la fois :</p>
 <ul>
-<li>cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
-  pratiques et s'afficher correctement chez tous vos destinataires (voir <a href="/annexes/#details-des-modifications-appliquees-aux-emails">détail
-  des modifications</a>)</li>
-<li>une version texte pour les clients mail ne supportant que ce format ou les
+<li>une version de votre HTML « nettoyée » pour respecter un certain nombre de
+  bonnes pratiques et s'afficher correctement chez tous vos destinataires (voir
+  <a href="/annexes/#details-des-modifications-appliquees-aux-emails">détail des modifications</a>)</li>
+<li>une version texte pour les clients mail ne supportant que ce format ou pour les
   destinataires ayant fait ce choix d'affichage.</li>
 </ul>
 <h3 id="desinscription-opt-out">Désinscription (Opt-out)</h3>
@@ -215,7 +215,7 @@ désinscrire de vos envois. <em>MunchMail</em> gère cela pour vous :</p>
   un bouton « se désinscrire » directement depuis leur interface.</li>
 <li>si un de vos destinataires marque le courriel comme <em>spam</em>, et que son
   hébergeur nous le notifie, il sera désinscrit</li>
-<li>si une adresse <a href="#bounce">bounce</a> trop, elle sera désinscrite</li>
+<li>si une adresse <a href="#bounce">bounce</a> trop souvent, elle sera désinscrite</li>
 </ul>
 <p>Vous ne pouvez pas passer outre ces <em>résiliations</em>. Cependant, dans certains cas
 spécifiques, nous pouvons rediriger vos destinataires vers un moyen de vous
@@ -224,14 +224,14 @@ contacter plutôt que de leur proposer une désinscription en ligne.</p>
  les informations équivaut à quitter l'association.</em></p>
 <p>Cette fonctionnalité n'est activée qu'au cas par cas, merci de nous contacter.</p>
 <h2 id="votre-compte-munchmail">Votre compte MunchMail</h2>
-<p>Il est créé sur demande faite auprès d'OasisWork, merci de
+<p>Il est créé sur demande auprès d'OasisWork, merci de
 <a href="http://www.oasiswork.fr/contact/">nous contacter</a>.</p>
 <p>Pour la création du compte, vous seront demandées :</p>
 <ul>
-<li>Une adresse email principale, qui constituera votre login pour naviguer l'API
+<li>Une adresse email principale, qui constituera votre login pour parcourir l'API
   dans votre navigateur.</li>
-<li>une adresse email de notifications qui recevra le suivi (début/fin d'envoi et
-  désinscriptions)</li>
+<li>une adresse email de notifications qui recevra les notifications de suivi de
+  vos envois (début/fin d'envoi et désinscriptions).</li>
 </ul>
 <p>Vous seront ensuite communiquées :</p>
 <ul>

@@ -1,7 +1,7 @@
 # MunchMail − Guide du développeur
 
 MunchMail est une **API REST** permettant la gestion et l'expédition de
-campagnes d'email vers **un grand nombre de destinataires**.
+campagnes d'emails vers **un grand nombre de destinataires**.
 
 Cette documentation vise à vous aider dans la réalisation d'une application
 exploitant l'API MunchMail.
@@ -46,7 +46,7 @@ On parle de *Bounce* (littéralement *Rebond*) lorsqu'un mail envoyé ne peut pa
 boite saturée, serveur mal configuré…
 
 MunchMail se charge de désinscrire automatiquement les adresses produisant des
-*bounces* trop fréquents, en vous notifiant.
+*bounces* trop fréquents, et vous en notifie.
 
 
 ## Fonctionnement général
@@ -57,16 +57,16 @@ MunchMail se charge de désinscrire automatiquement les adresses produisant des
 
 C'est simplement l'envoi d'un mail identique à une liste de destinataires.
 
-Le *message* regrouppe à la fois le contenu lui-même ainsi que les
+Le *message* regroupe à la fois le contenu lui-même ainsi que les
 méta-informations (expéditeur, paramètres d'envoi...).
 
 Concernant le contenu lui-même, *MunchMail* requiert que vous fournissiez une
 version HTML et se chargera de proposer aux destinataires à la fois :
 
-- cette version HTML est « nettoyée » pour respecter un certain nombre de bonnes
-  pratiques et s'afficher correctement chez tous vos destinataires (voir [détail
-  des modifications](/annexes/#details-des-modifications-appliquees-aux-emails))
-- une version texte pour les clients mail ne supportant que ce format ou les
+- une version de votre HTML « nettoyée » pour respecter un certain nombre de
+  bonnes pratiques et s'afficher correctement chez tous vos destinataires (voir
+  [détail des modifications](/annexes/#details-des-modifications-appliquees-aux-emails))
+- une version texte pour les clients mail ne supportant que ce format ou pour les
   destinataires ayant fait ce choix d'affichage.
 
 ### Désinscription (Opt-out)
@@ -80,7 +80,7 @@ désinscrire de vos envois. *MunchMail* gère cela pour vous :
   un bouton « se désinscrire » directement depuis leur interface.
 - si un de vos destinataires marque le courriel comme *spam*, et que son
   hébergeur nous le notifie, il sera désinscrit
-- si une adresse [bounce](#bounce) trop, elle sera désinscrite
+- si une adresse [bounce](#bounce) trop souvent, elle sera désinscrite
 
 Vous ne pouvez pas passer outre ces *résiliations*. Cependant, dans certains cas
 spécifiques, nous pouvons rediriger vos destinataires vers un moyen de vous
@@ -94,15 +94,15 @@ Cette fonctionnalité n'est activée qu'au cas par cas, merci de nous contacter.
 
 ## Votre compte MunchMail
 
-Il est créé sur demande faite auprès d'OasisWork, merci de
+Il est créé sur demande auprès d'OasisWork, merci de
 [nous contacter](http://www.oasiswork.fr/contact/).
 
 Pour la création du compte, vous seront demandées :
 
-* Une adresse email principale, qui constituera votre login pour naviguer l'API
+* Une adresse email principale, qui constituera votre login pour parcourir l'API
   dans votre navigateur.
-* une adresse email de notifications qui recevra le suivi (début/fin d'envoi et
-  désinscriptions)
+* une adresse email de notifications qui recevra les notifications de suivi de
+  vos envois (début/fin d'envoi et désinscriptions).
 
 Vous seront ensuite communiquées :
 

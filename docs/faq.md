@@ -8,8 +8,8 @@ cependant :
 - on finit vite classé en tant que spam ou rejetés (les serveurs de destination
   sont plus stricts sur les mails « massifs ») ;
 - on n'a aucune idée de qui reçoit ou ne reçoit pas les mails ;
-- quand les mails ne sont pas reçus, on reçoit tout un tas de mails d'erreur
-  dans sa boite mail.
+- pour chaque email non délivré, l'expéditeur se retrouve noyé par des
+  emails automatiques, peu digestes et nombreux.
 
 ### Comment personnaliser le lien « Se désinscrire » ?
 
@@ -34,7 +34,7 @@ pour cela.
 **⚠ Il est déconseillé d'utiliser des pièces-jointes dans des envois
 en masse**. Il est beaucoup plus efficace d'héberger images et pièces-jointes
 sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère et
-évite d'encombrer la boite mail de vos destinataires.
+évite d'encombrer les boites mail de vos destinataires.
 
 ---
 

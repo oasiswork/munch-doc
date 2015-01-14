@@ -100,8 +100,8 @@ Notons quelques champs :
 * **preview** Permet de voir un résumé du message ; utile notamment avant de
    [valider le message](#4-validation-du-message)
 * **is_spam** devrait vous alerter si il est à `true` (viser le zéro de
-    **spam_score** peut-être un bon objectif), le système refusera quoi qu'il en
-    **soit d'envoyer un **message considéré comme spam ;
+    **spam_score** peut-être un bon objectif), le système **refusera quoi qu'il
+    en soit d'envoyer** un message considéré comme spam ;
 * **spam_details** permet d'accéder au barème détaillé du *spam_score*, afin de
     pouvoir apporter les modifications nécessaires au contenu de **html**.
 * **preview**, **html_preview** et **plaintext_preview** permettent d'avoir une
@@ -109,8 +109,9 @@ Notons quelques champs :
 * **preview_send** Permet d'envoyer le message à quelques destinataires de test
     (voir [plus bas](#envoi-a-quelques-destinataires-pilote))
 
-En cas d'erreur, vous recevrez une erreur 400 détaillant l'erreur, qui peuvent
-notamment concerner les enregistrements [DKIM](/#enregistrement-dkim) et [SPF](/#enregistrement-spf)
+En cas d'erreur, vous recevrez une erreur 400 détaillant le ou les problèmes,
+qui peuvent notamment concerner les enregistrements
+[DKIM](/#enregistrement-dkim) et [SPF](/#enregistrement-spf)
 
 
     HTTP 400 BAD REQUEST
@@ -143,7 +144,7 @@ Pour des conseils sur la rédaction de mails en HTML, vous pouvez vous référer
 
 Il est possible d'ajouter des destinataires soit un par un, soit en lots :
 
-(on utilise l'adresse contenue dans l'attribut **message** de notre objet, voir
+(on utilise l'URL pointée par l'attribut `_links.message` de notre objet, voir
 étape précédente).
 
 ### Ajout des destinataires un par un
@@ -241,16 +242,19 @@ destinataires, à ces exceptions près :
 - les liens de désinscription et d'abus pointeront vers des pages inactives ;
 - vous ne pourrez pas suivre l'état de livraison de ces emails.
 
+La requête est la suivante :
+
     POST /api/v1/messages/1/preview_send/
-	{
-	   "to": "peter@example.com, steven@example.com"
-	}
+    {
+       "to": "peter@example.com, steven@example.com"
+    }
+
 
 ## 4. Déclenchement de l'envoi
 
-Une fois que tout semble bon, il n'y a qu'à changer l'attribut **status** du
-message à *sending*, par exemple à l'aide d'une requête `PATCH` (en ne passant
-que l'attribut *status*):
+Une fois que tout semble bon, il n'y a plus qu'à changer l'attribut **status**
+du message à *sending*, par exemple à l'aide d'une requête `PATCH` (en ne
+passant que l'attribut *status*):
 
     PATCH /api/v1/campaigns/1/
 	{
@@ -334,12 +338,14 @@ identifiant de client est le 42 :
 	{
         "address": "jane-blacklist@example.com",
         "date": "2014-08-08T14:54:35Z",
-        "origin": "mail"
+        "origin": "mail",
+        "campaign": null
     },
     {
         "address": "john-greylist@example.com",
         "date": "2014-08-08T14:55:16Z",
-        "origin": "feedback-loop"
+        "origin": "feedback-loop",
+        "campaign": null
     },
 	]
 

@@ -6,7 +6,7 @@ Deux modes d'authentification sont offerts :
 - L'une dédiée à la navigation manuelle de
 l'API, au sein d'un navigateur web, pour découvrir, tester ou debugger votre
 application et
-- L'autre à l'exploitation par des applications, en production.
+- L'autre dédiée à l'exploitation par des applications, en production.
 
 Par ailleurs, la communication est chiffrée via HTTPS. ce qui
 offre d'une manière standard les fonctionalités suivantes :

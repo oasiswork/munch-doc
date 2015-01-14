@@ -23,6 +23,14 @@ class HTTPClient{
 		$this->ch = curl_init();
 	}
 
+	/** Handles an HTTP response, throws exception if Error
+	 *
+	 * @param $ok_statuses an array of acceptable statuses, if the return
+	 *                     code is not within this list, an exception is
+	 *                     raised.
+	 * @param $out         the output, as string
+	 * @returns            a structured PHP object (decoded from JSON)
+	 **/
 	private function handle_return($out, $ok_statuses) {
 		if ($out === false) {
 			throw new HTTPException(curl_error($this->ch));
@@ -35,6 +43,12 @@ class HTTPClient{
 		}
 	}
 
+	/** Issue a request to the api
+	 *
+	 * @param $reqtype the HTTP verb (GET, PUT...)
+	 * @param $data    relevant for PUT/PATCH/POST : data, as structured PHP
+	 *                 object
+	 */
 	public function req($reqtype, $url, $data=NULL) {
 		$req_opts = array(CURLOPT_URL            => $url,
 		                  CURLOPT_CUSTOMREQUEST  => $reqtype,
@@ -52,10 +66,6 @@ class HTTPClient{
 	public function put($url, $data)   {return $this->req('PUT', $url, $data);}
 }
 
-
-function print_r($json) {
-  print_r($json);
-}
 
 /************************
  * Déroulé de l'exemple *

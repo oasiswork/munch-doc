@@ -22,6 +22,31 @@ Points notables
   *php5-curl*), l'API dialogue par défaut en JSON.
 
 
+Pagination
+-----------
+
+Les requêtes renvoyant des listes d'objets sont *paginées*, elles adoptent la structure suivante :
+
+
+    {
+        "count": 78,
+        "next": "https://api.munchmail.fr/api/v1/mails/?page=2",
+        "previous": null,
+        "results": [
+
+        ...
+
+        ]
+    }
+
+Les liens "next" et "previous" permettent d'aller à la page suivante ou
+précédente sans se poser d'autre question.
+
+Vous pouvez augmenter le nombre d'objets par page (maximum : 1000) en ajoutant le
+querystring `page_size`. Par exemple, pour avoir des pages de 200 objets,
+ajoutez`?page_size=200` à l'URL.
+
+
 API navigable
 ---------------
 

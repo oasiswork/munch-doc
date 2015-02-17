@@ -275,42 +275,47 @@ Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 le lien `mails` de la campagne. Par exemple :
 
     GET /api/v1/messages/4/mails/
-	[
     {
-        "url": "https://api.munchmail.net/api/v1/messages/4/mails/1/",
-        "to": "jane@domain.tld",
-        "date": "2014-08-05T12:44:28.556Z",
-        "last_status": {
-            "status": "sent",
-            "date": "2014-08-05T12:59:11Z",
-            "raw_msg": "Accepted by local MTA"
-        },
-        "message": "https://api.munchmail.net/api/v1/messages/4/",
+        "count": 3,
+        "next": "https://api.munchmail.fr/api/v1/mails/?page=2",
+        "previous": null,
+        "results": [
+        {
+            "url": "https://api.munchmail.net/api/v1/messages/4/mails/1/",
+            "to": "jane@domain.tld",
+            "date": "2014-08-05T12:44:28.556Z",
+            "last_status": {
+                "status": "sent",
+                "date": "2014-08-05T12:59:11Z",
+                "raw_msg": "Accepted by local MTA"
+            },
+            "message": "https://api.munchmail.net/api/v1/messages/4/",
 
-    },
-    {
-        "url": "https://api.munchmail.net/api/v1/messages/4/mails/2/",
-        "to": john@domain.tld",
-        "date": "2014-07-25T08:52:34.261Z",
-        "last_status": {
-            "status": "delivered",
-            "date": "2014-07-25T12:07:49Z",
-            "raw_msg": Delivered to remote server"
         },
-        "message": "https://api.munchmail.net/api/v1/messages/4/",
-    },
-    {
-        "url": "https://api.munchmail.net/api/v1/messages/4/mails/3/",
-        "to": "mon-destinataire@domaine.tld",
-        "date": "2014-07-30T08:40:56Z",
-        "last_status": {
-            "status": "hardbounced",
-            "date": "2014-07-30T08:41:44Z",
-            "raw_msg": "recipient mon-destinataire@domain.tld do not exist"
+        {
+            "url": "https://api.munchmail.net/api/v1/messages/4/mails/2/",
+            "to": john@domain.tld",
+            "date": "2014-07-25T08:52:34.261Z",
+            "last_status": {
+                "status": "delivered",
+                "date": "2014-07-25T12:07:49Z",
+                "raw_msg": Delivered to remote server"
+            },
+            "message": "https://api.munchmail.net/api/v1/messages/4/",
         },
-        "message": "https://api.munchmail.net/api/v1/messages/4/",
+        {
+            "url": "https://api.munchmail.net/api/v1/messages/4/mails/3/",
+            "to": "mon-destinataire@domaine.tld",
+            "date": "2014-07-30T08:40:56Z",
+            "last_status": {
+                "status": "hardbounced",
+                "date": "2014-07-30T08:41:44Z",
+                "raw_msg": "recipient mon-destinataire@domain.tld do not exist"
+            },
+            "message": "https://api.munchmail.net/api/v1/messages/4/",
+        }
+        ]
     }
-	]
 
 
 Les différents statuts possibles sont :
@@ -334,20 +339,25 @@ identifiant de client est le 42 :
 
     GET /api/v1/customers/42/opt_outs/
 
-	[
-	{
-        "address": "jane-blacklist@example.com",
-        "date": "2014-08-08T14:54:35Z",
-        "origin": "mail",
-        "campaign": null
-    },
     {
-        "address": "john-greylist@example.com",
-        "date": "2014-08-08T14:55:16Z",
-        "origin": "feedback-loop",
-        "campaign": null
-    },
-	]
+        "count": 2,
+        "next": null,
+        "previous": null,
+        "results": [
+        	{
+                "address": "jane-blacklist@example.com",
+                "date": "2014-08-08T14:54:35Z",
+                "origin": "mail",
+                "campaign": null
+            },
+            {
+                "address": "john-greylist@example.com",
+                "date": "2014-08-08T14:55:16Z",
+                "origin": "feedback-loop",
+                "campaign": null
+            },
+    	]
+    }
 
 
 Le champ **origin** contient la raison de la désinscription, qui peut-être

@@ -138,6 +138,8 @@
         
             <li><a href="#points-notables">Points notables</a></li>
         
+            <li><a href="#pagination">Pagination</a></li>
+        
             <li><a href="#api-navigable">API navigable</a></li>
         
     
@@ -162,6 +164,24 @@ qui la rend exploitable depuis un grand nombre de langages de programmation.</p>
 <li>Si accédée depuis un client <code>HTTP</code> ne présentant pas de <code>Content-type</code> (ex:
   <em>php5-curl</em>), l'API dialogue par défaut en JSON.</li>
 </ul>
+<h2 id="pagination">Pagination</h2>
+<p>Les requêtes renvoyant des listes d'objets sont <em>paginées</em>, elles adoptent la structure suivante :</p>
+<pre class="prettyprint well"><code>{
+    "count": 78,
+    "next": "https://api.munchmail.fr/api/v1/mails/?page=2",
+    "previous": null,
+    "results": [
+
+    ...
+
+    ]
+}
+</code></pre>
+<p>Les liens "next" et "previous" permettent d'aller à la page suivante ou
+précédente sans se poser d'autre question.</p>
+<p>Vous pouvez augmenter le nombre d'objets par page (maximum : 1000) en ajoutant le
+querystring <code>page_size</code>. Par exemple, pour avoir des pages de 200 objets,
+ajoutez<code>?page_size=200</code> à l'URL.</p>
 <h2 id="api-navigable">API navigable</h2>
 <p>L'API est <em>navigable</em>, en accédant à
 <em><a href="https://api.munchmail.fr/api/v1">https://api.munchmail.net/api/v1</a></em>

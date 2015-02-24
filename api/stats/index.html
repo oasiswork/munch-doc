@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-        <title>Domaines - MunchMail</title>
+        <title>Statistiques - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -76,16 +76,16 @@
                             <a href="../campagnes/">Campagnes</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">Domaines</a>
+                        <li >
+                            <a href="../domaines/">Domaines</a>
                         </li>
                     
                         <li >
                             <a href="../tracking/">Suivi des actions côté destinataire</a>
                         </li>
                     
-                        <li >
-                            <a href="../stats/">Statistiques</a>
+                        <li class="active">
+                            <a href="./">Statistiques</a>
                         </li>
                     
                     </ul>
@@ -123,12 +123,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../campagnes/">
+                    <a rel="next" href="../tracking/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../tracking/">
+                    <a rel="prev" href="../../exemples/php/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -142,66 +142,59 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#configuration-des-domaines-denvoi">Configuration des domaines d'envoi</a></li>
+        <li class="main active"><a href="#statistiques">Statistiques</a></li>
+        
+            <li><a href="#par-message">Par Message</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="configuration-des-domaines-denvoi">Configuration des domaines d'envoi</h1>
-<p>Si vous envoyez avec l'email <em>newsletter@example.com</em>, les étapes suivantes sont
-nécessaires.</p>
-<ol>
-<li>Enregistrer le domaine <em>example.com</em> dans munchmail</li>
-<li>Créer ou modifier les bons enregistrement DNS pour <a href="/#enregistrement-dkim">DKIM</a> et <a href="/#enregistrement-spf">SPF</a> (cf <a href="/#enregistrement-spf">notre guide</a>)</li>
-<li>Vérifier le tout</li>
-</ol>
-<hr />
-<p><em>⚠ Il est nécessaire d'être <a href="../auth/">authentifié</a> pour manipuler les domaines</em>.</p>
-<hr />
-<p>Enregistrer un nouveau domaine :</p>
-<pre class="prettyprint well"><code>POST /api/v1/domains/
+<h1 id="statistiques">Statistiques</h1>
+<p><em>Munchmail</em> expose des statistiques à propos des envois, permettant de calculer :</p>
+<ul>
+<li>le taux de rejet des messages</li>
+<li>le taux d'ouverture des messages</li>
+<li>le taux de clic sur chaque lien</li>
+</ul>
+<p>Elles sont mises à jour en direct, au fur et à mesure des évènements.</p>
+<h2 id="par-message">Par Message</h2>
+<p>Il est possible d'obtenir des statistiques à l'échelle d'un Message.</p>
+<pre class="prettyprint well"><code>GET /api/v1/messages/1/stats/
 {
-    "name": "example.com"
-}
-</code></pre>
-<p>L'objet retourné est du style:</p>
-<pre class="prettyprint well"><code>HTTP 201 CREATED
-{
-    "url": "https://api.munchmail.net/api/v1/domains/1/",
-    "name": "example.com",
-    "spf_status": "bad",
-    "dkim_status": "ko",
-    "mx_status": "ok",
-    "_links": {
-        "revalidate": {
-            "href": "https://api.munchmail.net/api/v1/domains/1/revalidate/"
-        }
+   "mail_count": 3,
+   "statuses": {
+        "delivered": 1,
+        "unknown": 0,
+        "hardbounced": 1,
+        "softbounced": 1,
+        "error": 0,
+        "sent": 0
+    },
+    "tracking": {
+        "clicked": {
+            "http://oasiswork.fr": 1,
+            "http://doc.munchmail.net": 1,
+            "any": 1
+        },
+        "opened": 1
     }
 }
 </code></pre>
-<p>Les 3 vérifications automatiques sont <code>spf_status</code>, <code>dkim_status</code> et
-<code>mx_status</code>. Elles peuvent prendre 3 états :</p>
 <ul>
-<li><em>ok</em> La configuration DNS est correcte sur ce point</li>
-<li><em>ko</em> L'enregistrement DNS ne peut pas être trouvé</li>
-<li><em>bad</em> L'enregistrement DNS existe mais est incorrect</li>
+<li><strong>mail_count</strong> : nombre total de destinataires du message, quel que soit
+  leur statut.</li>
+<li><strong>statuses</strong> : distribution des mails envoyés par dernier statut connu.</li>
+<li><strong>tracking</strong> : informations de suivi, les compteurs sont systématiquement à
+    zéro si <a href="../tracking">le suivi</a> n'est pas activé.<ul>
+<li><strong>clicked</strong> : nombre de correspondants ayant cliqué sur chaque lien, <em>any</em>
+  donne le nombre de destinataires ayant cliqué sur un lien quelconque.</li>
+<li><strong>opened</strong> : nombre d'utilisateurs ayant ouvert le message et affiché le
+  pixel caché (cf <a href="../tracking">suivi</a>)</li>
 </ul>
-<p>Une fois que vous avez modifié vos paramètres DNS en suivant
-<a href="/#enregistrement-spf">la documentation SPF</a>, vous pouvez relancer une
-vérification :</p>
-<pre class="prettyprint well"><code>POST /api/v1/domains/revalidate/
-</code></pre>
-<p>Qui devrait, si tout va bien, mettre à jour le statut de votre domaine et vous
-retourner :</p>
-<pre class="prettyprint well"><code>HTTP 200 OK
-{
-    "dkim_status": "ok",
-    "spf_status": "ok",
-    "mx_status": "ok"
-}
-</code></pre>
+</li>
+</ul>
 </div>
         </div>
 

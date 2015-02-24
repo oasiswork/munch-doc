@@ -30,6 +30,12 @@ Les étapes de la vie d'une campagne sont :
 * **subject** : Le sujet de votre email.
 * **html** : Le corps en HTML de votre email.
 
+---
+
+*Des [options de suivi](tracking) des messages sont également disponibles.*
+
+---
+
 Le message fourni dans le paramètre **html** fera l'objet de plusieurs
 traitements :
 

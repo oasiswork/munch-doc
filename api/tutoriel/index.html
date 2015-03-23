@@ -169,7 +169,7 @@
 <li>Suivi des envois</li>
 </ol>
 <h2 id="1-creationedition-dun-message-avec-ses-attributs">1. Création/édition d'un message avec ses attributs</h2>
-<pre class="prettyprint well"><code>POST /api/v1/messages/
+<pre class="prettyprint well"><code>POST /v1/messages/
 {
     "name"         :"Newsletter de Juillet",
     "sender_email" :"newsletter@example.com",
@@ -209,7 +209,7 @@ point est traité dans la <a href="../campagnes/">section dédiée de la documen
 <p>Si tout se passe bien, l'API devrait vous retourner :</p>
 <pre class="prettyprint well"><code>HTTP 201 CREATED
 {
-    "url": "https://api.munchmail.net/api/v1/messages/4/",
+    "url": "https://api.munchmail.net/v1/messages/4/",
     "name": "ACME − Newsletter Juillet",
     "sender_email": "newsletter@example.com",
     "sender_name": "Communication ACME chaussures",
@@ -227,22 +227,22 @@ point est traité dans la <a href="../campagnes/">section dédiée de la documen
     "msg_issue": "",
     "_links": {
         "preview_send": {
-            "href": "https://api.munchmail.net/api/v1/messages/4/preview_send/"
+            "href": "https://api.munchmail.net/v1/messages/4/preview_send/"
         },
         "preview": {
-            "href": "https://api.munchmail.net/api/v1/messages/4/preview/"
+            "href": "https://api.munchmail.net/v1/messages/4/preview/"
         },
         "preview/.html": {
-            "href": "https://api.munchmail.net/api/v1/messages/4/preview/.html/"
+            "href": "https://api.munchmail.net/v1/messages/4/preview/.html/"
         },
         "preview/.txt": {
-            "href": "https://api.munchmail.net/api/v1/messages/4/preview/.txt/"
+            "href": "https://api.munchmail.net/v1/messages/4/preview/.txt/"
         },
         "mails": {
-            "href": "https://api.munchmail.net/api/v1/messages/4/mails/"
+            "href": "https://api.munchmail.net/v1/messages/4/mails/"
         },
         "spam_details": {
-            "href": "https://api.munchmail.net/api/v1/messages/4/spam_details/"
+            "href": "https://api.munchmail.net/v1/messages/4/spam_details/"
         }
     }
 }
@@ -294,18 +294,18 @@ de texte… etc.</p>
 étape précédente).</p>
 <h3 id="ajout-des-destinataires-un-par-un">Ajout des destinataires un par un</h3>
 <p>Il suffit de faire autant de requêtes POST que de destinataires à ajouter.</p>
-<pre class="prettyprint well"><code>POST /api/v1/mails/
+<pre class="prettyprint well"><code>POST /v1/mails/
 {
     "to" : "mon-destinataire@domaine.tld",
-    "message": "https://api.munchmail.net/api/v1/messages/4/"
+    "message": "https://api.munchmail.net/v1/messages/4/"
 }
 </code></pre>
 <h3 id="ajout-des-destinataires-par-lot">Ajout des destinataires par lot</h3>
-<pre class="prettyprint well"><code>POST /api/v1/mails/
+<pre class="prettyprint well"><code>POST /v1/mails/
 [
-    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/api/v1/messages/4/"},
-    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/api/v1/messages/4/"},
-    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/api/v1/messages/4/"},
+    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
+    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
+    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/v1/messages/4/"},
 ]
 </code></pre>
 <p>Que vous ajoutiez les destinataires individuellement ou en lot, vous recevrez
@@ -316,10 +316,10 @@ les statuts HTTP suivants :</p>
 non habilité à recevoir du courriel)</li>
 </ul>
 <p>Par exemple…</p>
-<pre class="prettyprint well"><code> POST /api/v1/mails/
+<pre class="prettyprint well"><code> POST /v1/mails/
  {
     "to" : "jenesuispasunemail",
-    "message": "https://api.munchmail.net/api/v1/messages/4/"
+    "message": "https://api.munchmail.net/v1/messages/4/"
  }
 </code></pre>
 <p>… retournera</p>
@@ -336,7 +336,7 @@ non habilité à recevoir du courriel)</li>
 liées aux ressources, son URL est proposée dans l'attribut <code>_links</code> ; celle-ci
 l'est sous le nom <code>preview_send</code>.</p>
 <p>On appelle la prévisualisation :</p>
-<pre class="prettyprint well"><code>GET /api/v1/messages/4/preview/
+<pre class="prettyprint well"><code>GET /v1/messages/4/preview/
 </code></pre>
 <p>… elle retourne :</p>
 <pre class="prettyprint well"><code>HTTP 200 OK
@@ -374,7 +374,7 @@ destinataires, à ces exceptions près :</p>
 <li>vous ne pourrez pas suivre l'état de livraison de ces emails.</li>
 </ul>
 <p>La requête est la suivante :</p>
-<pre class="prettyprint well"><code>POST /api/v1/messages/1/preview_send/
+<pre class="prettyprint well"><code>POST /v1/messages/1/preview_send/
 {
    "to": "peter@example.com, steven@example.com"
 }
@@ -383,7 +383,7 @@ destinataires, à ces exceptions près :</p>
 <p>Une fois que tout semble bon, il n'y a plus qu'à changer l'attribut <strong>status</strong>
 du message à <em>sending</em>, par exemple à l'aide d'une requête <code>PATCH</code> (en ne
 passant que l'attribut <em>status</em>):</p>
-<pre class="prettyprint well"><code>PATCH /api/v1/campaigns/1/
+<pre class="prettyprint well"><code>PATCH /v1/campaigns/1/
 {
     "status"       :"sending"
 }
@@ -396,14 +396,14 @@ envoyée à la fin du processus.</p>
 <h3 id="suivi-des-emails">Suivi des emails</h3>
 <p>Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 le lien <code>mails</code> de la campagne. Par exemple :</p>
-<pre class="prettyprint well"><code>GET /api/v1/messages/4/mails/
+<pre class="prettyprint well"><code>GET /v1/messages/4/mails/
 {
     "count": 3,
-    "next": "https://api.munchmail.fr/api/v1/mails/?page=2",
+    "next": "https://api.munchmail.fr/v1/mails/?page=2",
     "previous": null,
     "results": [
     {
-        "url": "https://api.munchmail.net/api/v1/messages/4/mails/1/",
+        "url": "https://api.munchmail.net/v1/messages/4/mails/1/",
         "to": "jane@domain.tld",
         "date": "2014-08-05T12:44:28.556Z",
         "last_status": {
@@ -411,11 +411,11 @@ le lien <code>mails</code> de la campagne. Par exemple :</p>
             "date": "2014-08-05T12:59:11Z",
             "raw_msg": "Accepted by local MTA"
         },
-        "message": "https://api.munchmail.net/api/v1/messages/4/",
+        "message": "https://api.munchmail.net/v1/messages/4/",
 
     },
     {
-        "url": "https://api.munchmail.net/api/v1/messages/4/mails/2/",
+        "url": "https://api.munchmail.net/v1/messages/4/mails/2/",
         "to": john@domain.tld",
         "date": "2014-07-25T08:52:34.261Z",
         "last_status": {
@@ -423,10 +423,10 @@ le lien <code>mails</code> de la campagne. Par exemple :</p>
             "date": "2014-07-25T12:07:49Z",
             "raw_msg": Delivered to remote server"
         },
-        "message": "https://api.munchmail.net/api/v1/messages/4/",
+        "message": "https://api.munchmail.net/v1/messages/4/",
     },
     {
-        "url": "https://api.munchmail.net/api/v1/messages/4/mails/3/",
+        "url": "https://api.munchmail.net/v1/messages/4/mails/3/",
         "to": "mon-destinataire@domaine.tld",
         "date": "2014-07-30T08:40:56Z",
         "last_status": {
@@ -434,7 +434,7 @@ le lien <code>mails</code> de la campagne. Par exemple :</p>
             "date": "2014-07-30T08:41:44Z",
             "raw_msg": "recipient mon-destinataire@domain.tld do not exist"
         },
-        "message": "https://api.munchmail.net/api/v1/messages/4/",
+        "message": "https://api.munchmail.net/v1/messages/4/",
     }
     ]
 }
@@ -455,7 +455,7 @@ le lien <code>mails</code> de la campagne. Par exemple :</p>
 <p>Une <a href="/#votre-compte-munchmail">notification</a> est envoyée à chaque résiliation.</p>
 <p>Par ailleurs, il est possible de consulter les résiliations via l'API ; si votre
 identifiant de client est le 42 :</p>
-<pre class="prettyprint well"><code>GET /api/v1/customers/42/opt_outs/
+<pre class="prettyprint well"><code>GET /v1/customers/42/opt_outs/
 
 {
     "count": 2,

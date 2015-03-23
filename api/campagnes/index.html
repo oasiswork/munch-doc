@@ -168,7 +168,7 @@ désinscriptions ne sont honorées qu'au sein d'une même campagne. Un même
 destinataire peut donc s'être désinscrit d'une campagne mais continuer à
 recevoir les communications d'une autre campagne.</p>
 <h2 id="creation-dune-campagne">Création d'une campagne</h2>
-<pre class="prettyprint well"><code>POST /api/v1/campaigns/
+<pre class="prettyprint well"><code>POST /v1/campaigns/
 {
     "name": Newsletter clients ACME"
 }
@@ -176,12 +176,12 @@ recevoir les communications d'une autre campagne.</p>
 <p>Retourne</p>
 <pre class="prettyprint well"><code>HTTP 201 CREATED
 {
-    "url": "https://api.munchmail.net/api/v1/campaigns/2/",
+    "url": "https://api.munchmail.net/v1/campaigns/2/",
     "name": "Newsletter clients ACME"
     "messages": [],
     "_links": {
         "opt_outs": {
-            "href": "http://localhost:8000/api/v1/campaigns/2/opt_outs/"
+            "href": "http://localhost:8000/v1/campaigns/2/opt_outs/"
         }
     }
 }
@@ -191,10 +191,10 @@ une campagne.</p>
 <h2 id="attacher-des-messages-a-une-campagne">Attacher des messages à une campagne</h2>
 <p>Cela se passe via l'attribut <code>campaign</code> de la ressource <code>message</code>. Par exemple
 si vous voulez attacher la campagne précédemment créée au message
-<code>https://api.munchmail.net/api/v1/messages/4/</code>, faites simplement :</p>
-<pre class="prettyprint well"><code>PATCH /api/v1/messages/4/
+<code>https://api.munchmail.net/v1/messages/4/</code>, faites simplement :</p>
+<pre class="prettyprint well"><code>PATCH /v1/messages/4/
 {
-    "campaign": "https://api.munchmail.net/api/v1/campaigns/2/"
+    "campaign": "https://api.munchmail.net/v1/campaigns/2/"
 }
 </code></pre>
 <p>Vous pouvez bien évidemment définir cet attribut dès

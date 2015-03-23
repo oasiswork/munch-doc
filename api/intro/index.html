@@ -176,7 +176,7 @@ qui la rend exploitable depuis un grand nombre de langages de programmation.</p>
 <p>Les requêtes renvoyant des listes d'objets sont <em>paginées</em>, elles adoptent la structure suivante :</p>
 <pre class="prettyprint well"><code>{
     "count": 78,
-    "next": "https://api.munchmail.fr/api/v1/mails/?page=2",
+    "next": "https://api.munchmail.fr/v1/mails/?page=2",
     "previous": null,
     "results": [
 
@@ -192,7 +192,7 @@ querystring <code>page_size</code>. Par exemple, pour avoir des pages de 200 obj
 ajoutez<code>?page_size=200</code> à l'URL.</p>
 <h2 id="api-navigable">API navigable</h2>
 <p>L'API est <em>navigable</em>, en accédant à
-<em><a href="https://api.munchmail.fr/api/v1">https://api.munchmail.net/api/v1</a></em>
+<em><a href="https://api.munchmail.fr/v1">https://api.munchmail.net/v1</a></em>
 directement depuis votre navigateur, puis en vous
 <a href="../auth/#par-session-pour-testsdebug">authentifiant avec votre email</a>, vous
 pouvez exploiter toutes les possibilités offertes à votre application depuis une

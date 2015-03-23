@@ -174,7 +174,7 @@ paramètres de la ressource (par défaut désactivés) :</p>
 <li><strong>track_clicks</strong> : surveille les clics</li>
 </ul>
 <p>Par exemple, pour créer un message incluant les deux formes de suivi :</p>
-<pre class="prettyprint well"><code>POST /api/v1/messages/
+<pre class="prettyprint well"><code>POST /v1/messages/
 {
     "name"         :"Newsletter de Juillet",
     "sender_email" :"newsletter@example.com",
@@ -198,10 +198,10 @@ statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
 <h3 id="detail-par-destinataire">Détail par destinataire</h3>
 <p>Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
 <code>mail</code> envoyé.</p>
-<pre class="prettyprint well"><code>GET /api/v1/messages/1/mails
+<pre class="prettyprint well"><code>GET /v1/messages/1/mails
 [
     {
-        "url": "https://api.munchmail.net/api/v1/mails/1/",
+        "url": "https://api.munchmail.net/v1/mails/1/",
         "to": "testrcpt@example.com",
         "date": "2014-07-25T08:52:34.261335Z",
         "last_status": {
@@ -209,7 +209,7 @@ statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
             "date": "2014-07-25T12:07:49Z",
             "raw_msg": "k.xau"
         },
-        "message": "https://api.munchmail.net/api/v1/messages/1/",
+        "message": "https://api.munchmail.net/v1/messages/1/",
         "tracking": {
             "opened": "2015-02-24T09:18:54.597617Z",
             "clicked": [
@@ -225,7 +225,7 @@ statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
         }
     },
     {
-        "url": "https://api.munchmail.net/api/v1/mails/2/",
+        "url": "https://api.munchmail.net/v1/mails/2/",
         "to": "john-greylist@example.com",
         "date": "2014-07-30T08:40:56Z",
         "last_status": {
@@ -233,7 +233,7 @@ statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
             "date": "2014-07-30T08:41:44Z",
             "raw_msg": "greylisted !"
         },
-        "message": "https://api.munchmail.net/api/v1/messages/1/",
+        "message": "https://api.munchmail.net/v1/messages/1/",
         "tracking": {
             "opened": null,
             "clicked": []

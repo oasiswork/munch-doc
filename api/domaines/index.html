@@ -161,7 +161,7 @@ nécessaires.</p>
 <p><em>⚠ Il est nécessaire d'être <a href="../auth/">authentifié</a> pour manipuler les domaines</em>.</p>
 <hr />
 <p>Enregistrer un nouveau domaine :</p>
-<pre class="prettyprint well"><code>POST /api/v1/domains/
+<pre class="prettyprint well"><code>POST /v1/domains/
 {
     "name": "example.com"
 }
@@ -169,14 +169,14 @@ nécessaires.</p>
 <p>L'objet retourné est du style:</p>
 <pre class="prettyprint well"><code>HTTP 201 CREATED
 {
-    "url": "https://api.munchmail.net/api/v1/domains/1/",
+    "url": "https://api.munchmail.net/v1/domains/1/",
     "name": "example.com",
     "spf_status": "bad",
     "dkim_status": "ko",
     "mx_status": "ok",
     "_links": {
         "revalidate": {
-            "href": "https://api.munchmail.net/api/v1/domains/1/revalidate/"
+            "href": "https://api.munchmail.net/v1/domains/1/revalidate/"
         }
     }
 }
@@ -191,7 +191,7 @@ nécessaires.</p>
 <p>Une fois que vous avez modifié vos paramètres DNS en suivant
 <a href="/#enregistrement-spf">la documentation SPF</a>, vous pouvez relancer une
 vérification :</p>
-<pre class="prettyprint well"><code>POST /api/v1/domains/revalidate/
+<pre class="prettyprint well"><code>POST /v1/domains/revalidate/
 </code></pre>
 <p>Qui devrait, si tout va bien, mettre à jour le statut de votre domaine et vous
 retourner :</p>

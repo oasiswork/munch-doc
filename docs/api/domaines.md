@@ -16,7 +16,7 @@ nécessaires.
 
 Enregistrer un nouveau domaine :
 
-    POST /api/v1/domains/
+    POST /v1/domains/
     {
         "name": "example.com"
     }
@@ -25,14 +25,14 @@ L'objet retourné est du style:
 
     HTTP 201 CREATED
     {
-        "url": "https://api.munchmail.net/api/v1/domains/1/",
+        "url": "https://api.munchmail.net/v1/domains/1/",
         "name": "example.com",
         "spf_status": "bad",
         "dkim_status": "ko",
         "mx_status": "ok",
         "_links": {
             "revalidate": {
-                "href": "https://api.munchmail.net/api/v1/domains/1/revalidate/"
+                "href": "https://api.munchmail.net/v1/domains/1/revalidate/"
             }
         }
     }
@@ -48,7 +48,7 @@ Une fois que vous avez modifié vos paramètres DNS en suivant
 [la documentation SPF](/#enregistrement-spf), vous pouvez relancer une
 vérification :
 
-    POST /api/v1/domains/revalidate/
+    POST /v1/domains/revalidate/
 
 Qui devrait, si tout va bien, mettre à jour le statut de votre domaine et vous
 retourner :

@@ -73,7 +73,7 @@ class HTTPClient{
 
 // Paramètres
 
-$base_url = 'https://api.munchmail.net/api/v1';
+$base_url = 'https://api.munchmail.net/v1';
 $client_url = $base_url.'/customers/42/';
 $api_key = 'key-xxxxxxxxxxxxx'
 

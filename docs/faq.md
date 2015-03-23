@@ -39,9 +39,9 @@ sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère e
 ---
 
 
-Pour ajouter une pièce-jointe sur la campagne `/api/v1/campaigns/1/` :
+Pour ajouter une pièce-jointe sur la campagne `/v1/campaigns/1/` :
 
-    POST /api/v1/campaigns/1/attachments/
+    POST /v1/campaigns/1/attachments/
 	file: votre fichier
 
 Cette requête *doit* avoir un `Content-Type` à `multipart/form-data` à l'inverse

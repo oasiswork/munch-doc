@@ -19,7 +19,7 @@ recevoir les communications d'une autre campagne.
 
 ## Création d'une campagne
 
-    POST /api/v1/campaigns/
+    POST /v1/campaigns/
     {
         "name": Newsletter clients ACME"
     }
@@ -29,12 +29,12 @@ Retourne
 
     HTTP 201 CREATED
     {
-        "url": "https://api.munchmail.net/api/v1/campaigns/2/",
+        "url": "https://api.munchmail.net/v1/campaigns/2/",
         "name": "Newsletter clients ACME"
         "messages": [],
         "_links": {
             "opt_outs": {
-                "href": "http://localhost:8000/api/v1/campaigns/2/opt_outs/"
+                "href": "http://localhost:8000/v1/campaigns/2/opt_outs/"
             }
         }
     }
@@ -46,11 +46,11 @@ une campagne.
 
 Cela se passe via l'attribut `campaign` de la ressource `message`. Par exemple
 si vous voulez attacher la campagne précédemment créée au message
-`https://api.munchmail.net/api/v1/messages/4/`, faites simplement :
+`https://api.munchmail.net/v1/messages/4/`, faites simplement :
 
-    PATCH /api/v1/messages/4/
+    PATCH /v1/messages/4/
     {
-        "campaign": "https://api.munchmail.net/api/v1/campaigns/2/"
+        "campaign": "https://api.munchmail.net/v1/campaigns/2/"
     }
 
 Vous pouvez bien évidemment définir cet attribut dès

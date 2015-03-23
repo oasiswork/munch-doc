@@ -12,7 +12,7 @@ Les étapes de la vie d'une campagne sont :
 
 ## 1. Création/édition d'un message avec ses attributs
 
-    POST /api/v1/messages/
+    POST /v1/messages/
 	{
 	    "name"         :"Newsletter de Juillet",
 		"sender_email" :"newsletter@example.com",
@@ -58,7 +58,7 @@ Si tout se passe bien, l'API devrait vous retourner :
 
     HTTP 201 CREATED
     {
-        "url": "https://api.munchmail.net/api/v1/messages/4/",
+        "url": "https://api.munchmail.net/v1/messages/4/",
         "name": "ACME − Newsletter Juillet",
         "sender_email": "newsletter@example.com",
         "sender_name": "Communication ACME chaussures",
@@ -76,22 +76,22 @@ Si tout se passe bien, l'API devrait vous retourner :
         "msg_issue": "",
         "_links": {
             "preview_send": {
-                "href": "https://api.munchmail.net/api/v1/messages/4/preview_send/"
+                "href": "https://api.munchmail.net/v1/messages/4/preview_send/"
             },
             "preview": {
-                "href": "https://api.munchmail.net/api/v1/messages/4/preview/"
+                "href": "https://api.munchmail.net/v1/messages/4/preview/"
             },
             "preview/.html": {
-                "href": "https://api.munchmail.net/api/v1/messages/4/preview/.html/"
+                "href": "https://api.munchmail.net/v1/messages/4/preview/.html/"
             },
             "preview/.txt": {
-                "href": "https://api.munchmail.net/api/v1/messages/4/preview/.txt/"
+                "href": "https://api.munchmail.net/v1/messages/4/preview/.txt/"
             },
             "mails": {
-                "href": "https://api.munchmail.net/api/v1/messages/4/mails/"
+                "href": "https://api.munchmail.net/v1/messages/4/mails/"
             },
             "spam_details": {
-                "href": "https://api.munchmail.net/api/v1/messages/4/spam_details/"
+                "href": "https://api.munchmail.net/v1/messages/4/spam_details/"
             }
         }
     }
@@ -157,19 +157,19 @@ Il est possible d'ajouter des destinataires soit un par un, soit en lots :
 
 Il suffit de faire autant de requêtes POST que de destinataires à ajouter.
 
-    POST /api/v1/mails/
+    POST /v1/mails/
     {
 	    "to" : "mon-destinataire@domaine.tld",
-        "message": "https://api.munchmail.net/api/v1/messages/4/"
+        "message": "https://api.munchmail.net/v1/messages/4/"
     }
 
 ### Ajout des destinataires par lot
 
-    POST /api/v1/mails/
+    POST /v1/mails/
     [
-	    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/api/v1/messages/4/"},
-	    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/api/v1/messages/4/"},
-	    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/api/v1/messages/4/"},
+	    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
+	    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
+	    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/v1/messages/4/"},
     ]
 
 Que vous ajoutiez les destinataires individuellement ou en lot, vous recevrez
@@ -182,10 +182,10 @@ non habilité à recevoir du courriel)
 Par exemple…
 
 
-     POST /api/v1/mails/
+     POST /v1/mails/
      {
 	    "to" : "jenesuispasunemail",
-        "message": "https://api.munchmail.net/api/v1/messages/4/"
+        "message": "https://api.munchmail.net/v1/messages/4/"
      }
 
 … retournera
@@ -208,7 +208,7 @@ l'est sous le nom `preview_send`.
 
 On appelle la prévisualisation :
 
-    GET /api/v1/messages/4/preview/
+    GET /v1/messages/4/preview/
 
 … elle retourne :
 
@@ -250,7 +250,7 @@ destinataires, à ces exceptions près :
 
 La requête est la suivante :
 
-    POST /api/v1/messages/1/preview_send/
+    POST /v1/messages/1/preview_send/
     {
        "to": "peter@example.com, steven@example.com"
     }
@@ -262,7 +262,7 @@ Une fois que tout semble bon, il n'y a plus qu'à changer l'attribut **status**
 du message à *sending*, par exemple à l'aide d'une requête `PATCH` (en ne
 passant que l'attribut *status*):
 
-    PATCH /api/v1/campaigns/1/
+    PATCH /v1/campaigns/1/
 	{
 		"status"       :"sending"
     }
@@ -280,14 +280,14 @@ envoyée à la fin du processus.
 Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
 le lien `mails` de la campagne. Par exemple :
 
-    GET /api/v1/messages/4/mails/
+    GET /v1/messages/4/mails/
     {
         "count": 3,
-        "next": "https://api.munchmail.fr/api/v1/mails/?page=2",
+        "next": "https://api.munchmail.net/v1/mails/?page=2",
         "previous": null,
         "results": [
         {
-            "url": "https://api.munchmail.net/api/v1/messages/4/mails/1/",
+            "url": "https://api.munchmail.net/v1/messages/4/mails/1/",
             "to": "jane@domain.tld",
             "date": "2014-08-05T12:44:28.556Z",
             "last_status": {
@@ -295,11 +295,11 @@ le lien `mails` de la campagne. Par exemple :
                 "date": "2014-08-05T12:59:11Z",
                 "raw_msg": "Accepted by local MTA"
             },
-            "message": "https://api.munchmail.net/api/v1/messages/4/",
+            "message": "https://api.munchmail.net/v1/messages/4/",
 
         },
         {
-            "url": "https://api.munchmail.net/api/v1/messages/4/mails/2/",
+            "url": "https://api.munchmail.net/v1/messages/4/mails/2/",
             "to": john@domain.tld",
             "date": "2014-07-25T08:52:34.261Z",
             "last_status": {
@@ -307,10 +307,10 @@ le lien `mails` de la campagne. Par exemple :
                 "date": "2014-07-25T12:07:49Z",
                 "raw_msg": Delivered to remote server"
             },
-            "message": "https://api.munchmail.net/api/v1/messages/4/",
+            "message": "https://api.munchmail.net/v1/messages/4/",
         },
         {
-            "url": "https://api.munchmail.net/api/v1/messages/4/mails/3/",
+            "url": "https://api.munchmail.net/v1/messages/4/mails/3/",
             "to": "mon-destinataire@domaine.tld",
             "date": "2014-07-30T08:40:56Z",
             "last_status": {
@@ -318,7 +318,7 @@ le lien `mails` de la campagne. Par exemple :
                 "date": "2014-07-30T08:41:44Z",
                 "raw_msg": "recipient mon-destinataire@domain.tld do not exist"
             },
-            "message": "https://api.munchmail.net/api/v1/messages/4/",
+            "message": "https://api.munchmail.net/v1/messages/4/",
         }
         ]
     }
@@ -343,7 +343,7 @@ Une [notification](/#votre-compte-munchmail) est envoyée à chaque résiliation
 Par ailleurs, il est possible de consulter les résiliations via l'API ; si votre
 identifiant de client est le 42 :
 
-    GET /api/v1/customers/42/opt_outs/
+    GET /v1/customers/42/opt_outs/
 
     {
         "count": 2,

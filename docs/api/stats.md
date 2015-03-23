@@ -14,7 +14,7 @@ Par Message
 
 Il est possible d'obtenir des statistiques à l'échelle d'un Message.
 
-    GET /api/v1/messages/1/stats/
+    GET /v1/messages/1/stats/
     {
        "mail_count": 3,
        "statuses": {

@@ -20,14 +20,14 @@ offre d'une manière standard les fonctionalités suivantes :
 
 Vous pouvez vous authentifier avec votre email et votre mot de passe, dans un
 navigateur, à l'adresse
-[https://api.munchmail.net/api/v1/api-auth/login/](https://api.munchmail.net/api/v1/api-auth/login/).
+[https://api.munchmail.net/v1/api-auth/login/](https://api.munchmail.net/v1/api-auth/login/).
 
 ## Par clef d'API (HTTP Basic)
 
 ### Récupérer la clef d'API
 
 Une fois connecté via la méthode précédente, vous pouvez vous rendre à l'adresse
-[https://api.munchmail.net/api/v1/profile/](https://api.munchmail.net/api/v1/profile/)
+[https://api.munchmail.net/v1/profile/](https://api.munchmail.net/v1/profile/)
 pour récupérer la clef d'API. Cette opération n'est à faire qu'une fois, la clef
 résidant ensuite traditionellement dans la configuration de votre application.
 

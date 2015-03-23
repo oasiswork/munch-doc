@@ -30,7 +30,7 @@ Les requêtes renvoyant des listes d'objets sont *paginées*, elles adoptent la 
 
     {
         "count": 78,
-        "next": "https://api.munchmail.fr/api/v1/mails/?page=2",
+        "next": "https://api.munchmail.net/v1/mails/?page=2",
         "previous": null,
         "results": [
 
@@ -51,7 +51,7 @@ API navigable
 ---------------
 
 L'API est *navigable*, en accédant à
-*[https://api.munchmail.net/api/v1](https://api.munchmail.fr/api/v1)*
+*[https://api.munchmail.net/v1](https://api.munchmail.net/v1)*
 directement depuis votre navigateur, puis en vous
 [authentifiant avec votre email](../auth/#par-session-pour-testsdebug), vous
 pouvez exploiter toutes les possibilités offertes à votre application depuis une

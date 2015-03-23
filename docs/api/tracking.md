@@ -31,7 +31,7 @@ paramètres de la ressource (par défaut désactivés) :
 
 Par exemple, pour créer un message incluant les deux formes de suivi :
 
-    POST /api/v1/messages/
+    POST /v1/messages/
 	{
 	    "name"         :"Newsletter de Juillet",
 		"sender_email" :"newsletter@example.com",
@@ -62,10 +62,10 @@ Voir la [section statistiques](../stats).
 Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
 `mail` envoyé.
 
-    GET /api/v1/messages/1/mails
+    GET /v1/messages/1/mails
     [
         {
-            "url": "https://api.munchmail.net/api/v1/mails/1/",
+            "url": "https://api.munchmail.net/v1/mails/1/",
             "to": "testrcpt@example.com",
             "date": "2014-07-25T08:52:34.261335Z",
             "last_status": {
@@ -73,7 +73,7 @@ Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
                 "date": "2014-07-25T12:07:49Z",
                 "raw_msg": "k.xau"
             },
-            "message": "https://api.munchmail.net/api/v1/messages/1/",
+            "message": "https://api.munchmail.net/v1/messages/1/",
             "tracking": {
                 "opened": "2015-02-24T09:18:54.597617Z",
                 "clicked": [
@@ -89,7 +89,7 @@ Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
             }
         },
         {
-            "url": "https://api.munchmail.net/api/v1/mails/2/",
+            "url": "https://api.munchmail.net/v1/mails/2/",
             "to": "john-greylist@example.com",
             "date": "2014-07-30T08:40:56Z",
             "last_status": {
@@ -97,7 +97,7 @@ Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
                 "date": "2014-07-30T08:41:44Z",
                 "raw_msg": "greylisted !"
             },
-            "message": "https://api.munchmail.net/api/v1/messages/1/",
+            "message": "https://api.munchmail.net/v1/messages/1/",
             "tracking": {
                 "opened": null,
                 "clicked": []

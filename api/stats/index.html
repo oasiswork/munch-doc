@@ -154,23 +154,37 @@
 <h1 id="statistiques">Statistiques</h1>
 <p><em>Munchmail</em> expose des statistiques à propos des envois, permettant de calculer :</p>
 <ul>
-<li>le taux de rejet des messages</li>
-<li>le taux d'ouverture des messages</li>
-<li>le taux de clic sur chaque lien</li>
+<li>le nombre de rejet des messages</li>
+<li>le nombre d'ouverture des messages</li>
+<li>le nombre ou taux de clic sur chaque lien</li>
+<li>le nombre de désabonnements</li>
+<li>...</li>
 </ul>
 <p>Elles sont mises à jour en direct, au fur et à mesure des évènements.</p>
+<p>Les nombres donnés sont en nombre de mails, à votre application de calculer les
+pourcentages si vous le souhaitez.</p>
 <h2 id="par-message">Par Message</h2>
 <p>Il est possible d'obtenir des statistiques à l'échelle d'un Message.</p>
 <pre class="prettyprint well"><code>GET /v1/messages/1/stats/
 {
-   "mail_count": 3,
-   "statuses": {
+    "count": {
+        "had_delay": 1,
+        "done": 2,
+        "in_transit": 1,
+        "total": 3
+
+    },
+   "last_status": {
         "delivered": 1,
         "unknown": 0,
         "hardbounced": 1,
         "softbounced": 1,
         "error": 0,
-        "sent": 0
+        "sent": 0,
+    },
+    "timing": {
+        "delivery_total": 45,
+        "delivery_median": 0
     },
     "tracking": {
         "clicked": {
@@ -179,13 +193,29 @@
             "any": 1
         },
         "opened": 1
+    },
+    "optout": {
+        "web": 0,
+        "bounce": 0,
+        "feedback-loop": 1,
+        "abuse": 0,
+        "mail": 0,
+        "total": 1
     }
 }
 </code></pre>
 <ul>
-<li><strong>mail_count</strong> : nombre total de destinataires du message, quel que soit
-  leur statut.</li>
-<li><strong>statuses</strong> : distribution des mails envoyés par dernier statut connu.</li>
+<li><strong>count</strong> : nombre de mails en fonction de l'état d'avancement<ul>
+<li><em>total</em> : nombre de mails envoyés</li>
+<li><em>had_delay</em> : subissent ou ont subi des délais (<em>soft-bounce</em>)</li>
+<li><em>in_transit</em> : toujours en cours d'acheminement</li>
+<li><em>done</em> : traitement terminé</li>
+</ul>
+</li>
+<li><strong>last_status</strong> : Nombre de mail parvenus à chaque statut. (détail des statuts
+    <a href="../../annexes/#statuts-de-mails">en annexe</a>)</li>
+<li><strong>timing</strong> (en secondes) : durée d'envoi pour l'ensemble des mails, et durée
+    médiane d'un envoi</li>
 <li><strong>tracking</strong> : informations de suivi, les compteurs sont systématiquement à
     zéro si <a href="../tracking">le suivi</a> n'est pas activé.<ul>
 <li><strong>clicked</strong> : nombre de correspondants ayant cliqué sur chaque lien, <em>any</em>
@@ -194,6 +224,9 @@
   pixel caché (cf <a href="../tracking">suivi</a>)</li>
 </ul>
 </li>
+<li><strong>optout</strong> : nombre de désinscriptions totales et par type (types
+               détaillés
+               <a href="../../annexes/#types-de-desinscriptions-opt-outs">en annexe</a>)</li>
 </ul>
 </div>
         </div>

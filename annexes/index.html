@@ -148,6 +148,12 @@
         <li class="main "><a href="#modifications-appliquees-aux-emails">Modifications appliquées aux emails</a></li>
         
     
+        <li class="main "><a href="#statuts-de-mail">Statuts de Mail</a></li>
+        
+    
+        <li class="main "><a href="#types-de-desinscriptions-opt-outs">Types de désinscriptions (opt-outs)</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
@@ -162,6 +168,32 @@
 <li>les éventuelles erreurs HTML sont corrigées</li>
 <li>les règles CSS sont appliquées directement aux attributs (on parle
   d'<em>inlining</em>), la plupart des clients mail ne supportant pas les styles externes.</li>
+</ul>
+<h2 id="statuts-de-mail">Statuts de Mail</h2>
+<p>Statuts pour les ressource de type <code>mail</code> qu'on également dans
+<a href="../api/stats/">les statistiques</a>.</p>
+<ul>
+<li><strong>unknown</strong> : le message n'est pas encore entré dans
+    l'infrastructure mail</li>
+<li><strong>sent</strong> : le message a été accepté par les serveurs d'oasiswork est en cours
+    d'acheminement</li>
+<li><strong>delivered</strong> : le message a été remis au serveur du destinataire</li>
+<li><strong>softbounced</strong> : le message a été rejeté à plusieurs reprises,
+    il n'a pu être remis.</li>
+<li><strong>hardbounced</strong> : le message a été rejeté net par le serveur distant
+    (hard-bounce).</li>
+</ul>
+<h2 id="types-de-desinscriptions-opt-outs">Types de désinscriptions (opt-outs)</h2>
+<ul>
+<li><strong>mail</strong> Un mail de désinscription a été envoyé à l'adresse <code>List-Unsubscribe</code>
+    mentionnée dans un mail reçu par un de vos destinataires ;</li>
+<li><strong>web</strong> Un destinataire a utilisé le formulaire du lien inséré en bas de
+    l'email pour se désinscrire</li>
+<li><strong>feedback-loop</strong> Le destinataire a marqué un de vos messages comme spam, et
+    son hébergeur nous a remonté l'information</li>
+<li><strong>bounce</strong> L'adresse du destinataire a produit trop d'erreurs de livraisons
+    (ex: boite pleine, adresse inexistante…)</li>
+<li><strong>abuse</strong> Le destinataire a signalé le message comme étant un abus</li>
 </ul>
 </div>
         </div>

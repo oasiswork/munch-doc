@@ -399,7 +399,7 @@ le lien <code>mails</code> de la campagne. Par exemple :</p>
 <pre class="prettyprint well"><code>GET /v1/messages/4/mails/
 {
     "count": 3,
-    "next": "https://api.munchmail.fr/v1/mails/?page=2",
+    "next": "https://api.munchmail.net/v1/mails/?page=2",
     "previous": null,
     "results": [
     {
@@ -439,18 +439,8 @@ le lien <code>mails</code> de la campagne. Par exemple :</p>
     ]
 }
 </code></pre>
-<p>Les différents statuts possibles sont :</p>
-<ul>
-<li><strong>unknown</strong> : le message n'est pas encore entré dans
-    l'infrastructure mail</li>
-<li><strong>sent</strong> : le message a été accepté par les serveurs d'oasiswork est en cours
-    d'acheminement</li>
-<li><strong>delivered</strong> : le message a été remis au serveur du destinataire</li>
-<li><strong>softbounced</strong> : le message a été rejeté à plusieurs reprises,
-    il n'a pu être remis.</li>
-<li><strong>hardbounced</strong> : le message a été rejeté net par le serveur distant
-    (hard-bounce).</li>
-</ul>
+<p>Les différents <code>status</code> possibles sont
+<a href="../../annexes/#statuts-de-mails">décrits en annexe</a>.</p>
 <h3 id="suivi-des-resiliations">Suivi des résiliations</h3>
 <p>Une <a href="/#votre-compte-munchmail">notification</a> est envoyée à chaque résiliation.</p>
 <p>Par ailleurs, il est possible de consulter les résiliations via l'API ; si votre
@@ -478,19 +468,9 @@ identifiant de client est le 42 :</p>
 }
 </code></pre>
 <p>Le champ <strong>origin</strong> contient la raison de la désinscription, qui peut-être
-automatique ou bien volontaire de la part de l'utilisateur ; il peut contenir
-les valeurs suivantes:</p>
-<ul>
-<li><strong>mail</strong> Un mail de désinscription a été envoyé à l'adresse <code>List-Unsubscribe</code>
-    mentionnée dans un mail reçu par un de vos destinataires ;</li>
-<li><strong>web</strong> Un destinataire a utilisé le formulaire du lien inséré en bas de
-    l'email pour se désinscrire</li>
-<li><strong>feedback-loop</strong> Le destinataire a marqué un de vos messages comme spam, et
-    son hébergeur nous a remonté l'information</li>
-<li><strong>bounce</strong> L'adresse du destinataire a produit trop d'erreurs de livraisons
-    (ex: boite pleine, adresse inexistante…)</li>
-<li><strong>abuse</strong> Le destinataire a signalé le message comme étant un abus</li>
-</ul>
+automatique ou bien volontaire de la part de l'utilisateur ; les valeurs
+possibles sont décrites
+<a href="../../annexes/#types-de-desinscriptions-opt-outs">en annexe</a>.</p>
 <p>Si vous recevez de nombreuses désinscriptions de type <strong>abuse</strong>, il faut vous
 poser des question sur la légitimité de votre liste de
 contacts. <strong>N'utilisez pas de liste de mails achetées</strong>… et respectez la

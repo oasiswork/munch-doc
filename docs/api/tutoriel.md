@@ -324,17 +324,9 @@ le lien `mails` de la campagne. Par exemple :
     }
 
 
-Les différents statuts possibles sont :
+Les différents `status` possibles sont
+[décrits en annexe](../../annexes/#statuts-de-mails).
 
-* **unknown** : le message n'est pas encore entré dans
-    l'infrastructure mail
-* **sent** : le message a été accepté par les serveurs d'oasiswork est en cours
-    d'acheminement
-* **delivered** : le message a été remis au serveur du destinataire
-* **softbounced** : le message a été rejeté à plusieurs reprises,
-    il n'a pu être remis.
-* **hardbounced** : le message a été rejeté net par le serveur distant
-    (hard-bounce).
 
 ### Suivi des résiliations
 
@@ -367,18 +359,9 @@ identifiant de client est le 42 :
 
 
 Le champ **origin** contient la raison de la désinscription, qui peut-être
-automatique ou bien volontaire de la part de l'utilisateur ; il peut contenir
-les valeurs suivantes:
-
-* **mail** Un mail de désinscription a été envoyé à l'adresse `List-Unsubscribe`
-    mentionnée dans un mail reçu par un de vos destinataires ;
-* **web** Un destinataire a utilisé le formulaire du lien inséré en bas de
-    l'email pour se désinscrire
-* **feedback-loop** Le destinataire a marqué un de vos messages comme spam, et
-    son hébergeur nous a remonté l'information
-* **bounce** L'adresse du destinataire a produit trop d'erreurs de livraisons
-    (ex: boite pleine, adresse inexistante…)
-* **abuse** Le destinataire a signalé le message comme étant un abus
+automatique ou bien volontaire de la part de l'utilisateur ; les valeurs
+possibles sont décrites
+[en annexe](../../annexes/#types-de-desinscriptions-opt-outs).
 
 Si vous recevez de nombreuses désinscriptions de type **abuse**, il faut vous
 poser des question sur la légitimité de votre liste de

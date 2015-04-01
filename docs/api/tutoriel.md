@@ -172,6 +172,11 @@ Il suffit de faire autant de requêtes POST que de destinataires à ajouter.
 	    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/v1/messages/4/"},
     ]
 
+*ⓘ Évitez les lots de plus de 10 000 destinataires en une seule (longue)
+ requête. Séparer par exemple en lots de 10 000 destinataires permet à votre
+ application de suivre la progression de l'ajout des destinataires étape par
+ étape.*
+
 Que vous ajoutiez les destinataires individuellement ou en lot, vous recevrez
 les statuts HTTP suivants :
 

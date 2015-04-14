@@ -26,7 +26,6 @@ Il est possible d'obtenir des statistiques à l'échelle d'un Message.
             "done": 2,
             "in_transit": 1,
             "total": 3
-
         },
        "last_status": {
             "delivered": 1,
@@ -34,11 +33,11 @@ Il est possible d'obtenir des statistiques à l'échelle d'un Message.
             "hardbounced": 1,
             "softbounced": 1,
             "error": 0,
-            "sent": 0,
+            "sent": 0
         },
         "timing": {
             "delivery_total": 45,
-            "delivery_median": 0
+            "delivery_median": 42
         },
         "tracking": {
             "clicked": {

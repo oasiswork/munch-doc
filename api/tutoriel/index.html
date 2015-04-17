@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Tutoriel : un envoi de A à Z - MunchMail</title>
+        <title>Tutoriel : un envoi de A à Z - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,7 +65,7 @@
                         </li>
                     
                         <li >
-                            <a href="../auth/">Authentification</a>
+                            <a href="../auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li class="active">
@@ -73,11 +73,7 @@
                         </li>
                     
                         <li >
-                            <a href="../../editeur/exemple/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../campagnes/">Campagnes</a>
+                            <a href="../categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../../editeur/creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../editeur/exemple/">Exemple</a>
                         </li>
                     
                     </ul>
@@ -149,7 +149,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../editeur/exemple/">
+                    <a rel="prev" href="../categories/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -181,7 +181,7 @@
             <div class="col-md-9" role="main">
 
 <h1 id="tutoriel-un-envoi-de-a-a-z">Tutoriel : Un envoi de A à Z</h1>
-<p>Les étapes de la vie d'une campagne sont :</p>
+<p>Les étapes de la vie d'un message sont :</p>
 <ol>
 <li>Création/édition d'un message avec ses attributs</li>
 <li>Ajout/modification d'une liste de destinataires</li>
@@ -189,8 +189,9 @@
 <li>Déclenchement de l'envoi</li>
 <li>Suivi des envois</li>
 </ol>
+<p>Tant que le message n'est pas envoyé (étape 4.), il peut-être modifié.</p>
 <h2 id="1-creationedition-dun-message-avec-ses-attributs">1. Création/édition d'un message avec ses attributs</h2>
-<pre><code>POST /v1/messages/
+<pre class="prettyprint well"><code>POST /v1/messages/
 {
     "name"         :"Newsletter de Juillet",
     "sender_email" :"newsletter@example.com",
@@ -200,23 +201,23 @@
 }
 </code></pre>
 <ul>
-<li><strong>name</strong> : Le nom interne donné à la campagne, il ne sera pas visible de vos
+<li><strong>name</strong> : Le nom interne donné au message, il ne sera pas visible de vos
    destinataires.</li>
-<li><strong>sender_email</strong> : le mail d'expéditeur de la campagne, le domaine de cette
-    adresse doit préalablement avoir été <a href="../../domaines/">configuré correctement</a>.</li>
+<li><strong>sender_email</strong> : le mail d'expéditeur du message, le domaine de cette
+    adresse doit préalablement avoir été <a href="../domaines/">configuré correctement</a>.</li>
 <li><strong>sender_name</strong> : le nom de l'expéditeur, qui apparaîtra dans le client mail de
    vos destinataires.</li>
 <li><strong>subject</strong> : Le sujet de votre email.</li>
 <li><strong>html</strong> : Le corps en HTML de votre email.</li>
 </ul>
 <hr />
-<p><em>Des <a href="../tracking">options de suivi</a> des messages sont également disponibles.</em></p>
+<p><em>Des <a href="tracking">options de suivi</a> des messages sont également disponibles.</em></p>
 <hr />
 <p>Le message fourni dans le paramètre <strong>html</strong> fera l'objet de plusieurs
 traitements :</p>
 <ul>
 <li>Un « nettoyage » pour apparaître au mieux sur tous les clients mail (voir
-  <a href="../../annexes/#details-des-modifications-appliquees-aux-emails">liste des traitements appliqués</a>)</li>
+  <a href="/annexes/#details-des-modifications-appliquees-aux-emails">liste des traitements appliqués</a>)</li>
 <li>La génération d'une version « texte brut » à partir de ce dernier, fourni en
   tant qu'alternative (il est nécessaire de fournir une version texte brut
   dans les emails).</li>
@@ -224,11 +225,11 @@ traitements :</p>
   spam.</li>
 </ul>
 <hr />
-<p><em>ⓘ Facultativement, un message peut-être rattaché à une campagne, ce
-point est traité dans la <a href="../../campagnes/">section dédiée de la documentation</a>.</em></p>
+<p><em>ⓘ Facultativement, un message peut-être rattaché à une catégorie, ce
+point est traité dans la <a href="../categories/">section dédiée de la documentation</a>.</em></p>
 <hr />
 <p>Si tout se passe bien, l'API devrait vous retourner :</p>
-<pre><code>HTTP 201 CREATED
+<pre class="prettyprint well"><code>HTTP 201 CREATED
 {
     "url": "https://api.munchmail.net/v1/messages/4/",
     "name": "ACME − Newsletter Juillet",
@@ -237,7 +238,7 @@ point est traité dans la <a href="../../campagnes/">section dédiée de la docu
     "subject": "Tu peux faire tout ce que tu veux",
     "html": "&lt;h1&gt;Mais ne marche pas sur mes chaussures en suédine bleue&lt;/h1&gt;"
     "status": "message_ok",
-    "campaign": null,
+    "category": null,
     "creation_date": "2015-01-12T15:37:29.803Z",
     "send_date": null,
     "completion_date": null,
@@ -289,8 +290,8 @@ point est traité dans la <a href="../../campagnes/">section dédiée de la docu
 </ul>
 <p>En cas d'erreur, vous recevrez une erreur 400 détaillant le ou les problèmes,
 qui peuvent notamment concerner les enregistrements
-<a href="../../#enregistrement-dkim">DKIM</a> et <a href="../../#enregistrement-spf">SPF</a></p>
-<pre><code>HTTP 400 BAD REQUEST
+<a href="/#enregistrement-dkim">DKIM</a> et <a href="/#enregistrement-spf">SPF</a></p>
+<pre class="prettyprint well"><code>HTTP 400 BAD REQUEST
 {
     "sender_email": [
         "Le champ SPF pour example.com est mal configur\u00e9",
@@ -315,14 +316,14 @@ de texte… etc.</p>
 étape précédente).</p>
 <h3 id="ajout-des-destinataires-un-par-un">Ajout des destinataires un par un</h3>
 <p>Il suffit de faire autant de requêtes POST que de destinataires à ajouter.</p>
-<pre><code>POST /v1/mails/
+<pre class="prettyprint well"><code>POST /v1/mails/
 {
     "to" : "mon-destinataire@domaine.tld",
     "message": "https://api.munchmail.net/v1/messages/4/"
 }
 </code></pre>
 <h3 id="ajout-des-destinataires-par-lot">Ajout des destinataires par lot</h3>
-<pre><code>POST /v1/mails/
+<pre class="prettyprint well"><code>POST /v1/mails/
 [
     {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
     {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
@@ -341,14 +342,14 @@ les statuts HTTP suivants :</p>
 non habilité à recevoir du courriel)</li>
 </ul>
 <p>Par exemple…</p>
-<pre><code> POST /v1/mails/
+<pre class="prettyprint well"><code> POST /v1/mails/
  {
     "to" : "jenesuispasunemail",
     "message": "https://api.munchmail.net/v1/messages/4/"
  }
 </code></pre>
 <p>… retournera</p>
-<pre><code>400 BAD REQUEST
+<pre class="prettyprint well"><code>400 BAD REQUEST
 {
     "to": [
        "Saisissez une adresse de courriel valide."
@@ -361,10 +362,10 @@ non habilité à recevoir du courriel)</li>
 liées aux ressources, son URL est proposée dans l'attribut <code>_links</code> ; celle-ci
 l'est sous le nom <code>preview_send</code>.</p>
 <p>On appelle la prévisualisation :</p>
-<pre><code>GET /v1/messages/4/preview/
+<pre class="prettyprint well"><code>GET /v1/messages/4/preview/
 </code></pre>
 <p>… elle retourne :</p>
-<pre><code>HTTP 200 OK
+<pre class="prettyprint well"><code>HTTP 200 OK
 {
     "recipients": [
         "mon-destinataire@domaine.tld",
@@ -383,13 +384,13 @@ l'est sous le nom <code>preview_send</code>.</p>
 <ul>
 <li><strong>recipients</strong> et <strong>excluded_recipients</strong> se partagent les destinataires que
     vous avez définis à l'<a href="#2-ajoutmodification-dune-liste-de-destinataires">étape 2.</a>, dans excluded_recipients sont listés les
-    destinataires auxquels la campagne ne sera pas envoyée pour des raisons de
-    désinscription (<a href="../../#desinscription-opt-out">résiliation</a>) de leur part ou des raisons techniques (<a href="../../#bounce">bounces</a>).</li>
+    destinataires auxquels le message ne sera pas envoyée pour des raisons de
+    désinscription (<a href="/#desinscription-opt-out">résiliation</a>) de leur part ou des raisons techniques (<a href="/#bounce">bounces</a>).</li>
 </ul>
 <h3 id="envoi-a-quelques-destinataires-pilotes">Envoi à quelques destinataires pilotes</h3>
 <p>À ce stade, vous pouvez envoyer votre message à un ou plusieurs destinataires
 « pilotes », par exemple vous-même, des collègues, proches…</p>
-<p>Cette étape peut vous servir, par exemple, à valider l'affichage de la campagne
+<p>Cette étape peut vous servir, par exemple, à valider l'affichage du message
 sur différents webmails, terminaux mobiles…</p>
 <p>Les mails générés seront identiques à ceux réellement envoyés à vos
 destinataires, à ces exceptions près :</p>
@@ -399,7 +400,7 @@ destinataires, à ces exceptions près :</p>
 <li>vous ne pourrez pas suivre l'état de livraison de ces emails.</li>
 </ul>
 <p>La requête est la suivante :</p>
-<pre><code>POST /v1/messages/1/preview_send/
+<pre class="prettyprint well"><code>POST /v1/messages/1/preview_send/
 {
    "to": "peter@example.com, steven@example.com"
 }
@@ -408,20 +409,20 @@ destinataires, à ces exceptions près :</p>
 <p>Une fois que tout semble bon, il n'y a plus qu'à changer l'attribut <strong>status</strong>
 du message à <em>sending</em>, par exemple à l'aide d'une requête <code>PATCH</code> (en ne
 passant que l'attribut <em>status</em>):</p>
-<pre><code>PATCH /v1/campaigns/1/
+<pre class="prettyprint well"><code>PATCH /v1/messages/1/
 {
     "status"       :"sending"
 }
 </code></pre>
 <p>Si tout va bien, l'API retourne un <code>200 OK</code>.</p>
 <p>Les mails commencent immédiatement à être envoyés aux destinataires, une
-<a href="../../#votre-compte-munchmail">notification</a> vous est envoyée, une seconde sera
+<a href="/#votre-compte-munchmail">notification</a> vous est envoyée, une seconde sera
 envoyée à la fin du processus.</p>
 <h2 id="5-suivi-des-envois">5. Suivi des envois</h2>
 <h3 id="suivi-des-emails">Suivi des emails</h3>
 <p>Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
-le lien <code>mails</code> de la campagne. Par exemple :</p>
-<pre><code>GET /v1/messages/4/mails/
+le lien <code>mails</code> du message. Par exemple :</p>
+<pre class="prettyprint well"><code>GET /v1/messages/4/mails/
 {
     "count": 3,
     "next": "https://api.munchmail.net/v1/mails/?page=2",
@@ -465,12 +466,12 @@ le lien <code>mails</code> de la campagne. Par exemple :</p>
 }
 </code></pre>
 <p>Les différents <code>status</code> possibles sont
-<a href="../../../annexes/#statuts-de-mails">décrits en annexe</a>.</p>
+<a href="../../annexes/#statuts-de-mails">décrits en annexe</a>.</p>
 <h3 id="suivi-des-resiliations">Suivi des résiliations</h3>
-<p>Une <a href="../../#votre-compte-munchmail">notification</a> est envoyée à chaque résiliation.</p>
+<p>Une <a href="/#votre-compte-munchmail">notification</a> est envoyée à chaque résiliation.</p>
 <p>Par ailleurs, il est possible de consulter les résiliations via l'API ; si votre
 identifiant de client est le 42 :</p>
-<pre><code>GET /v1/customers/42/opt_outs/
+<pre class="prettyprint well"><code>GET /v1/customers/42/opt_outs/
 
 {
     "count": 2,
@@ -481,13 +482,13 @@ identifiant de client est le 42 :</p>
             "address": "jane-blacklist@example.com",
             "date": "2014-08-08T14:54:35Z",
             "origin": "mail",
-            "campaign": null
+            "category": null
         },
         {
             "address": "john-greylist@example.com",
             "date": "2014-08-08T14:55:16Z",
             "origin": "feedback-loop",
-            "campaign": null
+            "category": null
         },
     ]
 }
@@ -495,18 +496,19 @@ identifiant de client est le 42 :</p>
 <p>Le champ <strong>origin</strong> contient la raison de la désinscription, qui peut-être
 automatique ou bien volontaire de la part de l'utilisateur ; les valeurs
 possibles sont décrites
-<a href="../../../annexes/#types-de-desinscriptions-opt-outs">en annexe</a>.</p>
+<a href="../../annexes/#types-de-desinscriptions-opt-outs">en annexe</a>.</p>
 <p>Si vous recevez de nombreuses désinscriptions de type <strong>abuse</strong>, il faut vous
 poser des question sur la légitimité de votre liste de
 contacts. <strong>N'utilisez pas de liste de mails achetées</strong>… et respectez la
-législation en vigueur.</p></div>
+législation en vigueur.</p>
+</div>
         </div>
 
         
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

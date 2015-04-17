@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-        <title>Création de template - MunchMail</title>
+        <title>Catégories - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -56,36 +56,36 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../api/intro/">Introduction</a>
+                            <a href="../intro/">Introduction</a>
                         </li>
                     
                         <li >
-                            <a href="../../api/auth/">Authentification & utilisateurs</a>
+                            <a href="../auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
-                            <a href="../../api/tutoriel/">Tutoriel : un envoi de A à Z</a>
+                            <a href="../tutoriel/">Tutoriel : un envoi de A à Z</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Catégories</a>
                         </li>
                     
                         <li >
-                            <a href="../../api/categories/">Catégories</a>
+                            <a href="../domaines/">Domaines</a>
                         </li>
                     
                         <li >
-                            <a href="../../api/domaines/">Domaines</a>
+                            <a href="../tracking/">Suivi des actions côté destinataire</a>
                         </li>
                     
                         <li >
-                            <a href="../../api/tracking/">Suivi des actions côté destinataire</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../api/stats/">Statistiques</a>
+                            <a href="../stats/">Statistiques</a>
                         </li>
                     
                     </ul>
@@ -93,20 +93,20 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Éditeur <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../integration/">Intégration</a>
-                        </li>
-                    
-                        <li class="active">
-                            <a href="./">Création de template</a>
+                            <a href="../../editeur/integration/">Intégration</a>
                         </li>
                     
                         <li >
-                            <a href="../exemple/">Exemple</a>
+                            <a href="../../editeur/creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../editeur/exemple/">Exemple</a>
                         </li>
                     
                     </ul>
@@ -144,12 +144,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../integration/">
+                    <a rel="next" href="../tutoriel/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../exemple/">
+                    <a rel="prev" href="../domaines/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -163,62 +163,64 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#documentation-templating-munchmail">Documentation Templating Munchmail</a></li>
+        <li class="main active"><a href="#categories">Catégories</a></li>
         
-            <li><a href="#fichiers-obligatoires">Fichiers obligatoires :</a></li>
+            <li><a href="#creation-dune-categorie">Création d'une catégorie</a></li>
         
-            <li><a href="#exemple-dhtml-dun-block-de-base">Exemple d'Html d'un block de base</a></li>
-        
-            <li><a href="#exemple-de-fichier-de-configuration">Exemple de fichier de configuration</a></li>
+            <li><a href="#attacher-des-messages-a-une-categorie">Attacher des messages à une catégorie</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="documentation-templating-munchmail">Documentation Templating Munchmail</h1>
-<h2 id="fichiers-obligatoires">Fichiers obligatoires :</h2>
+<h1 id="categories">Catégories</h1>
+<p>Les <strong>catégories</strong> sont une notion facultative, qui permet de grouper
+de façon logique plusieurs <code>messages</code>, la ressource d'API associée est
+<code>category</code>.</p>
+<p>Des cas d'utilisation sont :</p>
 <ul>
-<li>name_template.html</li>
-<li>configuration.json</li>
+<li>Les différents numéros d'une Newsletter</li>
+<li>Les communications commerciales envoyées à une certaine base de clients</li>
+<li>...</li>
 </ul>
-<h2 id="exemple-dhtml-dun-block-de-base">Exemple d'Html d'un block de base</h2>
-<pre class="prettyprint well"><code>&lt;!-- Munch Block --&gt;
-&lt;tr&gt;
-    &lt;td&gt;
-        &lt;table cellpadding="0" cellspacing="0" class="munch-block-intro" width="600"&gt;
-            &lt;tr&gt;
-                &lt;td&gt;
-                    &lt;h2 class="munch-contentEditable"&gt;Lorem ipsum&lt;br/&gt; dolor sit amet,&lt;br/&gt; consectetur adipisicing elit. Harum earum, sed distinctio illum&lt;/h2&gt;
-                &lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/table&gt;
-    &lt;/td&gt;
-&lt;/tr&gt;
-&lt;!-- End Munch Block --&gt;
+<p>Si vous utilisez la notion de <code>category</code>, les
+désinscriptions ne sont honorées qu'au sein d'une même catégorie. Un même
+destinataire peut donc s'être désinscrit d'une catégorie mais continuer à
+recevoir les communications d'une autre catégorie.</p>
+<h2 id="creation-dune-categorie">Création d'une catégorie</h2>
+<pre class="prettyprint well"><code>POST /v1/categories/
+{
+    "name": Newsletter clients ACME"
+}
 </code></pre>
-<p>La class .munch-contentEditable sert à rendre le contenu editable via ckEditor.
-La class .munch-block-*, qui doit également être présente dans "selector" du fichier configuration.json qui permet le clonage de ce dernier dans le template.</p>
-<h2 id="exemple-de-fichier-de-configuration">Exemple de fichier de configuration</h2>
-<pre class="prettyprint well"><code>{
-    "styles": {
-        "Header": {
-            "selector": ".munch-block-intro",
-            "icon": "",
-            "urlckEditor": "/ckeditor-conf/basic-conf.json"
+<p>Retourne</p>
+<pre class="prettyprint well"><code>HTTP 201 CREATED
+{
+    "url": "https://api.munchmail.net/v1/categories/2/",
+    "name": "Newsletter clients ACME"
+    "messages": [],
+    "_links": {
+        "opt_outs": {
+            "href": "http://localhost:8000/v1/categories/2/opt_outs/"
         }
     }
 }
 </code></pre>
-<ul>
-<li><strong>selector</strong> : cible l'element html du DOM pour le cloner via l'interface de gestion des blocks.</li>
-<li><strong>icon</strong> : html s'affichant lors du choix de l'ajout de block dans le template.</li>
-<li><strong>urlckEditor</strong> : lien vers la configuration custom de ckEditor.</li>
-<li><strong>isUnique</strong> : si le block n'est ni supprimable, ni déplaçable.</li>
-<li><strong>listChangeable</strong> : liste de class css pour changer le fond de l'element.</li>
-</ul>
-<p>Pour <strong>listChangeable</strong>, il est important de rajouter la class munch-changeable sur l'element.</p>
-<p>Les images peuvent être uploadable en ajoutant la class munch-imageUploadable.</p>
+<p>Notez le lien <code>opt_outs</code> permettant de lire la liste des <a href="../tutoriel/#suivi-des-resiliations">opt_outs</a> associés à
+une catégorie.</p>
+<h2 id="attacher-des-messages-a-une-categorie">Attacher des messages à une catégorie</h2>
+<p>Cela se passe via l'attribut <code>category</code> de la ressource <code>message</code>. Par exemple
+si vous voulez attacher la catégorie précédemment créée au message
+<code>https://api.munchmail.net/v1/messages/4/</code>, faites simplement :</p>
+<pre class="prettyprint well"><code>PATCH /v1/messages/4/
+{
+    "category": "https://api.munchmail.net/v1/categories/2/"
+}
+</code></pre>
+<p>Vous pouvez bien évidemment définir cet attribut dès
+<a href="../tutoriel/#1-creationedition-dun-message-avec-ses-attributs">la création du message</a>.</p>
+<p>Placer l'attribut à <code>null</code> pour retirer l'association à la catégorie.</p>
 </div>
         </div>
 

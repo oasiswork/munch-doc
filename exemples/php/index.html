@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>PHP - MunchMail</title>
+        <title>PHP - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,7 +65,7 @@
                         </li>
                     
                         <li >
-                            <a href="../../api/auth/">Authentification</a>
+                            <a href="../../api/auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
@@ -73,11 +73,7 @@
                         </li>
                     
                         <li >
-                            <a href="../../editeur/exemple/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../api/campagnes/">Campagnes</a>
+                            <a href="../../api/categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../../editeur/creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../editeur/exemple/">Exemple</a>
                         </li>
                     
                     </ul>
@@ -144,7 +144,7 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../../editeur/creation-template/">
+                    <a rel="next" href="../../editeur/exemple/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
@@ -171,7 +171,7 @@
             <div class="col-md-9" role="main">
 
 <h2 id="php">PHP</h2>
-<pre><code>&lt;?php
+<pre class="prettyprint well"><code>&lt;?php
 class HTTPException extends Exception {}
 
 class HTTPClient{
@@ -331,14 +331,16 @@ echo &quot;**** Consultation des opt-outs\n&quot;;
 print_r($client-&gt;get($customer-&gt;_links-&gt;opt_outs-&gt;href));
 
 ?&gt;
-</code></pre></div>
+</code></pre>
+
+</div>
         </div>
 
         
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

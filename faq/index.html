@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>FAQ - MunchMail</title>
+        <title>FAQ - MunchMail</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/prettify-1.0.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,7 +65,7 @@
                         </li>
                     
                         <li >
-                            <a href="../api/auth/">Authentification</a>
+                            <a href="../api/auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
@@ -73,11 +73,7 @@
                         </li>
                     
                         <li >
-                            <a href="../editeur/exemple/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../api/campagnes/">Campagnes</a>
+                            <a href="../api/categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../editeur/creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../editeur/exemple/">Exemple</a>
                         </li>
                     
                     </ul>
@@ -193,7 +193,7 @@ vos destinataires de se désabonner.</p>
 <p>Si vous voulez que ce lien aie l'apparence de votre choix, il vous suffit de
 mettre la chaîne <code>UNSUBSCRIBE_URL</code> là où vous voulez que l'adresse effective de
 désinscription apparaisse, par exemple :</p>
-<pre><code>Message ennuyeux ? Vous pouvez &lt;a href="UNSUBSCRIBE_URL"&gt;vous désinscrire&lt;/a&gt;
+<pre class="prettyprint well"><code>Message ennuyeux ? Vous pouvez &lt;a href="UNSUBSCRIBE_URL"&gt;vous désinscrire&lt;/a&gt;
 </code></pre>
 <h3 id="puis-je-ajouter-des-pieces-jointes">Puis-je ajouter des pièces jointes ?</h3>
 <p>Oui, il faut toutefois que votre compte soit autorisé à le faire, contactez-nous
@@ -204,28 +204,31 @@ en masse</strong>. Il est beaucoup plus efficace d'héberger images et pièces-j
 sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère et
 évite d'encombrer les boites mail de vos destinataires.</p>
 <hr />
-<p>Pour ajouter une pièce-jointe sur la campagne <code>/v1/campaigns/1/</code> :</p>
-<pre><code>POST /v1/campaigns/1/attachments/
+<p>Pour ajouter une pièce-jointe sur le message <code>/v1/messages/1/</code> :</p>
+<pre class="prettyprint well"><code>POST /v1/messages/1/attachments/
 file: votre fichier
 </code></pre>
 <p>Cette requête <em>doit</em> avoir un <code>Content-Type</code> à <code>multipart/form-data</code> à l'inverse
 de beaucoup d'autres qui transfèrent leur contenu en <code>application/json</code>.</p>
-<p>Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une erreur 400 est renvoyée
+<p>Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une
+erreur 400 est renvoyée
 et le fichier rejeté, par exemple :</p>
-<pre><code>HTTP 400 BAD REQUEST
+<pre class="prettyprint well"><code>HTTP 400 BAD REQUEST
 {
    'file': ['Le fichier envoyé contient un virus : "Eicar-Test-Signature"']
 }
 </code></pre>
 <!--  LocalWords:  A-minima
- --></div>
+ -->
+
+</div>
         </div>
 
         
 
-        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../js/highlight.pack.js"></script>
+        <script src="../js/prettify-1.0.min.js"></script>
         <script src="../js/base.js"></script>
     </body>
 </html>

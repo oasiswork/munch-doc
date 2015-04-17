@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Campagnes - MunchMail</title>
+        <title>Exemple - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,7 +56,7 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -65,19 +65,15 @@
                         </li>
                     
                         <li >
-                            <a href="../../api/auth/">Authentification</a>
+                            <a href="../../api/auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
                             <a href="../../api/tutoriel/">Tutoriel : un envoi de A à Z</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">Campagnes</a>
-                        </li>
-                    
                         <li >
-                            <a href="../../api/campagnes/">Campagnes</a>
+                            <a href="../../api/categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -97,7 +93,7 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Éditeur <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Exemple</a>
                         </li>
                     
                     </ul>
@@ -144,12 +144,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../../api/tutoriel/">
+                    <a rel="next" href="../creation-template/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../api/campagnes/">
+                    <a rel="prev" href="../../exemples/php/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -176,7 +176,7 @@
 
 <h1 id="exemples">Exemples</h1>
 <h2 id="le-html-contenant-liframe">le Html contenant l'iframe</h2>
-<pre><code>&lt;!doctype html&gt;
+<pre class="prettyprint well"><code>&lt;!doctype html&gt;
 &lt;html lang="fr"&gt;
 &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
@@ -213,7 +213,7 @@
 &lt;/html&gt;
 </code></pre>
 <h2 id="le-fichier-bootstrapjs">Le fichier bootstrap.js</h2>
-<pre><code>(function () {
+<pre class="prettyprint well"><code>(function () {
     'use strict';
     var SRC = 'http://editeur.portail.mon-intranet.com/';
     document.oasisBootstrap = function (element, template) {
@@ -280,14 +280,15 @@
     };
 
 }());
-</code></pre></div>
+</code></pre>
+</div>
         </div>
 
         
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

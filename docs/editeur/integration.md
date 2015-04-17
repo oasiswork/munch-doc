@@ -8,10 +8,10 @@ domaine de votre interface (ex: portail interne) et qu'il pointe vers
 *editeur.munchmail.net*.
 
 Exemple, votre interface possède l'url suivante : *mon-intranet.com*. Vous pouvez
-donc créer un CNAME *editeur.mon-interface.com* qui pointe vers
+donc créer un CNAME *editeur.portail.mon-interface.com* qui pointe vers
 *editeur.munchmail.net*. Ce qui donnera au niveau de vos enregistrements :
 
-	editeur.mon-intranet.com.          CNAME           editeur.munchmail.net.
+	editeur.portail.mon-intranet.com.          CNAME           dentifrice.munchmail.net.
 
 ## Intégration
 
@@ -23,7 +23,7 @@ portail d'entreprise, intranet, CMS...)
 // tierce, et ce que va faire le script bootstrap.js dans les très grandes lignes.
 -->
 
-Cette application comporte un fichier d'exemple (*static/test.html*).
+Cette application comporte un fichier d'exemple (*static/test.html*) [Voir les fichiers d'exemple](exemple.md). 
 
 <!--
 // PLUTOT POINTER VERS UN SAMPLE ? « cette application » n'a pas de sens, ils
@@ -41,13 +41,13 @@ Puis…
 
 	<script src="bootstrap.js"></script>
 
-…avec les autres assets.
+…avec les autres assets. [Voir un exemple du fichier bootstrap](exemple.md#le-fichier-bootstrapjs)
 
 On l'exécute sur le champ de formulaire correspondant et avec le template souhaité
 
 	<script type="text/javascript">
 	var editor = document.getElementById('newsletter-textarea');
-	document.oasisBootstrap(editor, 'path/nom-du-template.html');
+	document.oasisBootstrap(editor, 'http://dentifrice.munchmail.net/path/nom-du-template.html');
 	</script>
 
 ### Contraintes diverses sur le formulaire:

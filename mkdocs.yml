@@ -6,6 +6,7 @@ pages:
   - [api/intro.md, "L'API", "Introduction"]
   - [api/auth.md, "L'API", "Authentification"]
   - [api/tutoriel.md, "L'API", "Tutoriel : un envoi de A à Z"]
+  - [editeur/exemple.md, "L'API", "Campagnes"]
   - [api/campagnes.md, "L'API", "Campagnes"]
   - [api/domaines.md, "L'API", "Domaines"]
   - [api/tracking.md, "L'API", "Suivi des actions côté destinataire"]

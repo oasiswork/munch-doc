@@ -30,6 +30,7 @@ Les requêtes renvoyant des listes d'objets sont *paginées*, elles adoptent la 
         "count": 78,
         "next": "https://api.munchmail.net/v1/mails/?page=2",
         "previous": null,
+        "page_count": 2,
         "results": [
 
         ...

@@ -50,8 +50,8 @@ traitements :
 
 ----
 
-*ⓘ Facultativement, un message peut-être rattaché à une campagne, ce
-point est traité dans la [section dédiée de la documentation](../campagnes/).*
+*ⓘ Facultativement, un message peut-être rattaché à une catégorie, ce
+point est traité dans la [section dédiée de la documentation](../categories/).*
 
 ----
 
@@ -66,7 +66,7 @@ Si tout se passe bien, l'API devrait vous retourner :
         "subject": "Tu peux faire tout ce que tu veux",
         "html": "<h1>Mais ne marche pas sur mes chaussures en suédine bleue</h1>"
         "status": "message_ok",
-        "campaign": null,
+        "category": null,
         "creation_date": "2015-01-12T15:37:29.803Z",
         "send_date": null,
         "completion_date": null,
@@ -352,13 +352,13 @@ identifiant de client est le 42 :
                 "address": "jane-blacklist@example.com",
                 "date": "2014-08-08T14:54:35Z",
                 "origin": "mail",
-                "campaign": null
+                "category": null
             },
             {
                 "address": "john-greylist@example.com",
                 "date": "2014-08-08T14:55:16Z",
                 "origin": "feedback-loop",
-                "campaign": null
+                "category": null
             },
     	]
     }

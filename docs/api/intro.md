@@ -9,8 +9,6 @@ Elle suit les principes
 le format [JSON](http://fr.wikipedia.org/wiki/JavaScript_Object_Notation), ce
 qui la rend exploitable depuis un grand nombre de langages de programmation.
 
-Tant que la campagne n'est pas validée, elle peut-être modifiée.
-
 Points notables
 ----------------
 

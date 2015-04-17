@@ -39,15 +39,16 @@ sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère e
 ---
 
 
-Pour ajouter une pièce-jointe sur la campagne `/v1/campaigns/1/` :
+Pour ajouter une pièce-jointe sur le message `/v1/messages/1/` :
 
-    POST /v1/campaigns/1/attachments/
+    POST /v1/messages/1/attachments/
 	file: votre fichier
 
 Cette requête *doit* avoir un `Content-Type` à `multipart/form-data` à l'inverse
 de beaucoup d'autres qui transfèrent leur contenu en `application/json`.
 
-Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une erreur 400 est renvoyée
+Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une
+erreur 400 est renvoyée
 et le fichier rejeté, par exemple :
 
 	HTTP 400 BAD REQUEST

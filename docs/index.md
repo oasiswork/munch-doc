@@ -1,7 +1,11 @@
 # MunchMail − Guide du développeur
 
-MunchMail est une **API REST** permettant la gestion et l'expédition de
-campagnes d'emails vers **un grand nombre de destinataires**.
+MunchMail est une **API REST** permettant la gestion et l'expédition de d'emails
+vers **un grand nombre de destinataires**.
+
+La solution permet également de **suivre** l'ouverture (clics, lecture) de vos
+destinataires, d'obtenir diverses **statistiques** sur votre envoi et de gérer
+simplement les **désinscriptions**.
 
 Cette documentation vise à vous aider dans la réalisation d'une application
 exploitant l'API MunchMail.

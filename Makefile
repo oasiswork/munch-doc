@@ -8,7 +8,7 @@ examples:
 publish:
 	make examples
 	mkdocs build
-	cd site; git add --all; git commit -m "site build"; git push
+	cd site; git pull; git add --all; git commit -m "site build"; git push
 
 check_links:
 	echo 'Dead links :'

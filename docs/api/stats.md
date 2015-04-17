@@ -75,3 +75,40 @@ Il est possible d'obtenir des statistiques à l'échelle d'un Message.
 - **optout** : nombre de désinscriptions totales et par type (types
                détaillés
                [en annexe](../../annexes/#types-de-desinscriptions-opt-outs))
+
+
+Par catégorie
+-------------
+
+Il est également possible d'avoir des statistiques agrégées pour l'ensemble des
+messages d'une [catégorie](../categories/), les infos sont similaires à celles
+retournées pour le message mais moins nombreuses :
+
+    GET /v1/categories/1/stats/
+    {
+        "count": {
+            "had_delay": 1,
+            "total": 5,
+            "done": 2,
+            "in_transit": 3
+        },
+        "timing": {
+            "delivery_median": 39
+        },
+        "last_status": {
+            "delivered": 1,
+            "unknown": 2,
+            "hardbounced": 1,
+            "softbounced": 1,
+            "error": 0,
+            "sent": 0
+        },
+        "optout": {
+            "web": 0,
+            "bounce": 0,
+            "feedback-loop": 1,
+            "abuse": 0,
+            "mail": 1,
+            "total": 2
+        }
+    }

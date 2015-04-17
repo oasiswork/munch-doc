@@ -4,7 +4,7 @@ dev_addr: '127.0.0.1:8092'
 pages:
   - [index.md, "Guide du développeur"]
   - [api/intro.md, "L'API", "Introduction"]
-  - [api/auth.md, "L'API", "Authentification"]
+  - [api/auth.md, "L'API", "Authentification & utilisateurs"]
   - [api/tutoriel.md, "L'API", "Tutoriel : un envoi de A à Z"]
   - [api/categories.md, "L'API", "Catégories"]
   - [api/domaines.md, "L'API", "Domaines"]

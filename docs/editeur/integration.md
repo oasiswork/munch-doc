@@ -1,11 +1,34 @@
 Intégration de l'éditeur Munchmail
 ==================================
 
-## Installation
+## Prérequis : configuration du CNAME
 
-Il faut installer l'application sur le même domaine.
+Il faut créer un enregistrement DNS CNAME qui soit un niveau en dessous du
+domaine de votre interface (ex: portail interne) et qu'il pointe vers
+*editeur.munchmail.net*.
 
-Cette application comporte un fichier d'exemple (static/test.html).
+Exemple, votre interface possède l'url suivante : *mon-intranet.com*. Vous pouvez
+donc créer un CNAME *editeur.mon-interface.com* qui pointe vers
+*editeur.munchmail.net*. Ce qui donnera au niveau de vos enregistrements :
+
+	editeur.mon-intranet.com.          CNAME           editeur.munchmail.net.
+
+## Intégration
+
+Ces modifications sont à effectuer dans le code de votre application (ex:
+portail d'entreprise, intranet, CMS...)
+
+<!--
+// Préciser un peu le rapport avec le formulaire de la page de l'application
+// tierce, et ce que va faire le script bootstrap.js dans les très grandes lignes.
+-->
+
+Cette application comporte un fichier d'exemple (*static/test.html*).
+
+<!--
+// PLUTOT POINTER VERS UN SAMPLE ? « cette application » n'a pas de sens, ils
+// n'ont pas le code en local...
+-->
 
 On ajoute la balise:
 
@@ -20,33 +43,16 @@ Puis…
 
 …avec les autres assets.
 
-On l'execute sur le champ de formulaire correspondant et avec le template souhaité
+On l'exécute sur le champ de formulaire correspondant et avec le template souhaité
 
 	<script type="text/javascript">
 	var editor = document.getElementById('newsletter-textarea');
 	document.oasisBootstrap(editor, 'path/nom-du-template.html');
 	</script>
 
-Contrainte sur le formulaire:
+### Contraintes diverses sur le formulaire:
 
 * Il doit y avoir un formulaire.
 * Un seul éditeur de newsletter par page.
-* Le textarea est rempli au moment de l'envoie.
+* Le textarea est rempli au moment de l'envoi.
 * Pas d'attribut required sur le textarea sans le form novalidate, sinon on passe pas dans le onsubmit du coup le textarea n'est pas rempli
-
-## Noms de domaines
-
-On est contraints que l'iframe soit appellée depuis un sous-domaine du nom de la
-page principale.
-
-## Configuration du CNAME
-
-Il faut créer un CNAME qui soit un niveau en dessous du domaine de votre interface et qu'il pointe vers editeur.munchmail.net. 
-
-Exemple, votre interface possède l'url suivante : mon-interface.com. Vous pouvez donc créer un CNAME iframe.mon-interface.com qui pointe vers editeur.munchmail.net. Ce qui donnera au niveau de vos enregistrements :
-
-	iframe.mon-interface.com.          CNAME           editeur.munchmail.net.
-
-
-
-

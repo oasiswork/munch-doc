@@ -161,11 +161,9 @@
     
         <li class="main active"><a href="#integration-de-lediteur-munchmail">Intégration de l'éditeur Munchmail</a></li>
         
-            <li><a href="#installation">Installation</a></li>
+            <li><a href="#prerequis-configuration-du-cname">Prérequis : configuration du CNAME</a></li>
         
-            <li><a href="#noms-de-domaines">Noms de domaines</a></li>
-        
-            <li><a href="#configuration-du-cname">Configuration du CNAME</a></li>
+            <li><a href="#integration">Intégration</a></li>
         
     
     </ul>
@@ -173,9 +171,29 @@
             <div class="col-md-9" role="main">
 
 <h1 id="integration-de-lediteur-munchmail">Intégration de l'éditeur Munchmail</h1>
-<h2 id="installation">Installation</h2>
-<p>Il faut installer l'application sur le même domaine.</p>
-<p>Cette application comporte un fichier d'exemple (static/test.html).</p>
+<h2 id="prerequis-configuration-du-cname">Prérequis : configuration du CNAME</h2>
+<p>Il faut créer un enregistrement DNS CNAME qui soit un niveau en dessous du
+domaine de votre interface (ex: portail interne) et qu'il pointe vers
+<em>editeur.munchmail.net</em>.</p>
+<p>Exemple, votre interface possède l'url suivante : <em>mon-intranet.com</em>. Vous pouvez
+donc créer un CNAME <em>editeur.mon-interface.com</em> qui pointe vers
+<em>editeur.munchmail.net</em>. Ce qui donnera au niveau de vos enregistrements :</p>
+<pre><code>editeur.mon-intranet.com.          CNAME           editeur.munchmail.net.
+</code></pre>
+<h2 id="integration">Intégration</h2>
+<p>Ces modifications sont à effectuer dans le code de votre application (ex:
+portail d'entreprise, intranet, CMS...)</p>
+<!--
+// Préciser un peu le rapport avec le formulaire de la page de l'application
+// tierce, et ce que va faire le script bootstrap.js dans les très grandes lignes.
+-->
+
+<p>Cette application comporte un fichier d'exemple (<em>static/test.html</em>).</p>
+<!--
+// PLUTOT POINTER VERS UN SAMPLE ? « cette application » n'a pas de sens, ils
+// n'ont pas le code en local...
+-->
+
 <p>On ajoute la balise:</p>
 <pre><code>&lt;script&gt;document.domain = document.domain;&lt;script&gt;
 </code></pre>
@@ -185,27 +203,19 @@ autoriser la communication entre iframes),</p>
 <pre><code>&lt;script src="bootstrap.js"&gt;&lt;/script&gt;
 </code></pre>
 <p>…avec les autres assets.</p>
-<p>On l'execute sur le champ de formulaire correspondant et avec le template souhaité</p>
+<p>On l'exécute sur le champ de formulaire correspondant et avec le template souhaité</p>
 <pre><code>&lt;script type="text/javascript"&gt;
 var editor = document.getElementById('newsletter-textarea');
 document.oasisBootstrap(editor, 'path/nom-du-template.html');
 &lt;/script&gt;
 </code></pre>
-<p>Contrainte sur le formulaire:</p>
+<h3 id="contraintes-diverses-sur-le-formulaire">Contraintes diverses sur le formulaire:</h3>
 <ul>
 <li>Il doit y avoir un formulaire.</li>
 <li>Un seul éditeur de newsletter par page.</li>
-<li>Le textarea est rempli au moment de l'envoie.</li>
+<li>Le textarea est rempli au moment de l'envoi.</li>
 <li>Pas d'attribut required sur le textarea sans le form novalidate, sinon on passe pas dans le onsubmit du coup le textarea n'est pas rempli</li>
-</ul>
-<h2 id="noms-de-domaines">Noms de domaines</h2>
-<p>On est contraints que l'iframe soit appellée depuis un sous-domaine du nom de la
-page principale.</p>
-<h2 id="configuration-du-cname">Configuration du CNAME</h2>
-<p>Il faut créer un CNAME qui soit un niveau en dessous du domaine de votre interface et qu'il pointe vers editeur.munchmail.net. </p>
-<p>Exemple, votre interface possède l'url suivante : mon-interface.com. Vous pouvez donc créer un CNAME iframe.mon-interface.com qui pointe vers editeur.munchmail.net. Ce qui donnera au niveau de vos enregistrements :</p>
-<pre><code>iframe.mon-interface.com.          CNAME           editeur.munchmail.net.
-</code></pre></div>
+</ul></div>
         </div>
 
         

@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Suivi des actions côté destinataire - MunchMail</title>
+	<title>Intégration - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -56,36 +56,36 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../intro/">Introduction</a>
+                            <a href="../../api/intro/">Introduction</a>
                         </li>
                     
                         <li >
-                            <a href="../auth/">Authentification</a>
+                            <a href="../../api/auth/">Authentification</a>
                         </li>
                     
                         <li >
-                            <a href="../tutoriel/">Tutoriel : un envoi de A à Z</a>
+                            <a href="../../api/tutoriel/">Tutoriel : un envoi de A à Z</a>
                         </li>
                     
                         <li >
-                            <a href="../campagnes/">Campagnes</a>
+                            <a href="../../api/campagnes/">Campagnes</a>
                         </li>
                     
                         <li >
-                            <a href="../domaines/">Domaines</a>
-                        </li>
-                    
-                        <li class="active">
-                            <a href="./">Suivi des actions côté destinataire</a>
+                            <a href="../../api/domaines/">Domaines</a>
                         </li>
                     
                         <li >
-                            <a href="../stats/">Statistiques</a>
+                            <a href="../../api/tracking/">Suivi des actions côté destinataire</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/stats/">Statistiques</a>
                         </li>
                     
                     </ul>
@@ -93,16 +93,16 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Éditeur <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li >
-                            <a href="../../editeur/integration/">Intégration</a>
+                        <li class="active">
+                            <a href="./">Intégration</a>
                         </li>
                     
                         <li >
-                            <a href="../../editeur/creation-template/">Création de template</a>
+                            <a href="../creation-template/">Création de template</a>
                         </li>
                     
                     </ul>
@@ -140,12 +140,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../domaines/">
+                    <a rel="next" href="../../api/stats/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../stats/">
+                    <a rel="prev" href="../creation-template/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -159,104 +159,52 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#suivi-des-actions-cote-destinataire">Suivi des actions côté destinataire</a></li>
+        <li class="main active"><a href="#integration-de-lediteur-munchmail">Intégration de l'éditeur Munchmail</a></li>
         
-            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#installation">Installation</a></li>
         
-            <li><a href="#consultation">Consultation</a></li>
+            <li><a href="#noms-de-domaines">Noms de domaines</a></li>
+        
+            <li><a href="#configuration-du-cname">Configuration du CNAME</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="suivi-des-actions-cote-destinataire">Suivi des actions côté destinataire</h1>
-<p>Munch offre la possibilité, dans une certaine mesuer,  de suivre les messages
-envoyés jusque dans la boîte de réception :</p>
-<ul>
-<li>destinataires ayant cliqué sur les liens de l'email</li>
-<li>destinataires ayant ouvert le mail</li>
-</ul>
-<hr />
-<p><em>⚠ La vérification à l'ouverture du mail n'est pas à considérer comme un accusé
- de réception, car elle nécessite que l'utilisateur autorise les images externes
- dans son client mail.</em></p>
-<p><em>Cela reste un bon indicateur pour comparer l'intérêt  porté à deux envois.</em></p>
-<hr />
-<h2 id="configuration">Configuration</h2>
-<p>Le suivi peut-être activé ou non pour chaque <code>message</code>, grace aux deux
-paramètres de la ressource (par défaut désactivés) :</p>
-<ul>
-<li><strong>track_open</strong>   : surveille les ouvertures</li>
-<li><strong>track_clicks</strong> : surveille les clics</li>
-</ul>
-<p>Par exemple, pour créer un message incluant les deux formes de suivi :</p>
-<pre><code>POST /v1/messages/
-{
-    "name"         :"Newsletter de Juillet",
-    "sender_email" :"newsletter@example.com",
-    "sender_name"  :"Communication ACME chaussures",
-    "subject": "Tu peux faire tout ce que tu veux",
-    "html": "&lt;h1&gt;Mais ne marche pas sur mes chaussures en suédine bleue&lt;/h1&gt;",
-    "track_open"   : true,
-    "track_clicks" : true,
-}
+<h1 id="integration-de-lediteur-munchmail">Intégration de l'éditeur Munchmail</h1>
+<h2 id="installation">Installation</h2>
+<p>Il faut installer l'application sur le même domaine.</p>
+<p>Cette application comporte un fichier d'exemple (static/test.html).</p>
+<p>On ajoute la balise:</p>
+<pre><code>&lt;script&gt;document.domain = document.domain;&lt;script&gt;
 </code></pre>
-<h2 id="consultation">Consultation</h2>
-<h3 id="statistiques-par-message">Statistiques par message</h3>
-<p>L'usage le plus intéressant de ce suivi est certainement <a href="../../stats">les
-statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
-<code>message</code> :</p>
+<p>...en tout début de document (avant les inclusions d'assets externes) (pour
+autoriser la communication entre iframes),</p>
+<p>Puis…</p>
+<pre><code>&lt;script src="bootstrap.js"&gt;&lt;/script&gt;
+</code></pre>
+<p>…avec les autres assets.</p>
+<p>On l'execute sur le champ de formulaire correspondant et avec le template souhaité</p>
+<pre><code>&lt;script type="text/javascript"&gt;
+var editor = document.getElementById('newsletter-textarea');
+document.oasisBootstrap(editor, 'path/nom-du-template.html');
+&lt;/script&gt;
+</code></pre>
+<p>Contrainte sur le formulaire:</p>
 <ul>
-<li>nombre d'ouverture détectées</li>
-<li>nombre de clics, global et par url</li>
+<li>Il doit y avoir un formulaire.</li>
+<li>Un seul éditeur de newsletter par page.</li>
+<li>Le textarea est rempli au moment de l'envoie.</li>
+<li>Pas d'attribut required sur le textarea sans le form novalidate, sinon on passe pas dans le onsubmit du coup le textarea n'est pas rempli</li>
 </ul>
-<p>Voir la <a href="../../stats">section statistiques</a>.</p>
-<h3 id="detail-par-destinataire">Détail par destinataire</h3>
-<p>Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
-<code>mail</code> envoyé.</p>
-<pre><code>GET /v1/messages/1/mails
-[
-    {
-        "url": "https://api.munchmail.net/v1/mails/1/",
-        "to": "testrcpt@example.com",
-        "date": "2014-07-25T08:52:34.261335Z",
-        "last_status": {
-            "status": "delivered",
-            "date": "2014-07-25T12:07:49Z",
-            "raw_msg": "k.xau"
-        },
-        "message": "https://api.munchmail.net/v1/messages/1/",
-        "tracking": {
-            "opened": "2015-02-24T09:18:54.597617Z",
-            "clicked": [
-                {
-                    "url": "http://oasiswork.fr",
-                    "date": "2015-02-24T13:52:26Z"
-                },
-                {
-                    "url": "http://doc.munchmail.net",
-                    "date": "2015-02-24T13:58:38Z"
-                }
-            ]
-        }
-    },
-    {
-        "url": "https://api.munchmail.net/v1/mails/2/",
-        "to": "john-greylist@example.com",
-        "date": "2014-07-30T08:40:56Z",
-        "last_status": {
-            "status": "softbounced",
-            "date": "2014-07-30T08:41:44Z",
-            "raw_msg": "greylisted !"
-        },
-        "message": "https://api.munchmail.net/v1/messages/1/",
-        "tracking": {
-            "opened": null,
-            "clicked": []
-        }
-    }
-]
+<h2 id="noms-de-domaines">Noms de domaines</h2>
+<p>On est contraints que l'iframe soit appellée depuis un sous-domaine du nom de la
+page principale.</p>
+<h2 id="configuration-du-cname">Configuration du CNAME</h2>
+<p>Il faut créer un CNAME qui soit un niveau en dessous du domaine de votre interface et qu'il pointe vers editeur.munchmail.net. </p>
+<p>Exemple, votre interface possède l'url suivante : mon-interface.com. Vous pouvez donc créer un CNAME iframe.mon-interface.com qui pointe vers editeur.munchmail.net. Ce qui donnera au niveau de vos enregistrements :</p>
+<pre><code>iframe.mon-interface.com.          CNAME           editeur.munchmail.net.
 </code></pre></div>
         </div>
 

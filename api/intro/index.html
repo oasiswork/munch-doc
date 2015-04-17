@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-        <title>Introduction - MunchMail</title>
+	<title>Introduction - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -86,6 +86,23 @@
                     
                         <li >
                             <a href="../stats/">Statistiques</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Éditeur <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../editeur/integration/">Intégration</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../editeur/creation-template/">Création de template</a>
                         </li>
                     
                     </ul>
@@ -174,7 +191,7 @@ qui la rend exploitable depuis un grand nombre de langages de programmation.</p>
 </ul>
 <h2 id="pagination">Pagination</h2>
 <p>Les requêtes renvoyant des listes d'objets sont <em>paginées</em>, elles adoptent la structure suivante :</p>
-<pre class="prettyprint well"><code>{
+<pre><code>{
     "count": 78,
     "next": "https://api.munchmail.net/v1/mails/?page=2",
     "previous": null,
@@ -194,21 +211,20 @@ ajoutez<code>?page_size=200</code> à l'URL.</p>
 <p>L'API est <em>navigable</em>, en accédant à
 <em><a href="https://api.munchmail.net/v1">https://api.munchmail.net/v1</a></em>
 directement depuis votre navigateur, puis en vous
-<a href="../auth/#par-session-pour-testsdebug">authentifiant avec votre email</a>, vous
+<a href="../../auth/#par-session-pour-testsdebug">authentifiant avec votre email</a>, vous
 pouvez exploiter toutes les possibilités offertes à votre application depuis une
 interface conviviale, conçue pour les humains.</p>
 <p>Cet usage est évidemement à réserver à des fins de debug et de test. Elle n'est
 en aucun cas une interface pour les utilisateurs finaux.</p>
 <p>Les <strong>attributs des différentes resources</strong> sont documentées de manière
-précise au sein de cette interface.</p>
-</div>
+précise au sein de cette interface.</p></div>
         </div>
 
         
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

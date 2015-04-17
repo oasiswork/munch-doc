@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Suivi des actions côté destinataire - MunchMail</title>
+	<title>Campagnes - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -61,35 +61,35 @@
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../intro/">Introduction</a>
+                            <a href="../../api/intro/">Introduction</a>
                         </li>
                     
                         <li >
-                            <a href="../auth/">Authentification</a>
+                            <a href="../../api/auth/">Authentification</a>
                         </li>
                     
                         <li >
-                            <a href="../tutoriel/">Tutoriel : un envoi de A à Z</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../editeur/exemple/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../campagnes/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../domaines/">Domaines</a>
+                            <a href="../../api/tutoriel/">Tutoriel : un envoi de A à Z</a>
                         </li>
                     
                         <li class="active">
-                            <a href="./">Suivi des actions côté destinataire</a>
+                            <a href="./">Campagnes</a>
                         </li>
                     
                         <li >
-                            <a href="../stats/">Statistiques</a>
+                            <a href="../../api/campagnes/">Campagnes</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/domaines/">Domaines</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/tracking/">Suivi des actions côté destinataire</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../api/stats/">Statistiques</a>
                         </li>
                     
                     </ul>
@@ -102,11 +102,11 @@
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../editeur/integration/">Intégration</a>
+                            <a href="../integration/">Intégration</a>
                         </li>
                     
                         <li >
-                            <a href="../../editeur/creation-template/">Création de template</a>
+                            <a href="../creation-template/">Création de template</a>
                         </li>
                     
                     </ul>
@@ -144,12 +144,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../domaines/">
+                    <a rel="next" href="../../api/tutoriel/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../stats/">
+                    <a rel="prev" href="../../api/campagnes/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -163,104 +163,123 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#suivi-des-actions-cote-destinataire">Suivi des actions côté destinataire</a></li>
+        <li class="main active"><a href="#exemples">Exemples</a></li>
         
-            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#le-html-contenant-liframe">le Html contenant l'iframe</a></li>
         
-            <li><a href="#consultation">Consultation</a></li>
+            <li><a href="#le-fichier-bootstrapjs">Le fichier bootstrap.js</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="suivi-des-actions-cote-destinataire">Suivi des actions côté destinataire</h1>
-<p>Munch offre la possibilité, dans une certaine mesuer,  de suivre les messages
-envoyés jusque dans la boîte de réception :</p>
-<ul>
-<li>destinataires ayant cliqué sur les liens de l'email</li>
-<li>destinataires ayant ouvert le mail</li>
-</ul>
-<hr />
-<p><em>⚠ La vérification à l'ouverture du mail n'est pas à considérer comme un accusé
- de réception, car elle nécessite que l'utilisateur autorise les images externes
- dans son client mail.</em></p>
-<p><em>Cela reste un bon indicateur pour comparer l'intérêt  porté à deux envois.</em></p>
-<hr />
-<h2 id="configuration">Configuration</h2>
-<p>Le suivi peut-être activé ou non pour chaque <code>message</code>, grace aux deux
-paramètres de la ressource (par défaut désactivés) :</p>
-<ul>
-<li><strong>track_open</strong>   : surveille les ouvertures</li>
-<li><strong>track_clicks</strong> : surveille les clics</li>
-</ul>
-<p>Par exemple, pour créer un message incluant les deux formes de suivi :</p>
-<pre><code>POST /v1/messages/
-{
-    "name"         :"Newsletter de Juillet",
-    "sender_email" :"newsletter@example.com",
-    "sender_name"  :"Communication ACME chaussures",
-    "subject": "Tu peux faire tout ce que tu veux",
-    "html": "&lt;h1&gt;Mais ne marche pas sur mes chaussures en suédine bleue&lt;/h1&gt;",
-    "track_open"   : true,
-    "track_clicks" : true,
-}
+<h1 id="exemples">Exemples</h1>
+<h2 id="le-html-contenant-liframe">le Html contenant l'iframe</h2>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Newsletter editor&lt;/title&gt;
+    &lt;link rel="icon" type="image/png" href="images/favicon.png"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;script&gt;
+    document.domain = document.domain;
+    &lt;/script&gt;
+
+    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;h1&gt;Test d'éditeur de newsletter&lt;/h1&gt;
+            &lt;form name="form" method="POST"&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;label&gt;Exemple de champ de formulaire&lt;/label&gt;
+                    &lt;textarea class="form-control" id="newsletter-textarea" name="newsletter"&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;input type="submit" class="form-control"/&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src="bootstrap.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+    var editor = document.getElementById('newsletter-textarea');
+    document.oasisBootstrap(editor, 'http://dentifrice.munchmail.net/path/nom-du-template.html');
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
-<h2 id="consultation">Consultation</h2>
-<h3 id="statistiques-par-message">Statistiques par message</h3>
-<p>L'usage le plus intéressant de ce suivi est certainement <a href="../../stats">les
-statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
-<code>message</code> :</p>
-<ul>
-<li>nombre d'ouverture détectées</li>
-<li>nombre de clics, global et par url</li>
-</ul>
-<p>Voir la <a href="../../stats">section statistiques</a>.</p>
-<h3 id="detail-par-destinataire">Détail par destinataire</h3>
-<p>Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
-<code>mail</code> envoyé.</p>
-<pre><code>GET /v1/messages/1/mails
-[
-    {
-        "url": "https://api.munchmail.net/v1/mails/1/",
-        "to": "testrcpt@example.com",
-        "date": "2014-07-25T08:52:34.261335Z",
-        "last_status": {
-            "status": "delivered",
-            "date": "2014-07-25T12:07:49Z",
-            "raw_msg": "k.xau"
-        },
-        "message": "https://api.munchmail.net/v1/messages/1/",
-        "tracking": {
-            "opened": "2015-02-24T09:18:54.597617Z",
-            "clicked": [
-                {
-                    "url": "http://oasiswork.fr",
-                    "date": "2015-02-24T13:52:26Z"
-                },
-                {
-                    "url": "http://doc.munchmail.net",
-                    "date": "2015-02-24T13:58:38Z"
-                }
-            ]
+<h2 id="le-fichier-bootstrapjs">Le fichier bootstrap.js</h2>
+<pre><code>(function () {
+    'use strict';
+    var SRC = 'http://editeur.portail.mon-intranet.com/';
+    document.oasisBootstrap = function (element, template) {
+        //hide the element
+        element.style.display = 'none';
+        var iframe = document.createElement('IFRAME');
+        iframe.setAttribute('src', SRC + template);
+        iframe.style.width = 720 + 'px';
+        iframe.style.height = 480 + 'px';
+        element.parentNode.insertBefore(iframe, element.nextSibling);
+
+        var parseXml;
+        var parser;
+        var serializer = new XMLSerializer();
+
+        if (typeof window.DOMParser !== 'undefined') {
+            parser = new window.DOMParser();
+            parseXml = function(xmlStr) {
+                return parser.parseFromString(xmlStr, 'application/xml');
+            };
+        } else if (typeof window.ActiveXObject !== 'undefined') {
+            parseXml = function(xmlStr) {
+                var xmlDoc = new window.ActiveXObject('Microsoft.XMLDOM');
+                xmlDoc.async = 'false';
+                xmlDoc.loadXML(xmlStr);
+                return xmlDoc;
+            };
+        } else {
+            throw new Error('No XML parser found');
         }
-    },
-    {
-        "url": "https://api.munchmail.net/v1/mails/2/",
-        "to": "john-greylist@example.com",
-        "date": "2014-07-30T08:40:56Z",
-        "last_status": {
-            "status": "softbounced",
-            "date": "2014-07-30T08:41:44Z",
-            "raw_msg": "greylisted !"
-        },
-        "message": "https://api.munchmail.net/v1/messages/1/",
-        "tracking": {
-            "opened": null,
-            "clicked": []
+        /**
+         * Return parents of the element in a array
+         */
+        function getParents(el) {
+            var parents = [];
+
+            var p = el.parentNode;
+
+            while (p !== null) {
+                var o = p;
+                parents.push(o);
+                p = o.parentNode;
+            }
+            return parents; // returns an Array []
         }
-    }
-]
+        var parents = getParents(element);
+        var form;
+        for (var i = 0; i &lt; parents.length; i++) {
+            if (parents[i].tagName === 'FORM') {
+                form = parents[i];
+            }
+        }
+
+        function oasisSubmit () {
+            var content = iframe.contentDocument || iframe.contentWindow.document;
+            content.destroyNewsletterEditor();
+            var contentString = serializer.serializeToString(content);
+            element.value = contentString;
+            return true;
+        }
+        if (form) {
+            form.onsubmit = oasisSubmit;
+        }
+    };
+
+}());
 </code></pre></div>
         </div>
 

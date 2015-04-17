@@ -1,7 +1,7 @@
 Tutoriel : Un envoi de A à Z
 =============================
 
-Les étapes de la vie d'une campagne sont :
+Les étapes de la vie d'un message sont :
 
 1. Création/édition d'un message avec ses attributs
 2. Ajout/modification d'une liste de destinataires
@@ -9,6 +9,7 @@ Les étapes de la vie d'une campagne sont :
 4. Déclenchement de l'envoi
 5. Suivi des envois
 
+Tant que le message n'est pas envoyé (étape 4.), il peut-être modifié.
 
 ## 1. Création/édition d'un message avec ses attributs
 
@@ -21,9 +22,9 @@ Les étapes de la vie d'une campagne sont :
         "html": "<h1>Mais ne marche pas sur mes chaussures en suédine bleue</h1>"
     }
 
-* **name** : Le nom interne donné à la campagne, il ne sera pas visible de vos
+* **name** : Le nom interne donné au message, il ne sera pas visible de vos
    destinataires.
-* **sender_email** : le mail d'expéditeur de la campagne, le domaine de cette
+* **sender_email** : le mail d'expéditeur du message, le domaine de cette
     adresse doit préalablement avoir été [configuré correctement](../domaines/).
 * **sender_name** : le nom de l'expéditeur, qui apparaîtra dans le client mail de
    vos destinataires.
@@ -49,8 +50,8 @@ traitements :
 
 ----
 
-*ⓘ Facultativement, un message peut-être rattaché à une campagne, ce
-point est traité dans la [section dédiée de la documentation](../campagnes/).*
+*ⓘ Facultativement, un message peut-être rattaché à une catégorie, ce
+point est traité dans la [section dédiée de la documentation](../categories/).*
 
 ----
 
@@ -65,7 +66,7 @@ Si tout se passe bien, l'API devrait vous retourner :
         "subject": "Tu peux faire tout ce que tu veux",
         "html": "<h1>Mais ne marche pas sur mes chaussures en suédine bleue</h1>"
         "status": "message_ok",
-        "campaign": null,
+        "category": null,
         "creation_date": "2015-01-12T15:37:29.803Z",
         "send_date": null,
         "completion_date": null,
@@ -235,7 +236,7 @@ On appelle la prévisualisation :
 
 * **recipients** et **excluded_recipients** se partagent les destinataires que
     vous avez définis à l'[étape 2.](#2-ajoutmodification-dune-liste-de-destinataires), dans excluded_recipients sont listés les
-    destinataires auxquels la campagne ne sera pas envoyée pour des raisons de
+    destinataires auxquels le message ne sera pas envoyée pour des raisons de
     désinscription ([résiliation](/#desinscription-opt-out)) de leur part ou des raisons techniques ([bounces](/#bounce)).
 
 ### Envoi à quelques destinataires pilotes
@@ -243,7 +244,7 @@ On appelle la prévisualisation :
 À ce stade, vous pouvez envoyer votre message à un ou plusieurs destinataires
 « pilotes », par exemple vous-même, des collègues, proches…
 
-Cette étape peut vous servir, par exemple, à valider l'affichage de la campagne
+Cette étape peut vous servir, par exemple, à valider l'affichage du message
 sur différents webmails, terminaux mobiles…
 
 Les mails générés seront identiques à ceux réellement envoyés à vos
@@ -267,7 +268,7 @@ Une fois que tout semble bon, il n'y a plus qu'à changer l'attribut **status**
 du message à *sending*, par exemple à l'aide d'une requête `PATCH` (en ne
 passant que l'attribut *status*):
 
-    PATCH /v1/campaigns/1/
+    PATCH /v1/messages/1/
 	{
 		"status"       :"sending"
     }
@@ -283,7 +284,7 @@ envoyée à la fin du processus.
 ### Suivi des emails
 
 Vous pouvez avoir tous les emails en cours d'acheminement et utilisant
-le lien `mails` de la campagne. Par exemple :
+le lien `mails` du message. Par exemple :
 
     GET /v1/messages/4/mails/
     {
@@ -351,13 +352,13 @@ identifiant de client est le 42 :
                 "address": "jane-blacklist@example.com",
                 "date": "2014-08-08T14:54:35Z",
                 "origin": "mail",
-                "campaign": null
+                "category": null
             },
             {
                 "address": "john-greylist@example.com",
                 "date": "2014-08-08T14:55:16Z",
                 "origin": "feedback-loop",
-                "campaign": null
+                "category": null
             },
     	]
     }

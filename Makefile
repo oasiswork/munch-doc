@@ -12,4 +12,4 @@ publish:
 
 check_links:
 	echo 'Dead links :'
-	wget --spider -r -p http://localhost:8092 2>&1 |grep '^http://'
+	wget --spider -r -p http://localhost:8092 2>&1 |(! grep '^http://')

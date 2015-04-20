@@ -33,7 +33,7 @@ Tant que le message n'est pas envoyé (étape 4.), il peut-être modifié.
 
 ---
 
-*Des [options de suivi](tracking) des messages sont également disponibles.*
+*Des [options de suivi](../tracking) des messages sont également disponibles.*
 
 ---
 

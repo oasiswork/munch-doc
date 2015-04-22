@@ -6,9 +6,10 @@ examples:
 	echo '```' >> docs/exemples/php.md
 
 publish:
+	cd site; git pull
 	make examples
 	mkdocs build
-	cd site; git pull; git add --all; git commit -m "site build"; git push
+	cd site; git add --all; git commit -m "site build"; git push
 
 check_links:
 	echo 'Dead links :'

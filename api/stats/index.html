@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Statistiques - MunchMail</title>
+        <title>Statistiques - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -188,7 +188,7 @@
 pourcentages si vous le souhaitez.</p>
 <h2 id="par-message">Par Message</h2>
 <p>Il est possible d'obtenir des statistiques à l'échelle d'un Message.</p>
-<pre><code>GET /v1/messages/1/stats/
+<pre class="prettyprint well"><code>GET /v1/messages/1/stats/
 {
     "count": {
         "had_delay": 1,
@@ -235,26 +235,26 @@ pourcentages si vous le souhaitez.</p>
 </ul>
 </li>
 <li><strong>last_status</strong> : Nombre de mail parvenus à chaque statut. (détail des statuts
-    <a href="../../../annexes/#statuts-de-mails">en annexe</a>)</li>
+    <a href="../../annexes/#statuts-de-mails">en annexe</a>)</li>
 <li><strong>timing</strong> (en secondes) : durée d'envoi pour l'ensemble des mails, et durée
     médiane d'un envoi</li>
 <li><strong>tracking</strong> : informations de suivi, les compteurs sont systématiquement à
-    zéro si <a href="../../tracking">le suivi</a> n'est pas activé.<ul>
+    zéro si <a href="../tracking">le suivi</a> n'est pas activé.<ul>
 <li><strong>clicked</strong> : nombre de correspondants ayant cliqué sur chaque lien, <em>any</em>
   donne le nombre de destinataires ayant cliqué sur un lien quelconque.</li>
 <li><strong>opened</strong> : nombre d'utilisateurs ayant ouvert le message et affiché le
-  pixel caché (cf <a href="../../tracking">suivi</a>)</li>
+  pixel caché (cf <a href="../tracking">suivi</a>)</li>
 </ul>
 </li>
 <li><strong>optout</strong> : nombre de désinscriptions totales et par type (types
                détaillés
-               <a href="../../../annexes/#types-de-desinscriptions-opt-outs">en annexe</a>)</li>
+               <a href="../../annexes/#types-de-desinscriptions-opt-outs">en annexe</a>)</li>
 </ul>
 <h2 id="par-categorie">Par catégorie</h2>
 <p>Il est également possible d'avoir des statistiques agrégées pour l'ensemble des
-messages d'une <a href="../../categories/">catégorie</a>, les infos sont similaires à celles
+messages d'une <a href="../categories/">catégorie</a>, les infos sont similaires à celles
 retournées pour le message mais moins nombreuses :</p>
-<pre><code>GET /v1/categories/1/stats/
+<pre class="prettyprint well"><code>GET /v1/categories/1/stats/
 {
     "count": {
         "had_delay": 1,
@@ -282,14 +282,15 @@ retournées pour le message mais moins nombreuses :</p>
         "total": 2
     }
 }
-</code></pre></div>
+</code></pre>
+</div>
         </div>
 
         
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Suivi des actions côté destinataire - MunchMail</title>
+        <title>Suivi des actions côté destinataire - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -195,7 +195,7 @@ paramètres de la ressource (par défaut désactivés) :</p>
 <li><strong>track_clicks</strong> : surveille les clics</li>
 </ul>
 <p>Par exemple, pour créer un message incluant les deux formes de suivi :</p>
-<pre><code>POST /v1/messages/
+<pre class="prettyprint well"><code>POST /v1/messages/
 {
     "name"         :"Newsletter de Juillet",
     "sender_email" :"newsletter@example.com",
@@ -208,18 +208,18 @@ paramètres de la ressource (par défaut désactivés) :</p>
 </code></pre>
 <h2 id="consultation">Consultation</h2>
 <h3 id="statistiques-par-message">Statistiques par message</h3>
-<p>L'usage le plus intéressant de ce suivi est certainement <a href="../../stats">les
+<p>L'usage le plus intéressant de ce suivi est certainement <a href="../stats">les
 statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
 <code>message</code> :</p>
 <ul>
 <li>nombre d'ouverture détectées</li>
 <li>nombre de clics, global et par url</li>
 </ul>
-<p>Voir la <a href="../../stats">section statistiques</a>.</p>
+<p>Voir la <a href="../stats">section statistiques</a>.</p>
 <h3 id="detail-par-destinataire">Détail par destinataire</h3>
 <p>Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
 <code>mail</code> envoyé.</p>
-<pre><code>GET /v1/messages/1/mails
+<pre class="prettyprint well"><code>GET /v1/messages/1/mails
 [
     {
         "url": "https://api.munchmail.net/v1/mails/1/",
@@ -261,14 +261,15 @@ statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
         }
     }
 ]
-</code></pre></div>
+</code></pre>
+</div>
         </div>
 
         
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

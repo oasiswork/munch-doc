@@ -187,17 +187,7 @@ donc créer un CNAME <em>editeur.portail.mon-interface.com</em> qui pointe vers
 <h2 id="integration">Intégration</h2>
 <p>Ces modifications sont à effectuer dans le code de votre application (ex:
 portail d'entreprise, intranet, CMS...)</p>
-<!--
-// Préciser un peu le rapport avec le formulaire de la page de l'application
-// tierce, et ce que va faire le script bootstrap.js dans les très grandes lignes.
--->
-
 <p>Cette application comporte un fichier d'exemple (<em>static/test.html</em>) <a href="../exemple/">Voir les fichiers d'exemple</a>. </p>
-<!--
-// PLUTOT POINTER VERS UN SAMPLE ? « cette application » n'a pas de sens, ils
-// n'ont pas le code en local...
--->
-
 <p>On ajoute la balise:</p>
 <pre><code>&lt;script&gt;document.domain = document.domain;&lt;script&gt;
 </code></pre>
@@ -207,7 +197,9 @@ autoriser la communication entre iframes),</p>
 <pre><code>&lt;script src="bootstrap.js"&gt;&lt;/script&gt;
 </code></pre>
 <p>…avec les autres assets. <a href="../exemple/#le-fichier-bootstrapjs">Voir un exemple du fichier bootstrap</a></p>
-<p>Dans le fichier bootstrap.js, il faut également modifier var SRC = 'http://editeur.portail.mon-intranet.com/'; pour mettre la bonne url.</p>
+<p>Dans le fichier bootstrap.js, il faut également modifier :</p>
+<pre><code>var SRC = 'http://editeur.portail.mon-intranet.com/';
+</code></pre>
 <p>On l'exécute sur le champ de formulaire correspondant et avec le template souhaité</p>
 <pre><code>&lt;script type="text/javascript"&gt;
 var editor = document.getElementById('newsletter-textarea');

@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Intégration - MunchMail</title>
+        <title>Intégration - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -182,7 +182,7 @@ domaine de votre interface (ex: portail interne) et qu'il pointe vers
 <p>Exemple, votre interface possède l'url suivante : <em>mon-intranet.com</em>. Vous pouvez
 donc créer un CNAME <em>editeur.portail.mon-interface.com</em> qui pointe vers
 <em>editeur.munchmail.net</em>. Ce qui donnera au niveau de vos enregistrements :</p>
-<pre><code>editeur.portail.mon-intranet.com.          CNAME           dentifrice.munchmail.net.
+<pre class="prettyprint well"><code>editeur.portail.mon-intranet.com.          CNAME           dentifrice.munchmail.net.
 </code></pre>
 <h2 id="integration">Intégration</h2>
 <p>Ces modifications sont à effectuer dans le code de votre application (ex:
@@ -199,17 +199,17 @@ portail d'entreprise, intranet, CMS...)</p>
 -->
 
 <p>On ajoute la balise:</p>
-<pre><code>&lt;script&gt;document.domain = document.domain;&lt;script&gt;
+<pre class="prettyprint well"><code>&lt;script&gt;document.domain = document.domain;&lt;script&gt;
 </code></pre>
 <p>...en tout début de document (avant les inclusions d'assets externes) (pour
 autoriser la communication entre iframes),</p>
 <p>Puis…</p>
-<pre><code>&lt;script src="bootstrap.js"&gt;&lt;/script&gt;
+<pre class="prettyprint well"><code>&lt;script src="bootstrap.js"&gt;&lt;/script&gt;
 </code></pre>
 <p>…avec les autres assets. <a href="../exemple/#le-fichier-bootstrapjs">Voir un exemple du fichier bootstrap</a></p>
 <p>Dans le fichier bootstrap.js, il faut également modifier var SRC = 'http://editeur.portail.mon-intranet.com/'; pour mettre la bonne url.</p>
 <p>On l'exécute sur le champ de formulaire correspondant et avec le template souhaité</p>
-<pre><code>&lt;script type="text/javascript"&gt;
+<pre class="prettyprint well"><code>&lt;script type="text/javascript"&gt;
 var editor = document.getElementById('newsletter-textarea');
 document.oasisBootstrap(editor, 'http://dentifrice.munchmail.net/path/nom-du-template.html');
 &lt;/script&gt;
@@ -220,14 +220,15 @@ document.oasisBootstrap(editor, 'http://dentifrice.munchmail.net/path/nom-du-tem
 <li>Un seul éditeur de newsletter par page.</li>
 <li>Le textarea est rempli au moment de l'envoi.</li>
 <li>Pas d'attribut required sur le textarea sans le form novalidate, sinon on passe pas dans le onsubmit du coup le textarea n'est pas rempli</li>
-</ul></div>
+</ul>
+</div>
         </div>
 
         
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

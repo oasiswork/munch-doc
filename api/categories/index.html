@@ -9,11 +9,19 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
+<<<<<<< HEAD
 	<title>Catégories - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
         <link rel="stylesheet" href="../../css/highlight.css">
+=======
+        <title>Catégories - MunchMail</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+>>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -189,13 +197,21 @@ désinscriptions ne sont honorées qu'au sein d'une même catégorie. Un même
 destinataire peut donc s'être désinscrit d'une catégorie mais continuer à
 recevoir les communications d'une autre catégorie.</p>
 <h2 id="creation-dune-categorie">Création d'une catégorie</h2>
+<<<<<<< HEAD
 <pre><code>POST /v1/categories/
+=======
+<pre class="prettyprint well"><code>POST /v1/categories/
+>>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 {
     "name": Newsletter clients ACME"
 }
 </code></pre>
 <p>Retourne</p>
+<<<<<<< HEAD
 <pre><code>HTTP 201 CREATED
+=======
+<pre class="prettyprint well"><code>HTTP 201 CREATED
+>>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 {
     "url": "https://api.munchmail.net/v1/categories/2/",
     "name": "Newsletter clients ACME"
@@ -207,27 +223,47 @@ recevoir les communications d'une autre catégorie.</p>
     }
 }
 </code></pre>
+<<<<<<< HEAD
 <p>Notez le lien <code>opt_outs</code> permettant de lire la liste des <a href="../../tutoriel/#suivi-des-resiliations">opt_outs</a> associés à
+=======
+<p>Notez le lien <code>opt_outs</code> permettant de lire la liste des <a href="../tutoriel/#suivi-des-resiliations">opt_outs</a> associés à
+>>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 une catégorie.</p>
 <h2 id="attacher-des-messages-a-une-categorie">Attacher des messages à une catégorie</h2>
 <p>Cela se passe via l'attribut <code>category</code> de la ressource <code>message</code>. Par exemple
 si vous voulez attacher la catégorie précédemment créée au message
 <code>https://api.munchmail.net/v1/messages/4/</code>, faites simplement :</p>
+<<<<<<< HEAD
 <pre><code>PATCH /v1/messages/4/
+=======
+<pre class="prettyprint well"><code>PATCH /v1/messages/4/
+>>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 {
     "category": "https://api.munchmail.net/v1/categories/2/"
 }
 </code></pre>
 <p>Vous pouvez bien évidemment définir cet attribut dès
+<<<<<<< HEAD
 <a href="../../tutoriel/#1-creationedition-dun-message-avec-ses-attributs">la création du message</a>.</p>
 <p>Placer l'attribut à <code>null</code> pour retirer l'association à la catégorie.</p></div>
+=======
+<a href="../tutoriel/#1-creationedition-dun-message-avec-ses-attributs">la création du message</a>.</p>
+<p>Placer l'attribut à <code>null</code> pour retirer l'association à la catégorie.</p>
+</div>
+>>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
         </div>
 
         
 
+<<<<<<< HEAD
         <script src="../../js/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
         <script src="../../js/highlight.pack.js"></script>
+=======
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+>>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
         <script src="../../js/base.js"></script>
     </body>
 </html>

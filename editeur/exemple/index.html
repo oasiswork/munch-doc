@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Campagnes - MunchMail</title>
+	<title>Exemple - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -56,7 +56,7 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">L'API <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -65,19 +65,15 @@
                         </li>
                     
                         <li >
-                            <a href="../../api/auth/">Authentification</a>
+                            <a href="../../api/auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
                             <a href="../../api/tutoriel/">Tutoriel : un envoi de A à Z</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">Campagnes</a>
-                        </li>
-                    
                         <li >
-                            <a href="../../api/campagnes/">Campagnes</a>
+                            <a href="../../api/categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -97,7 +93,7 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Éditeur <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Exemple</a>
                         </li>
                     
                     </ul>
@@ -144,12 +144,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../../api/tutoriel/">
+                    <a rel="next" href="../creation-template/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../api/campagnes/">
+                    <a rel="prev" href="../../exemples/php/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -207,7 +207,7 @@
     &lt;script src="bootstrap.js"&gt;&lt;/script&gt;
     &lt;script type="text/javascript"&gt;
     var editor = document.getElementById('newsletter-textarea');
-    document.oasisBootstrap(editor, 'http://dentifrice.munchmail.net/path/nom-du-template.html');
+    document.oasisBootstrap(editor, 'path/nom-du-template.html');
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;

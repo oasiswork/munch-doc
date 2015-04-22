@@ -65,7 +65,7 @@
                         </li>
                     
                         <li >
-                            <a href="../../api/auth/">Authentification</a>
+                            <a href="../../api/auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
@@ -73,11 +73,7 @@
                         </li>
                     
                         <li >
-                            <a href="../exemple/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../api/campagnes/">Campagnes</a>
+                            <a href="../../api/categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../exemple/">Exemple</a>
                         </li>
                     
                     </ul>
@@ -207,6 +207,7 @@ autoriser la communication entre iframes),</p>
 <pre><code>&lt;script src="bootstrap.js"&gt;&lt;/script&gt;
 </code></pre>
 <p>…avec les autres assets. <a href="../exemple/#le-fichier-bootstrapjs">Voir un exemple du fichier bootstrap</a></p>
+<p>Dans le fichier bootstrap.js, il faut également modifier var SRC = 'http://editeur.portail.mon-intranet.com/'; pour mettre la bonne url.</p>
 <p>On l'exécute sur le champ de formulaire correspondant et avec le template souhaité</p>
 <pre><code>&lt;script type="text/javascript"&gt;
 var editor = document.getElementById('newsletter-textarea');

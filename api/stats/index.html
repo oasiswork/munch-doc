@@ -65,7 +65,7 @@
                         </li>
                     
                         <li >
-                            <a href="../auth/">Authentification</a>
+                            <a href="../auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
@@ -73,11 +73,7 @@
                         </li>
                     
                         <li >
-                            <a href="../../editeur/exemple/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../campagnes/">Campagnes</a>
+                            <a href="../categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../../editeur/creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../editeur/exemple/">Exemple</a>
                         </li>
                     
                     </ul>
@@ -166,6 +166,8 @@
         <li class="main active"><a href="#statistiques">Statistiques</a></li>
         
             <li><a href="#par-message">Par Message</a></li>
+        
+            <li><a href="#par-categorie">Par catégorie</a></li>
         
     
     </ul>
@@ -247,7 +249,40 @@ pourcentages si vous le souhaitez.</p>
 <li><strong>optout</strong> : nombre de désinscriptions totales et par type (types
                détaillés
                <a href="../../../annexes/#types-de-desinscriptions-opt-outs">en annexe</a>)</li>
-</ul></div>
+</ul>
+<h2 id="par-categorie">Par catégorie</h2>
+<p>Il est également possible d'avoir des statistiques agrégées pour l'ensemble des
+messages d'une <a href="../../categories/">catégorie</a>, les infos sont similaires à celles
+retournées pour le message mais moins nombreuses :</p>
+<pre><code>GET /v1/categories/1/stats/
+{
+    "count": {
+        "had_delay": 1,
+        "total": 5,
+        "done": 2,
+        "in_transit": 3
+    },
+    "timing": {
+        "delivery_median": 39
+    },
+    "last_status": {
+        "delivered": 1,
+        "unknown": 2,
+        "hardbounced": 1,
+        "softbounced": 1,
+        "error": 0,
+        "sent": 0
+    },
+    "optout": {
+        "web": 0,
+        "bounce": 0,
+        "feedback-loop": 1,
+        "abuse": 0,
+        "mail": 1,
+        "total": 2
+    }
+}
+</code></pre></div>
         </div>
 
         

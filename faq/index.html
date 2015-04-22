@@ -65,7 +65,7 @@
                         </li>
                     
                         <li >
-                            <a href="../api/auth/">Authentification</a>
+                            <a href="../api/auth/">Authentification & utilisateurs</a>
                         </li>
                     
                         <li >
@@ -73,11 +73,7 @@
                         </li>
                     
                         <li >
-                            <a href="../editeur/exemple/">Campagnes</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../api/campagnes/">Campagnes</a>
+                            <a href="../api/categories/">Catégories</a>
                         </li>
                     
                         <li >
@@ -107,6 +103,10 @@
                     
                         <li >
                             <a href="../editeur/creation-template/">Création de template</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../editeur/exemple/">Exemple</a>
                         </li>
                     
                     </ul>
@@ -204,13 +204,14 @@ en masse</strong>. Il est beaucoup plus efficace d'héberger images et pièces-j
 sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère et
 évite d'encombrer les boites mail de vos destinataires.</p>
 <hr />
-<p>Pour ajouter une pièce-jointe sur la campagne <code>/v1/campaigns/1/</code> :</p>
-<pre><code>POST /v1/campaigns/1/attachments/
+<p>Pour ajouter une pièce-jointe sur le message <code>/v1/messages/1/</code> :</p>
+<pre><code>POST /v1/messages/1/attachments/
 file: votre fichier
 </code></pre>
 <p>Cette requête <em>doit</em> avoir un <code>Content-Type</code> à <code>multipart/form-data</code> à l'inverse
 de beaucoup d'autres qui transfèrent leur contenu en <code>application/json</code>.</p>
-<p>Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une erreur 400 est renvoyée
+<p>Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une
+erreur 400 est renvoyée
 et le fichier rejeté, par exemple :</p>
 <pre><code>HTTP 400 BAD REQUEST
 {

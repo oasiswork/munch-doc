@@ -18,17 +18,8 @@ donc créer un CNAME *editeur.portail.mon-interface.com* qui pointe vers
 Ces modifications sont à effectuer dans le code de votre application (ex:
 portail d'entreprise, intranet, CMS...)
 
-<!--
-// Préciser un peu le rapport avec le formulaire de la page de l'application
-// tierce, et ce que va faire le script bootstrap.js dans les très grandes lignes.
--->
-
 Cette application comporte un fichier d'exemple (*static/test.html*) [Voir les fichiers d'exemple](exemple.md). 
 
-<!--
-// PLUTOT POINTER VERS UN SAMPLE ? « cette application » n'a pas de sens, ils
-// n'ont pas le code en local...
--->
 
 On ajoute la balise:
 
@@ -43,7 +34,9 @@ Puis…
 
 …avec les autres assets. [Voir un exemple du fichier bootstrap](exemple.md#le-fichier-bootstrapjs)
 
-Dans le fichier bootstrap.js, il faut également modifier var SRC = 'http://editeur.portail.mon-intranet.com/'; pour mettre la bonne url.
+Dans le fichier bootstrap.js, il faut également modifier :
+
+	var SRC = 'http://editeur.portail.mon-intranet.com/';
 
 On l'exécute sur le champ de formulaire correspondant et avec le template souhaité
 

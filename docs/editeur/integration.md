@@ -43,6 +43,8 @@ Puis…
 
 …avec les autres assets. [Voir un exemple du fichier bootstrap](exemple.md#le-fichier-bootstrapjs)
 
+Dans le fichier bootstrap.js, il faut également modifier var SRC = 'http://editeur.portail.mon-intranet.com/'; pour mettre la bonne url.
+
 On l'exécute sur le champ de formulaire correspondant et avec le template souhaité
 
 	<script type="text/javascript">

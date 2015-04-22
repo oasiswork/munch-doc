@@ -34,7 +34,7 @@ Exemples
 		<script src="bootstrap.js"></script>
 		<script type="text/javascript">
 		var editor = document.getElementById('newsletter-textarea');
-		document.oasisBootstrap(editor, 'http://dentifrice.munchmail.net/path/nom-du-template.html');
+		document.oasisBootstrap(editor, 'path/nom-du-template.html');
 		</script>
 	</body>
 	</html>

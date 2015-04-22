@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="./img/favicon.ico">
 
-        <title>MunchMail</title>
+	<title>MunchMail</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link href="./css/prettify-1.0.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
         <link href="./css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -233,7 +233,7 @@ version HTML et se chargera de proposer aux destinataires à la fois :</p>
 <ul>
 <li>une version de votre HTML « nettoyée » pour respecter un certain nombre de
   bonnes pratiques et s'afficher correctement chez tous vos destinataires (voir
-  <a href="/annexes/#details-des-modifications-appliquees-aux-emails">détail des modifications</a>)</li>
+  <a href="./annexes/#details-des-modifications-appliquees-aux-emails">détail des modifications</a>)</li>
 <li>une version texte pour les clients mail ne supportant que ce format ou pour les
   destinataires ayant fait ce choix d'affichage.</li>
 </ul>
@@ -267,9 +267,9 @@ contacter plutôt que de leur proposer une désinscription en ligne.</p>
 </ul>
 <p>Vous seront ensuite communiquées :</p>
 <ul>
-<li>Un mot de passe utilisateur pour l'<a href="api/intro/#api-navigable">API navigable</a>, à utiliser avec
+<li>Un mot de passe utilisateur pour l'<a href="./api/intro/#api-navigable">API navigable</a>, à utiliser avec
   l'email principal</li>
-<li>Une <a href="api/auth/#par-clef-dapi-http-basic">clef d'API</a> pour la connexion de votre application à MunchMail</li>
+<li>Une <a href="./api/auth/#par-clef-dapi-http-basic">clef d'API</a> pour la connexion de votre application à MunchMail</li>
 </ul>
 <h2 id="configuration-dns-requise">Configuration DNS requise</h2>
 <p>Pour un <em>taux de remise</em> optimal de vos messages, nous respectons un certain
@@ -284,7 +284,7 @@ serveurs à envoyer des mails en provenance de votre domaine.</p>
 devez ajouter un enregistrement <code>TXT</code> sur le domaine <em>mailling.example.com</em>.</p>
 <p>A-minima, si vous ne disposez pas encore d'un enregistrement SPF sur votre
 domaine, vous pouvez ajouter quelque chose comme :</p>
-<pre class="prettyprint well"><code>mailling.example.com. 720 IN TXT "v=spf1 include:_spf.munchmail.net ?all"
+<pre><code>mailling.example.com. 720 IN TXT "v=spf1 include:_spf.munchmail.net ?all"
 </code></pre>
 <p>Si vous disposez déjà d'un enregistrement SPF, vous pouvez vous contenter
 d'ajouter la règle <code>include:_spf.munchmail.net</code> à votre chaîne afin
@@ -296,16 +296,15 @@ serveurs à signer cryptographiquement les mails envoyés en votre nom avec notr
 propre clef.</p>
 <p>Si vous souhaitez envoyer vos emails depuis <em>elvis@mailling.example.com</em>, vous
 devez ajouter l'enregistrement <code>TXT</code> suivant :</p>
-<pre class="prettyprint well"><code>munchmail-mta._domainkey.mailling.example.com.  500 IN TXT "v=DKIM1\; k=rsa\; t=y\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUOpGbKv4CiE0Wpv6z/lPx7gVKsqirF45wvySQwBampWcVbB152vBG59bFEtCmk9fwelon7JPAazFH67VhgVbCdGh+oZ2+iMnfRzo7yA1SaR2UeFXQUdxVvkDE5tf194/groY07fOyb5ukuYZMI35/8xrhmYed+yQz/RDchTprUQIDAQAB"
-</code></pre>
-</div>
+<pre><code>munchmail-mta._domainkey.mailling.example.com.  500 IN TXT "v=DKIM1\; k=rsa\; t=y\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUOpGbKv4CiE0Wpv6z/lPx7gVKsqirF45wvySQwBampWcVbB152vBG59bFEtCmk9fwelon7JPAazFH67VhgVbCdGh+oZ2+iMnfRzo7yA1SaR2UeFXQUdxVvkDE5tf194/groY07fOyb5ukuYZMI35/8xrhmYed+yQz/RDchTprUQIDAQAB"
+</code></pre></div>
         </div>
 
         
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="./js/jquery-1.10.2.min.js"></script>
         <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/prettify-1.0.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
         <script src="./js/base.js"></script>
     </body>
 </html>

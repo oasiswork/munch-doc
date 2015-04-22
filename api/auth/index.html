@@ -9,15 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-<<<<<<< HEAD
 	<title>Authentification & utilisateurs - MunchMail</title>
-=======
-        <title>Authentification & utilisateurs - MunchMail</title>
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -167,21 +163,13 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-<<<<<<< HEAD
         <li class="main active"><a href="#authentification-utilisateurs">Authentification  utilisateurs</a></li>
-=======
-        <li class="main active"><a href="#authentification-utilisateurs">Authentification &amp; utilisateurs</a></li>
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
         
             <li><a href="#authentification-par-session-pour-testsdebug">Authentification par session (pour tests/debug)</a></li>
         
             <li><a href="#par-clef-dapi-http-basic">Par clef d'API (HTTP Basic)</a></li>
         
-<<<<<<< HEAD
             <li><a href="#utilisateurs-applications">Utilisateurs  applications</a></li>
-=======
-            <li><a href="#utilisateurs-applications">Utilisateurs &amp; applications</a></li>
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
         
             <li><a href="#droits">Droits</a></li>
         
@@ -221,11 +209,7 @@ comment utiliser l'authentification <em>HTTP Basic</em>.</p>
 </ul>
 <p>Les détails d'authentification sont à attacher à chaque requête.</p>
 <p>L'authentification est abordée notamment dans nos
-<<<<<<< HEAD
 <a href="../../exemples/php/">exemples pour PHP</a>.</p>
-=======
-<a href="/exemples/php/">exemples pour PHP</a>.</p>
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 <h2 id="utilisateurs-applications">Utilisateurs &amp; applications</h2>
 <p>Deux types d'utilisateurs existent :</p>
 <ul>
@@ -237,11 +221,7 @@ comment utiliser l'authentification <em>HTTP Basic</em>.</p>
 </ul>
 <h3 id="lister-les-utilisateurs">Lister les utilisateurs.</h3>
 <p>Vous pouvez lister individuellement les applications :</p>
-<<<<<<< HEAD
 <pre><code>GET /v1/users/apps/
-=======
-<pre class="prettyprint well"><code>GET /v1/users/apps/
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 {
     "count": 1,
     "next": null,
@@ -263,11 +243,7 @@ comment utiliser l'authentification <em>HTTP Basic</em>.</p>
 }
 </code></pre>
 <p>Ou pour les utilisateurs humains :</p>
-<<<<<<< HEAD
 <pre><code>GET /v1/users/humans/
-=======
-<pre class="prettyprint well"><code>GET /v1/users/humans/
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 {
     "count": 2,
     "next": null,
@@ -303,21 +279,13 @@ comment utiliser l'authentification <em>HTTP Basic</em>.</p>
 leurs types.</p>
 <h3 id="ajouter-une-application">Ajouter une application</h3>
 <p>Il vous suffit de renseigner un identifiant que vous choisissez dans le champ <em>identifier</em>:</p>
-<<<<<<< HEAD
 <pre><code>POST /v1/users/apps/
-=======
-<pre class="prettyprint well"><code>POST /v1/users/apps/
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 {
     "identifier": "foo@example.com"
 }
 </code></pre>
 <p>Ce qui devrait vous retourner :</p>
-<<<<<<< HEAD
 <pre><code>HTTP 201 CREATED
-=======
-<pre class="prettyprint well"><code>HTTP 201 CREATED
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
 {
     "url": "http://localhost:8000/v1/users/apps/13/",
     "identifier": "my-erp",
@@ -365,19 +333,14 @@ devrait retourner
 <hr />
 <p><em>ⓘ Des droits plus fins pourront être appliqués dans des version ultérieures de
  l'API.</em></p>
-<<<<<<< HEAD
 <hr /></div>
-=======
-<hr />
-</div>
->>>>>>> 85b94a7d0b8f574711ffe05280c496e616834af1
         </div>
 
         
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

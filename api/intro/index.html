@@ -169,6 +169,10 @@
         
             <li><a href="#pagination">Pagination</a></li>
         
+            <li><a href="#critere-de-tri">Critère de tri</a></li>
+        
+            <li><a href="#filtrage-des-resultats">Filtrage des résultats</a></li>
+        
             <li><a href="#api-navigable">API navigable</a></li>
         
     
@@ -211,6 +215,25 @@ précédente sans se poser d'autre question.</p>
 <p>Vous pouvez augmenter le nombre d'objets par page (maximum : 1000) en ajoutant le
 querystring <code>page_size</code>. Par exemple, pour avoir des pages de 200 objets,
 ajoutez<code>?page_size=200</code> à l'URL.</p>
+<h2 id="critere-de-tri">Critère de tri</h2>
+<p>Il est possible d'indiquer un critère de tri pour chaque vue de l'API présentant
+une liste  grâce au paramètre <strong>ordering</strong>. Par exemple, pour avoir les <code>mails</code>
+d'un message par adresse d'expéditeur anti-alphabétique (noter le « <code>-</code> ») :</p>
+<pre class="prettyprint well"><code>GET /messages/?ordering=-address
+</code></pre>
+<p>Vous pouvez obtenir la liste des critères de tri / filtre disponibles et le
+critère de tri par défaut directement depuis l'<a href="#api-navigable">API navigable</a>
+(ex, pour les messages :
+<a href="https://api.munchmail.net/v1/messages/">/v1/messages/</a>).</p>
+<h2 id="filtrage-des-resultats">Filtrage des résultats</h2>
+<p>Toutes les vues en liste vous permettent de filtrer les résultats selon des
+valeurs de champs en spécifiant le champ et la valeur en
+<a href="https://en.wikipedia.org/wiki/Query_string">querystring</a>.</p>
+<p>Par exemple, pour avoir tous les mails délivrés avec succès :</p>
+<pre class="prettyprint well"><code>GET /v1/mails/?last_status=delivered
+</code></pre>
+<p>Les critères de filtrage sont les mêmes que ceux disponibles
+<a href="#critere-de-tri">pour le tri</a>.</p>
 <h2 id="api-navigable">API navigable</h2>
 <p>L'API est <em>navigable</em>, en accédant à
 <em><a href="https://api.munchmail.net/v1">https://api.munchmail.net/v1</a></em>
@@ -218,9 +241,9 @@ directement depuis votre navigateur, puis en vous
 <a href="../auth/#par-session-pour-testsdebug">authentifiant avec votre email</a>, vous
 pouvez exploiter toutes les possibilités offertes à votre application depuis une
 interface conviviale, conçue pour les humains.</p>
-<p>Cet usage est évidemement à réserver à des fins de debug et de test. Elle n'est
+<p>Cet usage est évidemment à réserver à des fins de debug et de test. Elle n'est
 en aucun cas une interface pour les utilisateurs finaux.</p>
-<p>Les <strong>attributs des différentes resources</strong> sont documentées de manière
+<p>Les <strong>attributs des différentes ressources</strong> sont documentées de manière
 précise au sein de cette interface.</p>
 </div>
         </div>

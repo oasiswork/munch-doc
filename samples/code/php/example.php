@@ -1,14 +1,67 @@
 <?php
+// adapt it to your encoding, for ex ISO-8859-15
+define("MY_ENCODING", "UTF-8");
+
 class HTTPException extends Exception {}
 
-class HTTPClient{
-	/** Classe utilitaire pour accéder à l'API
+/** Class to handle encoding issues
+ *
+ * Otherwise, it will allow you to detect the current encoding of your
+ * application and convert the data from/to API with the correct charsets.
+ *
+ * It helps dealing safely with json_encode and json_decode as they require utf8
+ * in any case.
+ * If you're sure your application is using utf-8, you can safely get rid of the
+ * use of this class.
+ */
+class CharsetEncoder{
+	public function __construct($internal_encoding) {
+		$this->code_encoding = $internal_encoding;//mb_internal_encoding();
+		$this->api_encoding = 'UTF-8';
+		$this->need_transcoding = ($this->api_encoding != $this->code_encoding);
+	}
 
-	    Utilise php5-curl (il est donc nécessaire de l'installer).
-
-	    $cert_file     : chemin vers le fichier de certificat client
-	    $ca_file       : chemin vers le certificat du serveur oasiswork
+	/** Converts the array to utf-8 if needed
 	 */
+	public function array_to_api($array) {
+		if ($this->need_transcoding) {
+			$copy = unserialize(serialize($array));
+			array_walk_recursive($copy, function(&$val) {
+					if (is_string($val)) {
+						$val = mb_convert_encoding($val, $this->api_encoding,
+						                           $this->code_encoding);}
+				});
+			return $copy;
+		} else {
+			return $array;
+		}
+	}
+
+	/** Converts the array from utf-8 if needed
+	 */
+	public function array_from_api($array) {
+		if ($this->need_transcoding) {
+			$copy = unserialize(serialize($array));
+			array_walk_recursive($copy, function(&$val) {
+					if (is_string($val)) {
+						$val = mb_convert_encoding($val, $this->code_encoding,
+						                           $this->api_encoding);}
+					}
+				});
+			return $copy;
+				} else {
+			return $array;
+		}
+	}
+};
+
+
+/** Classe utilitaire pour accéder à l'API
+ *
+ * Utilise php5-curl (il est donc nécessaire de l'installer).
+ * $api_key : clef d'API
+ */
+class HTTPClient{
 
 	private $ch;
 	private $base_options;
@@ -21,6 +74,7 @@ class HTTPClient{
 		  CURLOPT_HTTPHEADER     => array('Content-Type: application/json')
 		);
 		$this->ch = curl_init();
+		$this->encoder = new CharsetEncoder(MY_ENCODING);
 	}
 
 	/** Handles an HTTP response, throws exception if Error
@@ -50,12 +104,14 @@ class HTTPClient{
 	 *                 object
 	 */
 	public function req($reqtype, $url, $data=NULL) {
+		if ($data) {$data = $this->encoder->array_to_api($data)};
+		$json_data = json_encode($data);
 		$req_opts = array(CURLOPT_URL            => $url,
 		                  CURLOPT_CUSTOMREQUEST  => $reqtype,
-		                  CURLOPT_POSTFIELDS     => json_encode($data));
+		                  CURLOPT_POSTFIELDS     => $json_data);
 		curl_setopt_array($this->ch, $req_opts + $this->base_options);
 		$out = curl_exec($this->ch);
-		return $this->handle_return($out, array(200, 201));
+		return $this->encoder->array_from_api($this->handle_return($out, array(200, 201)));
 	}
 
 	// shortcuts to HTTP methods

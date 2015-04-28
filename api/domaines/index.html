@@ -9,11 +9,11 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-        <title>Domaines - MunchMail</title>
+	<title>Domaines - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
         <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -175,20 +175,20 @@
 nécessaires.</p>
 <ol>
 <li>Enregistrer le domaine <em>example.com</em> dans munchmail</li>
-<li>Créer ou modifier les bons enregistrement DNS pour <a href="/#enregistrement-dkim">DKIM</a> et <a href="/#enregistrement-spf">SPF</a> (cf <a href="/#enregistrement-spf">notre guide</a>)</li>
+<li>Créer ou modifier les bons enregistrement DNS pour <a href="../../#enregistrement-dkim">DKIM</a> et <a href="../../#enregistrement-spf">SPF</a> (cf <a href="../../#enregistrement-spf">notre guide</a>)</li>
 <li>Vérifier le tout</li>
 </ol>
 <hr />
-<p><em>⚠ Il est nécessaire d'être <a href="../auth/">authentifié</a> pour manipuler les domaines</em>.</p>
+<p><em>⚠ Il est nécessaire d'être <a href="../../auth/">authentifié</a> pour manipuler les domaines</em>.</p>
 <hr />
 <p>Enregistrer un nouveau domaine :</p>
-<pre class="prettyprint well"><code>POST /v1/domains/
+<pre><code>POST /v1/domains/
 {
     "name": "example.com"
 }
 </code></pre>
 <p>L'objet retourné est du style:</p>
-<pre class="prettyprint well"><code>HTTP 201 CREATED
+<pre><code>HTTP 201 CREATED
 {
     "url": "https://api.munchmail.net/v1/domains/1/",
     "name": "example.com",
@@ -210,27 +210,26 @@ nécessaires.</p>
 <li><em>bad</em> L'enregistrement DNS existe mais est incorrect</li>
 </ul>
 <p>Une fois que vous avez modifié vos paramètres DNS en suivant
-<a href="/#enregistrement-spf">la documentation SPF</a>, vous pouvez relancer une
+<a href="../../#enregistrement-spf">la documentation SPF</a>, vous pouvez relancer une
 vérification :</p>
-<pre class="prettyprint well"><code>POST /v1/domains/revalidate/
+<pre><code>POST /v1/domains/revalidate/
 </code></pre>
 <p>Qui devrait, si tout va bien, mettre à jour le statut de votre domaine et vous
 retourner :</p>
-<pre class="prettyprint well"><code>HTTP 200 OK
+<pre><code>HTTP 200 OK
 {
     "dkim_status": "ok",
     "spf_status": "ok",
     "mx_status": "ok"
 }
-</code></pre>
-</div>
+</code></pre></div>
         </div>
 
         
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
         <script src="../../js/base.js"></script>
     </body>
 </html>

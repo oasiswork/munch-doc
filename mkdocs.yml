@@ -10,6 +10,7 @@ pages:
   - [api/domaines.md, "L'API", "Domaines"]
   - [api/tracking.md, "L'API", "Suivi des actions côté destinataire"]
   - [api/stats.md, "L'API", "Statistiques"]
+  - [api/export.md, "L'API", "Exports & formats"]
   - [editeur/integration.md, "Éditeur", 'Intégration']
   - [editeur/creation-template.md, "Éditeur", 'Création de template']
   - [editeur/exemple.md, "Éditeur", "Exemple"]

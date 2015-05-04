@@ -17,7 +17,8 @@ Points notables
   peuvent-être utilisées à la fois pour consulter l'objet (requête `GET`) ou le
   modifier (requête `PUT` ou `PATCH`).
 * Si accédée depuis un client `HTTP` ne présentant pas de `Content-type` (ex:
-  *php5-curl*), l'API dialogue par défaut en JSON.
+  *php5-curl*), l'API dialogue par défaut en JSON (cela peut
+  [être changé](export/)).
 
 Pagination
 -----------

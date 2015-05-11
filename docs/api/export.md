@@ -20,6 +20,13 @@ jane-blacklist@example.com,https://api.munchmail.net/v1/categories/1/,2014-08-08
 john-greylist@example.com,https://api.munchmail.net/v1/categories/1/,2014-08-08T12:55:16Z,feedback-loop
 ```
 
+----
+
+*⚠ Il n'y a pas de pagination pour l'export CSV, vous récupérez **toutes** les
+données en une requête. À utiliser avec...*
+
+----
+
 ## Notes de conversion
 
 - La première ligne est une légende

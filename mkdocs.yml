@@ -15,5 +15,6 @@ pages:
   - [editeur/creation-template.md, "Éditeur", 'Création de template']
   - [editeur/exemple.md, "Éditeur", "Exemple"]
   - [exemples/php.md, "Exemples de code", "PHP"]
+  - [infra/requirements.md, "Infrastructure", "Besoins matériels"]
   - [faq.md, FAQ]
   - [annexes.md, Annexes]

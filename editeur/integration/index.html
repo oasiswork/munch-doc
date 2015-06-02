@@ -182,9 +182,9 @@
     
         <li class="main active"><a href="#integration-de-lediteur-munchmail">Intégration de l'éditeur Munchmail</a></li>
         
-            <li><a href="#prerequis-configuration-du-cname">Prérequis : configuration du CNAME</a></li>
-        
             <li><a href="#integration">Intégration</a></li>
+        
+            <li><a href="#validation-du-champ-textarea-du-formulaire">Validation du champ textarea du formulaire</a></li>
         
     
     </ul>
@@ -192,43 +192,37 @@
             <div class="col-md-9" role="main">
 
 <h1 id="integration-de-lediteur-munchmail">Intégration de l'éditeur Munchmail</h1>
-<h2 id="prerequis-configuration-du-cname">Prérequis : configuration du CNAME</h2>
-<p>Il faut créer un enregistrement DNS CNAME qui soit un niveau en dessous du
-domaine de votre interface (ex: portail interne) et qu'il pointe vers
-<em>editeur.munchmail.net</em>.</p>
-<p>Exemple, votre interface possède l'url suivante : <em>mon-intranet.com</em>. Vous pouvez
-donc créer un CNAME <em>editeur.portail.mon-interface.com</em> qui pointe vers
-<em>editeur.munchmail.net</em>. Ce qui donnera au niveau de vos enregistrements :</p>
-<pre><code>editeur.portail.mon-intranet.com.          CNAME           dentifrice.munchmail.net.
-</code></pre>
 <h2 id="integration">Intégration</h2>
 <p>Ces modifications sont à effectuer dans le code de votre application (ex:
 portail d'entreprise, intranet, CMS...)</p>
 <p>Cette application comporte un fichier d'exemple (<em>static/test.html</em>) <a href="../exemple/">Voir les fichiers d'exemple</a>. </p>
 <p>On ajoute la balise:</p>
-<pre><code>&lt;script&gt;document.domain = document.domain;&lt;script&gt;
-</code></pre>
-<p>...en tout début de document (avant les inclusions d'assets externes) (pour
-autoriser la communication entre iframes),</p>
-<p>Puis…</p>
 <pre><code>&lt;script src="bootstrap.js"&gt;&lt;/script&gt;
 </code></pre>
 <p>…avec les autres assets. <a href="../exemple/#le-fichier-bootstrapjs">Voir un exemple du fichier bootstrap</a></p>
-<p>Dans le fichier bootstrap.js, il faut également modifier :</p>
-<pre><code>var SRC = 'http://editeur.portail.mon-intranet.com/';
-</code></pre>
-<p>On l'exécute sur le champ de formulaire correspondant et avec le template souhaité</p>
+<p>On l'exécute sur le champ de formulaire correspondant et avec le template souhaité :</p>
 <pre><code>&lt;script type="text/javascript"&gt;
 var editor = document.getElementById('newsletter-textarea');
-document.oasisBootstrap(editor, 'http://dentifrice.munchmail.net/path/nom-du-template.html');
+document.oasisBootstrap(editor, 'https://dentifrice.munchmail.net/path/nom-du-template.html');
 &lt;/script&gt;
+</code></pre>
+<h2 id="validation-du-champ-textarea-du-formulaire">Validation du champ textarea du formulaire</h2>
+<p>Afin d'éviter que le formulaire soit soumis sans validation du textarea qui contient le html du template, il faut faire appel à la méthode suivante (présente dans bootstrap.js) :</p>
+<pre><code>document.checkTextarea()
+</code></pre>
+<p>Il faut placer cette méthode dans la fonction exécutée lors de la soumission du formulaire.</p>
+<p>Exemple dans une fonction présente sur la soumission du formulaire :</p>
+<pre><code>function checkFormElements() {
+    if(!document.checkTextarea()) {
+        return false;
+    }
+}
 </code></pre>
 <h3 id="contraintes-diverses-sur-le-formulaire">Contraintes diverses sur le formulaire:</h3>
 <ul>
 <li>Il doit y avoir un formulaire.</li>
 <li>Un seul éditeur de newsletter par page.</li>
 <li>Le textarea est rempli au moment de l'envoi.</li>
-<li>Pas d'attribut required sur le textarea sans le form novalidate, sinon on passe pas dans le onsubmit du coup le textarea n'est pas rempli</li>
 </ul></div>
         </div>
 

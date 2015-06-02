@@ -29,7 +29,7 @@ Afin d'éviter que le formulaire soit soumis sans validation du textarea qui con
 
 Il faut placer cette méthode dans la fonction exécutée lors de la soumission du formulaire.
 
-Exemple dans une fonction présente sur la soumission du formulaire :
+Exemple dans une fonction présente sur la soumission du formulaire (présent de le fichier d'exemple cité plus haut) :
 
 	function checkFormElements() {
 		if(!document.checkTextarea()) {

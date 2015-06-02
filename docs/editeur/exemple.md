@@ -118,7 +118,7 @@ Exemples
 	                var posTop = parseFloat(iframeTop) - parseFloat(heightElement) - 4;
 	                var posLeft = parseFloat(leftValue) - parseFloat(widthElement) + 40;
 	                divCheck.style.cssText = 'position: absolute; top: '+posTop+'px; left: '+posLeft+'px; opacity: 1;';
-	                
+	                window.scrollTo(0, posTop -50);
 	                setTimeout(function(){
 	                    if(divCheck.parentNode !== null) {
 	                        divCheck.parentNode.removeChild(divCheck);

@@ -67,6 +67,7 @@ Si tout se passe bien, l'API devrait vous retourner :
         "html": "<h1>Mais ne marche pas sur mes chaussures en suédine bleue</h1>"
         "status": "message_ok",
         "category": null,
+        "mail_count": 0,
         "creation_date": "2015-01-12T15:37:29.803Z",
         "send_date": null,
         "completion_date": null,
@@ -104,6 +105,7 @@ Notons quelques champs :
 * **status** nous donne l'état courant du message
 * **mails** est un lien vers la liste des destinataires et leur état courant (voir
    [étape 2](#2-ajoutmodification-dune-liste-de-destinataires))
+* **mail_count** un compteur du nombre de destinataires
 * **preview** Permet de voir un résumé du message ; utile notamment avant de
    [valider le message](#4-validation-du-message)
 * **is_spam** devrait vous alerter si il est à `true` (viser le zéro de

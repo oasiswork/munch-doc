@@ -226,21 +226,23 @@ On appelle la prévisualisation :
 
 … elle retourne :
 
-    HTTP 200 OK
-    {
-        "recipients": [
-            "mon-destinataire@domaine.tld",
-            "john@domaine.tld",
-            "fox@autre-domaine.tld"
-        ],
-        "excluded_recipients": [
-            "jane@domaine.tld",
-        ],
-        "spam_score": 0.0,
-        "is_spam": false,
-        "html_message": "<div><body><h1>Mais ne marche pas sur mes chaussures en su\u00e9dine bleue</h1><p style=\"font-size: small\"><a href=\"UNSUBSCRIBE_URL\">Se d\u00e9sinscrire</a> pour ne plus recevoir ces emails</p></body></div>",
-        "plaintext_message": "# Mais ne marche pas sur mes chaussures en su\u00e9dine bleue\n\n[Se d\u00e9sinscrire][1] pour ne plus recevoir ces emails\n\n   [1]: UNSUBSCRIBE_URL\n\n"
-    }
+```javascript
+HTTP 200 OK
+{
+    "recipients": [
+        "mon-destinataire@domaine.tld",
+        "john@domaine.tld",
+        "fox@autre-domaine.tld"
+    ],
+    "excluded_recipients": [
+        "jane@domaine.tld",
+    ],
+    "spam_score": 0.0,
+    "is_spam": false,
+    "html_message": "<div><body><h1>Mais ne marche pas sur mes chaussures en su\u00e9dine bleue</h1><p style=\"font-size: small\"><a href=\"UNSUBSCRIBE_URL\">Se d\u00e9sinscrire</a> pour ne plus recevoir ces emails</p></body></div>",
+    "plaintext_message": "# Mais ne marche pas sur mes chaussures en su\u00e9dine bleue\n\n[Se d\u00e9sinscrire][1] pour ne plus recevoir ces emails\n\n   [1]: UNSUBSCRIBE_URL\n\n"
+}
+```
 
 * **recipients** et **excluded_recipients** se partagent les destinataires que
     vous avez définis à l'[étape 2.](#2-ajoutmodification-dune-liste-de-destinataires), dans excluded_recipients sont listés les

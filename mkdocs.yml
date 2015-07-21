@@ -9,6 +9,7 @@ pages:
   - [api/categories.md, "L'API", "Catégories"]
   - [api/domaines.md, "L'API", "Domaines"]
   - [api/tracking.md, "L'API", "Suivi des actions côté destinataire"]
+  - [api/mailmerge.md, "L'API", "Publipostage"]
   - [api/stats.md, "L'API", "Statistiques"]
   - [api/export.md, "L'API", "Exports & formats"]
   - [editeur/integration.md, "Éditeur", 'Intégration']

@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Suivi des actions côté destinataire - MunchMail</title>
+	<title>Publipostage - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -80,12 +80,12 @@
                             <a href="../domaines/">Domaines</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">Suivi des actions côté destinataire</a>
+                        <li >
+                            <a href="../tracking/">Suivi des actions côté destinataire</a>
                         </li>
                     
-                        <li >
-                            <a href="../mailmerge/">Publipostage</a>
+                        <li class="active">
+                            <a href="./">Publipostage</a>
                         </li>
                     
                         <li >
@@ -165,12 +165,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../domaines/">
+                    <a rel="next" href="../tracking/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../mailmerge/">
+                    <a rel="prev" href="../stats/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -184,105 +184,55 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#suivi-des-actions-cote-destinataire">Suivi des actions côté destinataire</a></li>
+        <li class="main active"><a href="#publipostage">Publipostage</a></li>
         
-            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#ajouter-des-informations">Ajouter des informations</a></li>
         
-            <li><a href="#consultation">Consultation</a></li>
+            <li><a href="#inclure-ces-informations">Inclure ces informations</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="suivi-des-actions-cote-destinataire">Suivi des actions côté destinataire</h1>
-<p>Munch offre la possibilité, dans une certaine mesuer,  de suivre les messages
-envoyés jusque dans la boîte de réception :</p>
-<ul>
-<li>destinataires ayant cliqué sur les liens de l'email</li>
-<li>destinataires ayant ouvert le mail</li>
-</ul>
-<hr />
-<p><em>⚠ La vérification à l'ouverture du mail n'est pas à considérer comme un accusé
- de réception, car elle nécessite que l'utilisateur autorise les images externes
- dans son client mail.</em></p>
-<p><em>Cela reste un bon indicateur pour comparer l'intérêt  porté à deux envois.</em></p>
-<hr />
-<h2 id="configuration">Configuration</h2>
-<p>Le suivi peut-être activé ou non pour chaque <code>message</code>, grace aux deux
-paramètres de la ressource (par défaut désactivés) :</p>
-<ul>
-<li><strong>track_open</strong>   : surveille les ouvertures</li>
-<li><strong>track_clicks</strong> : surveille les clics</li>
-</ul>
-<p>Par exemple, pour créer un message incluant les deux formes de suivi :</p>
-<pre><code>POST /v1/messages/
-{
-    "name"         :"Newsletter de Juillet",
-    "sender_email" :"newsletter@example.com",
-    "sender_name"  :"Communication ACME chaussures",
-    "subject": "Tu peux faire tout ce que tu veux",
-    "html": "&lt;h1&gt;Mais ne marche pas sur mes chaussures en suédine bleue&lt;/h1&gt;",
-    "track_open"   : true,
-    "track_clicks" : true,
-}
-</code></pre>
-<h2 id="consultation">Consultation</h2>
-<h3 id="statistiques-par-message">Statistiques par message</h3>
-<p>L'usage le plus intéressant de ce suivi est certainement <a href="../../stats">les
-statistiques</a>. Munchmail vous permet donc de consulter, pour chaque
-<code>message</code> :</p>
-<ul>
-<li>nombre d'ouverture détectées</li>
-<li>nombre de clics, global et par url</li>
-</ul>
-<p>Voir la <a href="../../stats">section statistiques</a>.</p>
-<h3 id="detail-par-destinataire">Détail par destinataire</h3>
-<p>Il est ensuite possible de voir le détail des clics et ouvertures pour chaque
-<code>mail</code> envoyé.</p>
-<pre><code>GET /v1/messages/1/mails
+<h1 id="publipostage">Publipostage</h1>
+<p>Le publipostage consiste à personnaliser chaque email avec des informations
+relatives à l'utilisateur (ex: prénom, âge...).</p>
+<h2 id="ajouter-des-informations">Ajouter des informations</h2>
+<p>Il est nécessaire d'indiquer à l'API les informations qu'on veut utiliser pour
+le publipostage, cela se passe au moment de
+l'<a href="../../tutoriel/#2-ajoutmodification-dune-liste-de-destinataires">ajout des destinataires</a>,
+via le champ <code>properties</code>.
+:</p>
+<pre><code>POST /v1/mails/
 [
-    {
-        "url": "https://api.munchmail.net/v1/mails/1/",
-        "to": "testrcpt@example.com",
-        "date": "2014-07-25T08:52:34.261335Z",
-        "last_status": {
-            "status": "delivered",
-            "date": "2014-07-25T12:07:49Z",
-            "raw_msg": "k.xau"
-        },
-        "message": "https://api.munchmail.net/v1/messages/1/",
-        "tracking": {
-            "opened": "2015-02-24T09:18:54.597617Z",
-            "clicked": [
-                {
-                    "url": "http://oasiswork.fr",
-                    "date": "2015-02-24T13:52:26Z"
-                },
-                {
-                    "url": "http://doc.munchmail.net",
-                    "date": "2015-02-24T13:58:38Z"
-                }
-            ]
-        }
-    },
-    {
-        "url": "https://api.munchmail.net/v1/mails/2/",
-        "to": "john-greylist@example.com",
-        "date": "2014-07-30T08:40:56Z",
-        "last_status": {
-            "status": "softbounced",
-            "date": "2014-07-30T08:41:44Z",
-            "raw_msg": "greylisted !"
-        },
-        "message": "https://api.munchmail.net/v1/messages/1/",
-        "tracking": {
-            "opened": null,
-            "clicked": []
-        }
-    }
+    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/",
+     "properties" : {"first_name": "John", "second_name": "Doe" }},
+    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/",
+    "properties" : {"first_name": "Jane", "second_name": "Doe" }},
+    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/v1/messages/4/",
+    "properties" : {"first_name": "Fox", "second_name": "Durenard" }},
 ]
-</code></pre></div>
+</code></pre>
+<p>Le contenu de <code>properties</code> est un ensemble de <em>clefs/valeurs</em> entièrement
+libres.</p>
+<h2 id="inclure-ces-informations">Inclure ces informations</h2>
+<p>Il est nécessaire de mettre des balises spécifiques dans le code HTML que vous
+fournissez, par exemple, pour afficher l'attribut <code>first_name</code> défini dans
+l'exemple précédent, il faudra mettre dans l'attribut <code>html</code> du <em>message</em>, un
+contenu comme :</p>
+<pre><code>&lt;h1&gt;Bonjour {{ first_name }} !&lt;/h1&gt;
+</code></pre>
+<p>Ce qui donnera, dans la boite mail de votre premier destinataire :</p>
+<pre><code>&lt;h1&gt;Bonjour John !&lt;/h1&gt;
+</code></pre>
+<hr />
+<p><em>ⓘ Pour des usages avancés, sachez que la syntaxe à base d'accolades  est
+celle du
+<a href="https://docs.djangoproject.com/en/dev/ref/templates/language/">langage de templates django</a>,
+et qu'il est possible d'en utiliser toutes les fonctionnalités, notamment
+<a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/">les filtres</a>.</em></p>
+<hr /></div>
         </div>
 
         

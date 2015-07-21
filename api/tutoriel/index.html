@@ -85,6 +85,10 @@
                         </li>
                     
                         <li >
+                            <a href="../mailmerge/">Publipostage</a>
+                        </li>
+                    
+                        <li >
                             <a href="../stats/">Statistiques</a>
                         </li>
                     
@@ -386,22 +390,23 @@ l'est sous le nom <code>preview_send</code>.</p>
 <pre><code>GET /v1/messages/4/preview/
 </code></pre>
 <p>… elle retourne :</p>
-<pre><code>HTTP 200 OK
+<pre><code class="javascript">HTTP 200 OK
 {
-    "recipients": [
-        "mon-destinataire@domaine.tld",
-        "john@domaine.tld",
-        "fox@autre-domaine.tld"
+    &quot;recipients&quot;: [
+        &quot;mon-destinataire@domaine.tld&quot;,
+        &quot;john@domaine.tld&quot;,
+        &quot;fox@autre-domaine.tld&quot;
     ],
-    "excluded_recipients": [
-        "jane@domaine.tld",
+    &quot;excluded_recipients&quot;: [
+        &quot;jane@domaine.tld&quot;,
     ],
-    "spam_score": 0.0,
-    "is_spam": false,
-    "html_message": "&lt;div&gt;&lt;body&gt;&lt;h1&gt;Mais ne marche pas sur mes chaussures en su\u00e9dine bleue&lt;/h1&gt;&lt;p style=\"font-size: small\"&gt;&lt;a href=\"UNSUBSCRIBE_URL\"&gt;Se d\u00e9sinscrire&lt;/a&gt; pour ne plus recevoir ces emails&lt;/p&gt;&lt;/body&gt;&lt;/div&gt;",
-    "plaintext_message": "# Mais ne marche pas sur mes chaussures en su\u00e9dine bleue\n\n[Se d\u00e9sinscrire][1] pour ne plus recevoir ces emails\n\n   [1]: UNSUBSCRIBE_URL\n\n"
+    &quot;spam_score&quot;: 0.0,
+    &quot;is_spam&quot;: false,
+    &quot;html_message&quot;: &quot;&lt;div&gt;&lt;body&gt;&lt;h1&gt;Mais ne marche pas sur mes chaussures en su\u00e9dine bleue&lt;/h1&gt;&lt;p style=\&quot;font-size: small\&quot;&gt;&lt;a href=\&quot;UNSUBSCRIBE_URL\&quot;&gt;Se d\u00e9sinscrire&lt;/a&gt; pour ne plus recevoir ces emails&lt;/p&gt;&lt;/body&gt;&lt;/div&gt;&quot;,
+    &quot;plaintext_message&quot;: &quot;# Mais ne marche pas sur mes chaussures en su\u00e9dine bleue\n\n[Se d\u00e9sinscrire][1] pour ne plus recevoir ces emails\n\n   [1]: UNSUBSCRIBE_URL\n\n&quot;
 }
 </code></pre>
+
 <ul>
 <li><strong>recipients</strong> et <strong>excluded_recipients</strong> se partagent les destinataires que
     vous avez définis à l'<a href="#2-ajoutmodification-dune-liste-de-destinataires">étape 2.</a>, dans excluded_recipients sont listés les

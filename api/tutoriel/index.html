@@ -345,22 +345,7 @@ de texte… etc.</p>
     "message": "https://api.munchmail.net/v1/messages/4/"
 }
 </code></pre>
-<h3 id="ajout-des-destinataires-par-lot">Ajout des destinataires par lot</h3>
-<pre><code>POST /v1/mails/
-[
-    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
-    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
-    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/v1/messages/4/"},
-]
-</code></pre>
-<hr />
-<p><em>ⓘ l'API</em> <strong><em>refusera les ajouts de plus de 10 000 destinataires</em></strong> <em>en une seule requête.</em></p>
-<p><em>En outre, séparer par exemple en lots de 10 000 destinataires permet à votre
- application de suivre la progression de l'ajout des destinataires étape par
- étape.</em></p>
-<hr />
-<p>Que vous ajoutiez les destinataires individuellement ou en lot, vous recevrez
-les statuts HTTP suivants :</p>
+<p>Les codes de retours HTTP sont :</p>
 <ul>
 <li><strong>201 (created)</strong> si tout se passe bien</li>
 <li><strong>400 (bad request)</strong> si l'email est invalide (adresse mal formée ou domaine
@@ -381,6 +366,36 @@ non habilité à recevoir du courriel)</li>
     ]
 }
 </code></pre>
+<h3 id="ajout-des-destinataires-par-lot">Ajout des destinataires par lot</h3>
+<pre><code>POST /v1/mails/
+[
+    {"to" : "john@domaine.tld",    "message": "https://api.munchmail.net/v1/messages/4/"},
+    {"to" : "jane@domaine.tld",    "message": "https://api.munchmail.net/v1/messages/4/"},
+    {"to" : "jack@inexistant.tld", "message": "https://api.munchmail.net/v1/messages/4/"},
+]
+</code></pre>
+<p>Lorsque vous ajoutez les destinataires par lot, l'API accepte qu'une partie des
+adresses soit invalide, les autres seront quand-même insérées, un <strong>201</strong> sera
+donc toujours renvoyé, sauf dans les cas d'erreur globale ou une code <strong>400</strong>
+est retourné  (ex: la requête ne contient pas de JSON valide).</p>
+<p>Le format de retour de la requête d'ajout multiple de destinataires est le
+suivant :</p>
+<pre><code>201 CREATED
+{
+    "success_count": 2,
+    "failed": {
+        "jack@inexstant.tld": {
+            "to": ["Le domaine inexistant.tld  ne semble pas être configuré pour la réception des emails."]
+        }
+}
+</code></pre>
+<hr />
+<p><em>ⓘ l'API</em> <strong><em>refusera les ajouts de plus de 10 000 destinataires</em></strong> <em>en une
+ seule requête (HTTP 400).</em></p>
+<p><em>En outre, séparer en lots de moins de 10 000 destinataires permet à votre
+ application de suivre la progression de l'ajout des destinataires étape par
+ étape.</em></p>
+<hr />
 <h2 id="3-previsualisation-et-envoi-a-quelques-destinataires-pilotes">3. Prévisualisation et envoi à quelques destinataires « pilotes »</h2>
 <h3 id="previsualisation">Prévisualisation</h3>
 <p>Une vue de validation est offerte sur les <code>messages</code> ; comme toutes les actions

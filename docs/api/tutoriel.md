@@ -166,28 +166,8 @@ Il suffit de faire autant de requêtes POST que de destinataires à ajouter.
         "message": "https://api.munchmail.net/v1/messages/4/"
     }
 
-### Ajout des destinataires par lot
 
-    POST /v1/mails/
-    [
-	    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
-	    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/"},
-	    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/v1/messages/4/"},
-    ]
-
-
----
-
-*ⓘ l'API* ***refusera les ajouts de plus de 10 000 destinataires*** *en une seule requête.*
-
-*En outre, séparer par exemple en lots de 10 000 destinataires permet à votre
- application de suivre la progression de l'ajout des destinataires étape par
- étape.*
-
----
-
-Que vous ajoutiez les destinataires individuellement ou en lot, vous recevrez
-les statuts HTTP suivants :
+Les codes de retours HTTP sont :
 
 - **201 (created)** si tout se passe bien
 - **400 (bad request)** si l'email est invalide (adresse mal formée ou domaine
@@ -210,6 +190,49 @@ Par exemple…
            "Saisissez une adresse de courriel valide."
         ]
 	}
+
+
+### Ajout des destinataires par lot
+
+    POST /v1/mails/
+    [
+	    {"to" : "john@domaine.tld",    "message": "https://api.munchmail.net/v1/messages/4/"},
+	    {"to" : "jane@domaine.tld",    "message": "https://api.munchmail.net/v1/messages/4/"},
+	    {"to" : "jack@inexistant.tld", "message": "https://api.munchmail.net/v1/messages/4/"},
+    ]
+
+
+
+Lorsque vous ajoutez les destinataires par lot, l'API accepte qu'une partie des
+adresses soit invalide, les autres seront quand-même insérées, un **201** sera
+donc toujours renvoyé, sauf dans les cas d'erreur globale ou une code **400**
+est retourné  (ex: la requête ne contient pas de JSON valide).
+
+Le format de retour de la requête d'ajout multiple de destinataires est le
+suivant :
+
+
+    201 CREATED
+    {
+        "success_count": 2,
+        "failed": {
+            "jack@inexstant.tld": {
+                "to": ["Le domaine inexistant.tld  ne semble pas être configuré pour la réception des emails."]
+            }
+    }
+
+
+---
+
+*ⓘ l'API* ***refusera les ajouts de plus de 10 000 destinataires*** *en une
+ seule requête (HTTP 400).*
+
+*En outre, séparer en lots de moins de 10 000 destinataires permet à votre
+ application de suivre la progression de l'ajout des destinataires étape par
+ étape.*
+
+---
+
 
 
 ## 3. Prévisualisation et envoi à quelques destinataires « pilotes »

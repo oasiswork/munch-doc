@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Publipostage - MunchMail</title>
+	<title>Utilisateurs & permissions - MunchMail</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -84,8 +84,8 @@
                             <a href="../tracking/">Suivi des actions côté destinataire</a>
                         </li>
                     
-                        <li class="active">
-                            <a href="./">Publipostage</a>
+                        <li >
+                            <a href="../mailmerge/">Publipostage</a>
                         </li>
                     
                         <li >
@@ -96,8 +96,8 @@
                             <a href="../export/">Exports & formats</a>
                         </li>
                     
-                        <li >
-                            <a href="../users/">Utilisateurs & permissions</a>
+                        <li class="active">
+                            <a href="./">Utilisateurs & permissions</a>
                         </li>
                     
                     </ul>
@@ -168,12 +168,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../tracking/">
+                    <a rel="next" href="../export/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../stats/">
+                    <a rel="prev" href="../../editeur/integration/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -187,54 +187,158 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#publipostage">Publipostage</a></li>
+        <li class="main active"><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a></li>
         
-            <li><a href="#ajouter-des-informations">Ajouter des informations</a></li>
+            <li><a href="#utilisateurs-applications">Utilisateurs &amp; applications</a></li>
         
-            <li><a href="#inclure-ces-informations">Inclure ces informations</a></li>
+            <li><a href="#groupes">Groupes</a></li>
+        
+            <li><a href="#gerer-les-comptes">Gérer les comptes</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="publipostage">Publipostage</h1>
-<p>Le publipostage consiste à personnaliser chaque email avec des informations
-relatives à l'utilisateur (ex: prénom, âge...).</p>
-<h2 id="ajouter-des-informations">Ajouter des informations</h2>
-<p>Il est nécessaire d'indiquer à l'API les informations qu'on veut utiliser pour
-le publipostage, cela se passe au moment de
-l'<a href="../../tutoriel/#2-ajoutmodification-dune-liste-de-destinataires">ajout des destinataires</a>,
-via le champ <code>properties</code>.
-:</p>
-<pre><code>POST /v1/mails/
-[
-    {"to" : "john@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/",
-     "properties" : {"first_name": "John", "second_name": "Doe" }},
-    {"to" : "jane@domaine.tld",     "message": "https://api.munchmail.net/v1/messages/4/",
-    "properties" : {"first_name": "Jane", "second_name": "Doe" }},
-    {"to" : "fox@autredomaine.tld", "message": "https://api.munchmail.net/v1/messages/4/",
-    "properties" : {"first_name": "Fox", "second_name": "Durenard" }},
-]
+<h1 id="gestion-des-utilisateurs">Gestion des utilisateurs</h1>
+<p>Par défaut, vous avez un unique compte utilisateur avec les droits de
+<strong>manager</strong>. Cela peut vous suffire dans certains cas, mais munch vous offre la
+possibilité de gérer plusieurs utilisateurs et applications, avec des droits
+différents.</p>
+<h2 id="utilisateurs-applications">Utilisateurs &amp; applications</h2>
+<p>Deux types d'utilisateurs existent :</p>
+<ul>
+<li><strong>utilisateur humain</strong> (s'authentifie traditionnellement
+  <a href="../../api/auth/#authentification-par-session-pour-testsdebug">via email / password</a>)
+    : consulter le portail de statistiques, lancer des envois manuellement
+    depuis le portail ou zimbra, tester l'API depuis
+    l'<a href="../../api/intro/#api-navigable">API navigable</a>.</li>
+<li><strong>application</strong> (s'authentifie
+    <a href="../../api/auth/#par-clef-dapi-http-basic">via clef d'API</a>) : lancer des envois
+    via l'API depuis votre intranet, CMS...</li>
+</ul>
+<h2 id="groupes">Groupes</h2>
+<p>Ces utilisateurs peuvent appartenir à un ou plusieurs groupes par mis :</p>
+<ul>
+<li><strong>managers</strong> : Ont tout pouvoir (au sein d'un compte client donné), notamment
+  celui de <a href="../../api/users/#gerer-les-comptes">gérer les comptes utilisateurs</a></li>
+<li><strong>users</strong> : Peuvent créer, envoyer, consulter, modifier des messages, mais ne
+  peuvent voir et/ou modifier ceux des autres utilisateurs.</li>
+</ul>
+<h2 id="gerer-les-comptes">Gérer les comptes</h2>
+<h3 id="lister-les-utilisateurs">Lister les utilisateurs.</h3>
+<p>Vous pouvez lister tous les utilisateurs humains :</p>
+<pre><code>GET /v1/users/humans/
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "page_count": 1,
+    "results": [
+        {
+            "url": "http://localhost:8000/v1/users/humans/1/",
+            "identifier": "admin@example.com",
+            "type": "human",
+            "groups": ["managers"],
+            "api_key": "key-N5sej2NEOlMcbldXE9GcjhTax1",
+            "_links": {
+                "regen_api_key": {
+                    "href": "http://localhost:8000/v1/users/1/regen_api_key/"
+                }
+            }
+        },
+        {
+            "url": "http://localhost:8000/v1/users/humans/2/",
+            "identifier": "john@example.com",
+            "type": "human",
+            "groups": ["users"],
+            "api_key": "key-RTANLQBoG3lQIdklblgH3W6HFi",
+            "_links": {
+                "regen_api_key": {
+                    "href": "http://localhost:8000/v1/users/5/regen_api_key/"
+                }
+            }
+        }
+    ]
+}
 </code></pre>
-<p>Le contenu de <code>properties</code> est un ensemble de <em>clefs/valeurs</em> entièrement
-libres.</p>
-<h2 id="inclure-ces-informations">Inclure ces informations</h2>
-<p>Il est nécessaire de mettre des balises spécifiques dans le code HTML que vous
-fournissez, par exemple, pour afficher l'attribut <code>first_name</code> défini dans
-l'exemple précédent, il faudra mettre dans l'attribut <code>html</code> du <em>message</em>, un
-contenu comme :</p>
-<pre><code>&lt;h1&gt;Bonjour {{ first_name }} !&lt;/h1&gt;
+<p>... ou les applications :</p>
+<pre><code>GET /v1/users/apps/
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "page_count": 1,
+    "results": [
+        {
+            "url": "http://localhost:8000/v1/users/apps/6/",
+            "identifier": "erp",
+            "type": "app",
+            "groups": ["users"],
+            "api_key": "key-8EgL2KEwrYOh3JP0mTAFSpY1yH",
+            "_links": {
+                "regen_api_key": {
+                    "href": "http://localhost:8000/v1/users/6/regen_api_key/"
+                }
+            }
+        }
+   ]
+}
 </code></pre>
-<p>Ce qui donnera, dans la boite mail de votre premier destinataire :</p>
-<pre><code>&lt;h1&gt;Bonjour John !&lt;/h1&gt;
+<p>L'URL <em>/v1/users/</em> vous permet de lister tous les utilisateurs quels que soient
+leurs types.</p>
+<h3 id="ajouter-un-utilisateur-humain">Ajouter un utilisateur humain</h3>
+<p>Pour le moment, l'ajout d'utilisateur humain doit passer par nous, merci de
+<a href="http://www.oasiswork.fr/contact/">nous contacter</a>.</p>
+<p>Il vous suffit de renseigner un email dans le champ <em>identifier</em> et une liste
+de groupes :</p>
+<pre><code>POST /v1/users/humans/
+{
+    "identifier": "foo@example.com",
+    "groups": ["users"]
+}
+</code></pre>
+<p>devrait retourner</p>
+<pre><code>HTTP 201 CREATED
+{
+    "url": "http://localhost:8000/v1/users/humans/12/",
+    "identifier": "jane-doe@example.com",
+    "type": "human",
+    "groups": ["users"]
+    "api_key": "key-5mqt3p8LfxItl0UvmkZ1G3oYn6",
+    "_links": {
+        "regen_api_key": {
+            "href": "http://localhost:8000/v1/users/12/regen_api_key/"
+        }
+    }
+}
+</code></pre>
+<h3 id="ajouter-une-application">Ajouter une application</h3>
+<p>Il vous suffit de renseigner un identifiant que vous choisissez dans le champ <em>identifier</em>:</p>
+<pre><code>POST /v1/users/apps/
+{
+    "identifier": "foo@example.com",
+    "groups": ["users"]
+}
+</code></pre>
+<p>Ce qui devrait vous retourner :</p>
+<pre><code>HTTP 201 CREATED
+{
+    "url": "http://localhost:8000/v1/users/apps/13/",
+    "identifier": "my-erp",
+    "type": "app",
+    "groups": ["users"],
+    "api_key": "key-XuZD7VSeq6ccy0s9548O0Rqqv6",
+    "_links": {
+        "regen_api_key": {
+            "href": "http://localhost:8000/v1/users/13/regen_api_key/"
+        }
+    }
+}
 </code></pre>
 <hr />
-<p><em>ⓘ Pour des usages avancés, sachez que la syntaxe à base d'accolades  est
-celle du
-<a href="https://docs.djangoproject.com/en/dev/ref/templates/language/">langage de templates django</a>,
-et qu'il est possible d'en utiliser toutes les fonctionnalités, notamment
-<a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/">les filtres</a>.</em></p>
+<p><em>ⓘ Vous pouvez bien entendu modifier ou supprimer des utilisateurs existants à
+l'aide de requêtes <code>DELETE</code> ou <code>PUT</code>.</em></p>
 <hr /></div>
         </div>
 

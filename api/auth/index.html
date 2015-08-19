@@ -96,6 +96,10 @@
                             <a href="../export/">Exports & formats</a>
                         </li>
                     
+                        <li >
+                            <a href="../users/">Utilisateurs & permissions</a>
+                        </li>
+                    
                     </ul>
                 </li>
             
@@ -163,7 +167,6 @@
 
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
-                
                 <li >
                     <a rel="next" href="../intro/">
                         <i class="fa fa-arrow-left"></i> Previous
@@ -184,22 +187,18 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#authentification-utilisateurs">Authentification  utilisateurs</a></li>
+        <li class="main active"><a href="#authentification">Authentification</a></li>
         
             <li><a href="#authentification-par-session-pour-testsdebug">Authentification par session (pour tests/debug)</a></li>
         
             <li><a href="#par-clef-dapi-http-basic">Par clef d'API (HTTP Basic)</a></li>
-        
-            <li><a href="#utilisateurs-applications">Utilisateurs  applications</a></li>
-        
-            <li><a href="#droits">Droits</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="authentification-utilisateurs">Authentification &amp; utilisateurs</h1>
+<h1 id="authentification">Authentification</h1>
 <p>La communication est chiffrée via HTTPS.</p>
 <ul>
 <li>Nous <strong>authentifions votre application</strong> (<em>clef d'API</em>) et isolons vos données
@@ -230,134 +229,14 @@ comment utiliser l'authentification <em>HTTP Basic</em>.</p>
 </ul>
 <p>Les détails d'authentification sont à attacher à chaque requête.</p>
 <p>L'authentification est abordée notamment dans nos
-<a href="../../exemples/php/">exemples pour PHP</a>.</p>
-<h2 id="utilisateurs-applications">Utilisateurs &amp; applications</h2>
-<p>Deux types d'utilisateurs existent :</p>
-<ul>
-<li><strong>utilisateur humains</strong> (s'authentifie traditionellement via email / password)
-    : consulter le portail de statistiques, lancer des envois manuellement
-    depuis le portail, tester l'API depuis l'API navigable.</li>
-<li><strong>application</strong> (s'authentifie via clef d'API): lancer des envois via l'API
-    depuis votre intranet, CMS...</li>
-</ul>
-<h3 id="lister-les-utilisateurs">Lister les utilisateurs.</h3>
-<p>Vous pouvez lister individuellement les applications :</p>
-<pre><code>GET /v1/users/apps/
-{
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "page_count": 1,
-    "results": [
-        {
-            "url": "http://localhost:8000/v1/users/apps/6/",
-            "identifier": "erp",
-            "type": "app",
-            "api_key": "key-8EgL2KEwrYOh3JP0mTAFSpY1yH",
-            "_links": {
-                "regen_api_key": {
-                    "href": "http://localhost:8000/v1/users/6/regen_api_key/"
-                }
-            }
-        }
-   ]
-}
-</code></pre>
-<p>Ou pour les utilisateurs humains :</p>
-<pre><code>GET /v1/users/humans/
-{
-    "count": 2,
-    "next": null,
-    "previous": null,
-    "page_count": 1,
-    "results": [
-        {
-            "url": "http://localhost:8000/v1/users/humans/1/",
-            "identifier": "admin@example.com",
-            "type": "human",
-            "api_key": "key-N5sej2NEOlMcbldXE9GcjhTax1",
-            "_links": {
-                "regen_api_key": {
-                    "href": "http://localhost:8000/v1/users/1/regen_api_key/"
-                }
-            }
-        },
-        {
-            "url": "http://localhost:8000/v1/users/humans/2/",
-            "identifier": "john@example.com",
-            "type": "human",
-            "api_key": "key-RTANLQBoG3lQIdklblgH3W6HFi",
-            "_links": {
-                "regen_api_key": {
-                    "href": "http://localhost:8000/v1/users/5/regen_api_key/"
-                }
-            }
-        }
-    ]
-}
-</code></pre>
-<p>L'URL <em>/v1/users/</em> vous permet de lister tous les utilisateurs quels que soient
-leurs types.</p>
-<h3 id="ajouter-une-application">Ajouter une application</h3>
-<p>Il vous suffit de renseigner un identifiant que vous choisissez dans le champ <em>identifier</em>:</p>
-<pre><code>POST /v1/users/apps/
-{
-    "identifier": "foo@example.com"
-}
-</code></pre>
-<p>Ce qui devrait vous retourner :</p>
-<pre><code>HTTP 201 CREATED
-{
-    "url": "http://localhost:8000/v1/users/apps/13/",
-    "identifier": "my-erp",
-    "type": "app",
-    "api_key": "key-XuZD7VSeq6ccy0s9548O0Rqqv6",
-    "_links": {
-        "regen_api_key": {
-            "href": "http://localhost:8000/v1/users/13/regen_api_key/"
-        }
-    }
-}
-</code></pre>
-<h3 id="ajouter-un-utilisateur-humain">Ajouter un utilisateur humain</h3>
-<p>Pour le moment, l'ajout d'utilisateur humain doit passer par nous, merci de
-<a href="http://www.oasiswork.fr/contact/">nous contacter</a>.</p>
-<!--
-Il vous suffit de renseigner un email dans le champ *identifier* :
-
-    POST /v1/users/humans/
-    {
-        "identifier": "foo@example.com"
-    }
-
-
-devrait retourner
-
-
-    HTTP 201 CREATED
-    {
-        "url": "http://localhost:8000/v1/users/humans/12/",
-        "identifier": "jane-doe@example.com",
-        "type": "human",
-        "api_key": "key-5mqt3p8LfxItl0UvmkZ1G3oYn6",
-        "_links": {
-            "regen_api_key": {
-                "href": "http://localhost:8000/v1/users/12/regen_api_key/"
-            }
-        }
-    }
--->
-
-<h2 id="droits">Droits</h2>
-<p>Tous vos utilisateurs &amp; applications possèdent les droits sur l'ensemble de vos objets
-(messages, catégories...).</p>
-<hr />
-<p><em>ⓘ Des droits plus fins pourront être appliqués dans des version ultérieures de
- l'API.</em></p>
-<hr /></div>
+<a href="../../exemples/php/">exemples pour PHP</a>.</p></div>
         </div>
 
-        
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
 
         <script src="../../js/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>

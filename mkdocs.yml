@@ -12,6 +12,7 @@ pages:
   - [api/mailmerge.md, "L'API", "Publipostage"]
   - [api/stats.md, "L'API", "Statistiques"]
   - [api/export.md, "L'API", "Exports & formats"]
+  - [api/users.md, "L'API", "Utilisateurs & permissions"]
   - [editeur/integration.md, "Éditeur", 'Intégration']
   - [editeur/creation-template.md, "Éditeur", 'Création de template']
   - [editeur/exemple.md, "Éditeur", "Exemple"]

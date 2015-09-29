@@ -167,6 +167,7 @@
 
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
+                
                 <li >
                     <a rel="next" href="../infra/requirements/">
                         <i class="fa fa-arrow-left"></i> Previous
@@ -228,12 +229,24 @@ en masse</strong>. Il est beaucoup plus efficace d'héberger images et pièces-j
 sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère et
 évite d'encombrer les boites mail de vos destinataires.</p>
 <hr />
-<p>Pour ajouter une pièce-jointe sur le message <code>/v1/messages/1/</code> :</p>
-<pre><code>POST /v1/messages/1/attachments/
-file: votre fichier
+<p>Pour ajouter par exemple le fichier <em>mon_fichier.png</em> sur le message <code>/v1/messages/1/</code> :</p>
+<pre><code>POST /v1/attachments/
+</code></pre>
+<p>avec les paramètres <em>POST</em> suivants :</p>
+<pre><code>file: mon_fichier.png
+message: http://api.crunchmail.net/v1/messages/1/
 </code></pre>
 <p>Cette requête <em>doit</em> avoir un <code>Content-Type</code> à <code>multipart/form-data</code> à l'inverse
 de beaucoup d'autres qui transfèrent leur contenu en <code>application/json</code>.</p>
+<p>Si tout va bien, vous devriez recevoir :</p>
+<pre><code>HTTP 200 OK
+{
+    "url": "http://api.crunchmail.net/v1/attachments/1/",
+    "message": "http://api.crunchmail.net/v1/messages/1/",
+    "file": "http://api.crunchmail.net/medias/attachments/1/mon_fichier.png",
+    "filename": "mon_fichier.png"
+}
+</code></pre>
 <p>Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une
 erreur 400 est renvoyée
 et le fichier rejeté, par exemple :</p>
@@ -246,11 +259,7 @@ et le fichier rejeté, par exemple :</p>
  --></div>
         </div>
 
-        <footer class="col-md-12">
-            <hr>
-            
-            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
-        </footer>
+        
 
         <script src="../js/jquery-1.10.2.min.js"></script>
         <script src="../js/bootstrap-3.0.3.min.js"></script>

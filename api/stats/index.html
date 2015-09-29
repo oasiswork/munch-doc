@@ -167,6 +167,7 @@
 
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
+                
                 <li >
                     <a rel="next" href="../mailmerge/">
                         <i class="fa fa-arrow-left"></i> Previous
@@ -238,7 +239,8 @@ pourcentages si vous le souhaitez.</p>
             "http://doc.munchmail.net": 1,
             "any": 1
         },
-        "opened": 1
+        "opened": 1,
+        "opening_median_time": 543
     },
     "optout": {
         "web": 0,
@@ -268,6 +270,8 @@ pourcentages si vous le souhaitez.</p>
   donne le nombre de destinataires ayant cliqué sur un lien quelconque.</li>
 <li><strong>opened</strong> : nombre d'utilisateurs ayant ouvert le message et affiché le
   pixel caché (cf <a href="../../tracking">suivi</a>)</li>
+<li><strong>open_median_time</strong> : médiane du temps écoulé entre la remise de
+  l'email et son ouverture par le destinataire.</li>
 </ul>
 </li>
 <li><strong>optout</strong> : nombre de désinscriptions totales et par type (types
@@ -309,11 +313,7 @@ retournées pour le message mais moins nombreuses :</p>
 </code></pre></div>
         </div>
 
-        <footer class="col-md-12">
-            <hr>
-            
-            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
-        </footer>
+        
 
         <script src="../../js/jquery-1.10.2.min.js"></script>
         <script src="../../js/bootstrap-3.0.3.min.js"></script>

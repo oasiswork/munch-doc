@@ -39,13 +39,27 @@ sur un serveur web et de fournir des liens. Cela allège l'envoi, l'accélère e
 ---
 
 
-Pour ajouter une pièce-jointe sur le message `/v1/messages/1/` :
+Pour ajouter par exemple le fichier *mon_fichier.png* sur le message `/v1/messages/1/` :
 
-    POST /v1/messages/1/attachments/
-	file: votre fichier
+    POST /v1/attachments/
+
+avec les paramètres *POST* suivants :
+
+	file: mon_fichier.png
+    message: http://api.crunchmail.net/v1/messages/1/
 
 Cette requête *doit* avoir un `Content-Type` à `multipart/form-data` à l'inverse
 de beaucoup d'autres qui transfèrent leur contenu en `application/json`.
+
+Si tout va bien, vous devriez recevoir :
+
+    HTTP 200 OK
+    {
+        "url": "http://api.crunchmail.net/v1/attachments/1/",
+        "message": "http://api.crunchmail.net/v1/messages/1/",
+        "file": "http://api.crunchmail.net/medias/attachments/1/mon_fichier.png",
+        "filename": "mon_fichier.png"
+    }
 
 Les pièces-jointes sont vérifiées par un antivirus. Si un virus est détecté, une
 erreur 400 est renvoyée

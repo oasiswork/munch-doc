@@ -45,7 +45,8 @@ Il est possible d'obtenir des statistiques à l'échelle d'un Message.
                 "http://doc.munchmail.net": 1,
                 "any": 1
             },
-            "opened": 1
+            "opened": 1,
+            "opening_median_time": 543
         },
         "optout": {
             "web": 0,
@@ -72,6 +73,8 @@ Il est possible d'obtenir des statistiques à l'échelle d'un Message.
       donne le nombre de destinataires ayant cliqué sur un lien quelconque.
     - **opened** : nombre d'utilisateurs ayant ouvert le message et affiché le
       pixel caché (cf [suivi](../tracking))
+    - **open_median_time** : médiane du temps écoulé entre la remise de
+      l'email et son ouverture par le destinataire.
 - **optout** : nombre de désinscriptions totales et par type (types
                détaillés
                [en annexe](../../annexes/#types-de-desinscriptions-opt-outs))
